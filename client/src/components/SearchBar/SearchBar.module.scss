@@ -1,0 +1,35 @@
+.search-box {
+  height: 40px;
+  width: 644px;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+  display: flex;
+  margin: 0 4px 0 18px;
+}
+
+.search-box-icon {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 12px;
+  height: 24px;
+}
+
+.search-input {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  color: var(--text-color);
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.searchbysound-icon {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 12px;
+}

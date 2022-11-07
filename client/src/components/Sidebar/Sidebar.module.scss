@@ -1,0 +1,31 @@
+.wrapper {
+  width: 240px;
+  padding: 12px;
+}
+
+.nav-box {
+  border-top: 1px solid;
+  border-color: #272727;
+  margin-top: 12px;
+}
+
+.footer {
+  border-top: 1px solid;
+  border-color: #272727;
+  margin-top: 12px;
+}
+
+.footer-box {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px 12px 0;
+}
+
+.footer-link {
+  font-size: 13px;
+  margin-right: 8px;
+}
+
+.nav-box-title {
+  padding: 8px;
+}

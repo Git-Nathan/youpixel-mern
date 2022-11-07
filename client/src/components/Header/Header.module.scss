@@ -1,0 +1,93 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: var(--default-layout-header-height);
+  background-color: var(--background-color);
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.start {
+  display: flex;
+  align-items: center;
+}
+
+.end {
+  display: flex;
+}
+
+.logo-link {
+  height: var(--default-layout-header-height);
+  display: block;
+  margin-left: 2px;
+}
+
+.logo-img {
+  height: 22px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 12px;
+}
+
+.sidebar-btn {
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #4b4f58;
+  }
+}
+
+.login-box {
+  --login-box-height: 40px;
+
+  height: var(--login-box-height);
+  line-height: var(--login-box-height);
+  background-color: var(--button-background-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 14px;
+  width: max-content;
+
+  &:hover {
+    background-color: #4b4f58;
+  }
+}
+
+.login-box-btn {
+  padding: 0 12px;
+  text-align: center;
+}
+
+.login-box-btn-icon {
+  margin-right: 8px;
+}
+
+.menu-btn {
+  --menu-btn-height: 40px;
+  width: 40px;
+
+  height: var(--menu-btn-height);
+  border-radius: 20px;
+  margin-right: 5px;
+
+  &:hover {
+    background-color: #4b4f58;
+  }
+}
