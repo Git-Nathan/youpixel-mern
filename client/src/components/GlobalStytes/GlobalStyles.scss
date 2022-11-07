@@ -35,6 +35,22 @@ html {
   font-size: 62.5%;
 }
 
+// Scrollbar CSS
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #6b6b6b;
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(122, 122, 122, 0);
+}
+
 body {
   font-family: var(--font-family);
   font-size: 1.6rem;

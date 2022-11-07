@@ -10,8 +10,10 @@ function MenuItem({ title, to, icon }) {
       className={(nav) => cn('menu-item', { active: nav.isActive })}
       to={to}
     >
-      <span className={cn('icon')}>{icon}</span>
-      <span className={cn('title')}>{title}</span>
+      <div className={cn('wrap')}>
+        <span className={cn('icon')}>{icon}</span>
+        <span className={cn('title')}>{title}</span>
+      </div>
     </NavLink>
   )
 }

@@ -1,12 +1,20 @@
 .wrapper {
+  position: fixed;
   width: 240px;
-  padding: 12px;
+  height: calc(100% - var(--default-layout-header-height));
+  padding: 0 12px;
+  overflow-y: hidden;
+
+  &:hover {
+    overflow-y: scroll;
+  }
 }
 
 .nav-box {
   border-top: 1px solid;
   border-color: #272727;
   margin-top: 12px;
+  padding-top: 12px;
 }
 
 .footer {
@@ -27,5 +35,6 @@
 }
 
 .nav-box-title {
-  padding: 8px;
+  padding: 2px 12px 4px;
+  font-size: 16px;
 }
