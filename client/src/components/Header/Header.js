@@ -54,9 +54,8 @@ function Header() {
           <Link to="/" className={cn('logo-link')}>
             <img className={cn('logo-img')} src={logo} alt="logo" />
           </Link>
+          <SearchBar />
         </div>
-
-        <SearchBar />
 
         <div className={cn('end')}>
           <button className={cn('menu-btn')}>

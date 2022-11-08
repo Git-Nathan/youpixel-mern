@@ -1,6 +1,7 @@
 import styles from './Home.module.scss'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
+import VideoBoxs from '~/components/VideoBoxs'
 
 const cn = classNames.bind(styles)
 
@@ -18,6 +19,8 @@ function Home() {
           <Link className={cn('filter-bar-link')}>Đề xuất mới</Link>
         </div>
       </div>
+      <div className={cn('margin')}></div>
+      <VideoBoxs />
     </div>
   )
 }

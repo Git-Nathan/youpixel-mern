@@ -26,7 +26,6 @@
 
 .end {
   display: flex;
-  min-width: 225px;
   justify-content: flex-end;
 }
 
@@ -34,6 +33,7 @@
   height: var(--default-layout-header-height);
   display: block;
   margin-left: 2px;
+  margin-right: 27px;
 }
 
 .logo-img {

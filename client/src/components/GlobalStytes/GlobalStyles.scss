@@ -6,6 +6,7 @@
   --background-color: #15141b;
   --button-background-color: #1e232e;
   --primary-color: #f05123;
+  --hover-color: #4b4f58;
 
   --font-family: 'SFProDisplay', sans-serif;
 
@@ -93,10 +94,14 @@ body {
 .grid {
   width: 100%;
   height: 1000px;
-  margin: 0 auto;
 }
 
 .grid__row {
   display: flex;
   flex-wrap: wrap;
+}
+
+.grid__column {
+  padding-left: 8px;
+  padding-right: 8px;
 }
