@@ -26,6 +26,8 @@
 
 .end {
   display: flex;
+  min-width: 225px;
+  justify-content: flex-end;
 }
 
 .logo-link {

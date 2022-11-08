@@ -9,6 +9,7 @@ import {
   MyVideosIcon,
   SettingsIcon,
   SubcribedIcon,
+  TopSubcribedIcon,
   TopWatchIcon,
   WatchedIcon,
 } from '../icons'
@@ -19,36 +20,70 @@ const cn = classNames.bind(styles)
 function Sidebar() {
   return (
     <aside className={cn('wrapper')}>
-      <nav
-        className={cn('nav-box')}
-        style={{ borderTop: 'none', marginTop: '0' }}
-      >
-        <MenuItem
-          to={config.routes.home}
-          title="Trang chủ"
-          icon={<HomeIcon />}
-        ></MenuItem>
-        <MenuItem title="Kênh đăng ký" icon={<SubcribedIcon />}></MenuItem>
-      </nav>
-      <nav className={cn('nav-box')}>
-        <MenuItem title="Video đã xem" icon={<WatchedIcon />}></MenuItem>
-        <MenuItem title="Video của bạn" icon={<MyVideosIcon />}></MenuItem>
-        <MenuItem title="Video đã thích" icon={<LikedIcon />}></MenuItem>
-      </nav>
-      <nav className={cn('nav-box')}>
-        <h3 className={cn('nav-box-title')}>Khám phá</h3>
-        <MenuItem
-          to={config.routes.topviews}
-          title="Top lượt xem"
-          icon={<TopWatchIcon />}
-        ></MenuItem>
-        <MenuItem title="Top like"></MenuItem>
-        <MenuItem title="Top người đăng ký"></MenuItem>
-      </nav>
-      <nav className={cn('nav-box')}>
-        <MenuItem title="Cài đặt" icon={<SettingsIcon />}></MenuItem>
-        <MenuItem title="Trợ giúp" icon={<HelpIcon />}></MenuItem>
-        <MenuItem title="Gửi phản hồi" icon={<FeedbackIcon />}></MenuItem>
+      <nav className={cn('nav-wrap')}>
+        <div
+          className={cn('nav-box')}
+          style={{ borderTop: 'none', marginTop: '0' }}
+        >
+          <MenuItem
+            to={config.routes.home}
+            title="Trang chủ"
+            icon={<HomeIcon />}
+          ></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Kênh đăng ký"
+            icon={<SubcribedIcon />}
+          ></MenuItem>
+        </div>
+        <div className={cn('nav-box')}>
+          <MenuItem
+            to={'/notyet'}
+            title="Video đã xem"
+            icon={<WatchedIcon />}
+          ></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Video của bạn"
+            icon={<MyVideosIcon />}
+          ></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Video đã thích"
+            icon={<LikedIcon />}
+          ></MenuItem>
+        </div>
+        <div className={cn('nav-box')}>
+          <h3 className={cn('nav-box-title')}>Khám phá</h3>
+          <MenuItem
+            to={config.routes.topviews}
+            title="Top lượt xem"
+            icon={<TopWatchIcon />}
+          ></MenuItem>
+          <MenuItem to={'/notyet'} title="Top like"></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Top người đăng ký"
+            icon={<TopSubcribedIcon />}
+          ></MenuItem>
+        </div>
+        <div className={cn('nav-box')}>
+          <MenuItem
+            to={'/notyet'}
+            title="Cài đặt"
+            icon={<SettingsIcon />}
+          ></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Trợ giúp"
+            icon={<HelpIcon />}
+          ></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Gửi phản hồi"
+            icon={<FeedbackIcon />}
+          ></MenuItem>
+        </div>
       </nav>
       <div className={cn('footer')}>
         <div className={cn('footer-box')}>

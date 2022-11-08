@@ -8,12 +8,12 @@
   font-size: 14px;
   font-weight: 400;
 
-  &:hover {
+  &.active {
     background-color: var(--button-background-color);
   }
 
-  &.active {
-    background-color: var(--button-background-color);
+  &:hover {
+    background-color: #4b4f58;
   }
 }
 

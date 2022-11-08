@@ -89,3 +89,14 @@ body {
   src: url('/assets/fonts/SF-Pro-Display-Bold.otf') format('opentype');
   font-weight: 700;
 }
+
+.grid {
+  width: 100%;
+  height: 1000px;
+  margin: 0 auto;
+}
+
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+}
