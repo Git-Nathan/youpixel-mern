@@ -23,6 +23,11 @@
   border-radius: 12px;
 }
 
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
 .videobox-detail {
   height: 94px;
   width: 100%;
@@ -54,9 +59,14 @@
 .author-name {
   font-size: 14px;
   color: var(--text-color-darker);
-  margin-top: 4px;
   line-height: 16px;
   overflow: hidden;
+  text-decoration: none;
+  margin-top: 8px;
+
+  &:hover {
+    color: var(--title-text-color);
+  }
 }
 
 .views-and-time {

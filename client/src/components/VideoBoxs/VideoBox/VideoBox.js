@@ -9,11 +9,13 @@ function VideoBox() {
     <div className={cn('grid__column')}>
       <div className={cn('wrapper')}>
         <Link className={cn('video-link')}>
-          <img
-            className={cn('thumbnail')}
-            src="https://i.ytimg.com/vi/26Ny49WLWr0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB5zhzrlwZesJmU707qh-wLBz3VJA"
-            alt="thumbnail"
-          ></img>
+          <Link>
+            <img
+              className={cn('thumbnail')}
+              src="https://i.ytimg.com/vi/26Ny49WLWr0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB5zhzrlwZesJmU707qh-wLBz3VJA"
+              alt="thumbnail"
+            ></img>
+          </Link>
           <div className={cn('videobox-detail')}>
             <div className={cn('author-img-box')}>
               <img
@@ -27,7 +29,7 @@ function VideoBox() {
                 Đây là tên video ko biết ghi gì cho dài nên ghi như này nhưng
                 vẫn chưa đủ dài nên ghi thêm cho dài hơn
               </h4>
-              <div className={cn('author-name')}>Tên tác giả</div>
+              <Link className={cn('author-name')}>Tên tác giả</Link>
               <div className={cn('views-and-time')}>
                 <span>100 lượt xem</span>
                 <span className={cn('timer')}>2 ngày trước</span>
