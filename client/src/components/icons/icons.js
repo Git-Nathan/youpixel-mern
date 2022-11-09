@@ -14,6 +14,46 @@ export const HomeIcon = ({ width = '24px', height = '24px', className }) => (
   </svg>
 )
 
+export const SidebarIcon = ({ width = '24px', height = '24px', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 24 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M3 5H21"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11.53 10H21"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M3 15H21"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11.53 20H21"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
 export const SubcribedIcon = ({
   width = '24px',
   height = '24px',
@@ -34,7 +74,7 @@ export const SubcribedIcon = ({
       height="18.1143"
       rx="1"
       stroke="white"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <path
       d="M12.7109 5.59364C12.3641 5.38036 11.9281 5.37332 11.5742 5.57254C11.2203 5.77176 11 6.14676 11 6.55457V14.8046C11 15.2124 11.2203 15.5874 11.5742 15.7866C11.9281 15.9858 12.3641 15.9764 12.7109 15.7655L19.4609 11.6405C19.7961 11.4366 20 11.0733 20 10.6796C20 10.2858 19.7961 9.92489 19.4609 9.71864L12.7109 5.59364Z"
@@ -43,9 +83,9 @@ export const SubcribedIcon = ({
     <path
       d="M1 3.65112V22.6797C1 23.7843 1.89543 24.6797 3 24.6797H22.0286"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -136,8 +176,8 @@ export const SettingsIcon = ({
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M8.7538 3.67957C8.7538 2.98921 9.31345 2.42957 10.0038 2.42957C10.6942 2.42957 11.2538 2.98921 11.2538 3.67957V4.96945C11.2538 5.30126 11.4718 5.59364 11.7899 5.68829C12.7394 5.97089 13.5953 6.47363 14.2979 7.13831C14.5389 7.36628 14.9011 7.40884 15.1883 7.24298L16.3071 6.59704C16.905 6.25186 17.6695 6.45671 18.0147 7.05457C18.3598 7.65244 18.155 8.41693 17.5571 8.7621L16.4397 9.40724C16.1527 9.57298 16.0084 9.90748 16.085 10.23C16.1953 10.6945 16.2538 11.1797 16.2538 11.6796C16.2538 12.1794 16.1953 12.6647 16.085 13.1291C16.0084 13.4516 16.1527 13.7862 16.4397 13.9519L17.5571 14.597C18.1549 14.9422 18.3598 15.7066 18.0146 16.3045C17.6694 16.9024 16.9049 17.1072 16.3071 16.762L15.1883 16.1162C14.9011 15.9503 14.5389 15.9929 14.2979 16.2208C13.5953 16.8855 12.7394 17.3882 11.7899 17.6708C11.4718 17.7655 11.2538 18.0579 11.2538 18.3897V19.6796C11.2538 20.3699 10.6942 20.9296 10.0038 20.9296C9.31345 20.9296 8.7538 20.3699 8.7538 19.6796V18.3897C8.7538 18.0579 8.53577 17.7655 8.21774 17.6708C7.26824 17.3883 6.41239 16.8856 5.70975 16.2209C5.46876 15.993 5.10664 15.9504 4.81936 16.1163L3.70073 16.7621C3.10287 17.1073 2.33838 16.9024 1.9932 16.3046C1.64802 15.7067 1.85287 14.9422 2.45073 14.597L3.56789 13.952C3.85495 13.7863 3.99918 13.4518 3.92261 13.1293C3.81234 12.6648 3.75379 12.1795 3.75379 11.6796C3.75379 11.1796 3.81234 10.6944 3.92261 10.2298C3.99918 9.90733 3.85495 9.57282 3.5679 9.40708L2.45065 8.76204C1.85279 8.41687 1.64794 7.65238 1.99312 7.05451C2.3383 6.45665 3.10279 6.2518 3.70065 6.59698L4.81936 7.24287C5.10664 7.40873 5.46876 7.36616 5.70975 7.13821C6.41239 6.47358 7.26824 5.97086 8.21774 5.68828C8.53577 5.59363 8.7538 5.30125 8.7538 4.96944V3.67957ZM10.0038 0.929565C8.48502 0.929565 7.2538 2.16078 7.2538 3.67957V4.43185C6.46759 4.7303 5.74296 5.15275 5.10371 5.67498L4.45065 5.29794C3.13535 4.53855 1.45348 4.98921 0.694085 6.30451C-0.0653071 7.61982 0.38535 9.30169 1.70065 10.0611L2.35288 10.4376C2.28764 10.8424 2.25379 11.2572 2.25379 11.6796C2.25379 12.1019 2.28764 12.5168 2.35288 12.9215L1.70073 13.298C0.385428 14.0574 -0.0652288 15.7393 0.694163 17.0546C1.45355 18.3699 3.13543 18.8205 4.45073 18.0611L5.10371 17.6841C5.74296 18.2064 6.46759 18.6288 7.2538 18.9273V19.6796C7.2538 21.1983 8.48502 22.4296 10.0038 22.4296C11.5226 22.4296 12.7538 21.1983 12.7538 19.6796V18.9273C13.5401 18.6288 14.2647 18.2063 14.904 17.684L15.5571 18.0611C16.8724 18.8205 18.5542 18.3698 19.3136 17.0545C20.073 15.7392 19.6224 14.0573 18.3071 13.2979L17.6547 12.9213C17.7199 12.5166 17.7538 12.1018 17.7538 11.6796C17.7538 11.2573 17.7199 10.8425 17.6547 10.4378L18.3071 10.0611C19.6224 9.30175 20.0731 7.61988 19.3137 6.30457C18.5543 4.98927 16.8724 4.53861 15.5571 5.298L14.904 5.67509C14.2647 5.15282 13.5401 4.73033 12.7538 4.43186V3.67957C12.7538 2.16078 11.5226 0.929565 10.0038 0.929565ZM7.75379 11.6796C7.75379 10.4369 8.76115 9.42957 10.0038 9.42957C11.2464 9.42957 12.2538 10.4369 12.2538 11.6796C12.2538 12.9222 11.2464 13.9296 10.0038 13.9296C8.76115 13.9296 7.75379 12.9222 7.75379 11.6796ZM10.0038 7.92957C7.93272 7.92957 6.25379 9.6085 6.25379 11.6796C6.25379 13.7506 7.93272 15.4296 10.0038 15.4296C12.0749 15.4296 13.7538 13.7506 13.7538 11.6796C13.7538 9.6085 12.0749 7.92957 10.0038 7.92957Z"
       fill="white"
     />
@@ -176,16 +216,16 @@ export const HelpIcon = ({ width = '24px', height = '24px', className }) => (
     <path
       d="M12.0039 22.6796C6.48391 22.6796 2.00391 18.1996 2.00391 12.6796C2.00391 7.15957 6.48391 2.67957 12.0039 2.67957C17.5239 2.67957 22.0039 7.15957 22.0039 12.6796C22.0039 18.1996 17.5239 22.6796 12.0039 22.6796Z"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M14.8839 15.6796C14.1739 16.2996 13.2539 16.6796 12.2439 16.6796C10.0339 16.6796 8.2439 14.8896 8.2439 12.6796C8.2439 10.4696 10.0339 8.67957 12.2439 8.67957C13.2539 8.67957 14.1739 9.05957 14.8839 9.67957"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -206,30 +246,110 @@ export const FeedbackIcon = ({
     <path
       d="M13.0039 15.6796H7.00391L9.00391 17.6796"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M7.00391 15.6796L9.00391 13.6796"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M22.0039 10.6796V15.6796C22.0039 20.6796 20.0039 22.6796 15.0039 22.6796H9.00391C4.00391 22.6796 2.00391 20.6796 2.00391 15.6796V9.67957C2.00391 4.67957 4.00391 2.67957 9.00391 2.67957H14.0039"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M22.0039 10.6796H18.0039C15.0039 10.6796 14.0039 9.67957 14.0039 6.67957V2.67957L18.0039 6.67957L22.0039 10.6796Z"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+export const SearchIcon = ({ width = '24px', height = '24px', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 26 26"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <ellipse
+      cx="12.4966"
+      cy="12.2229"
+      rx="11.4966"
+      ry="11.2229"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.4927 20.6113L25 24.9999"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+export const SearchBySoundIcon = ({
+  width = '24px',
+  height = '24px',
+  className,
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M12 15.5C14.21 15.5 16 13.71 16 11.5V6C16 3.79 14.21 2 12 2C9.79 2 8 3.79 8 6V11.5C8 13.71 9.79 15.5 12 15.5Z"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M4.3501 9.6499V11.3499C4.3501 15.5699 7.7801 18.9999 12.0001 18.9999C16.2201 18.9999 19.6501 15.5699 19.6501 11.3499V9.6499"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.6099 6.43012C11.5099 6.10012 12.4899 6.10012 13.3899 6.43012"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11.2002 8.55007C11.7302 8.41007 12.2802 8.41007 12.8102 8.55007"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 19V22"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )

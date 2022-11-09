@@ -7,9 +7,11 @@
 .wrapper {
   border-radius: 12px;
   transition: all 0.1s;
+  padding: 4px 4px 0 4px;
+  margin: -4px -4px 0 -4px;
 
   &:hover {
-    background-color: #ffffff0e;
+    background-color: #ffffff14;
   }
 }
 
@@ -61,8 +63,10 @@
   color: var(--text-color-darker);
   line-height: 16px;
   overflow: hidden;
+  text-overflow: ellipsis;
   text-decoration: none;
   margin-top: 8px;
+  width: fit-content;
 
   &:hover {
     color: var(--title-text-color);
@@ -77,4 +81,9 @@
 .timer::before {
   content: '•';
   margin: 0 4px;
+}
+
+.thumbnail-link {
+  padding-bottom: 2px;
+  margin-bottom: -2px;
 }
