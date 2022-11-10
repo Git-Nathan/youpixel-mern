@@ -353,3 +353,33 @@ export const SearchBySoundIcon = ({
     />
   </svg>
 )
+
+export const UploadIcon = ({ width = '24px', height = '24px', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 33 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0.474609 4.19325C0.474609 2.23214 2.06905 0.637695 4.03016 0.637695H18.2524C20.2135 0.637695 21.8079 2.23214 21.8079 4.19325V18.4155C21.8079 20.3766 20.2135 21.971 18.2524 21.971H4.03016C2.06905 21.971 0.474609 20.3766 0.474609 18.4155V4.19325ZM31.5357 2.62658C32.1135 2.9377 32.4746 3.5377 32.4746 4.19325V18.4155C32.4746 19.071 32.1135 19.671 31.5357 19.9821C30.9579 20.2933 30.2579 20.2599 29.7079 19.8933L24.3746 16.3377L23.5857 15.8099V14.8599V7.74881V6.79881L24.3746 6.27103L29.7079 2.71547C30.2524 2.35436 30.9524 2.31547 31.5357 2.62658Z"
+      fill="#4B4F58"
+    />
+    <path
+      d="M11.1411 6.6377V15.971"
+      stroke="#F05123"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M6.47461 11.3044H15.8079"
+      stroke="#F05123"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+)

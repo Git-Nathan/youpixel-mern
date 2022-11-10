@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
+import authRoutes from './routes/authRoutes.js'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 app.use(cookieParser())
+app.use('/auth', authRoutes)
 
 const CONNECTION_URL =
   'mongodb+srv://ngothuan2422001:Ngovanthuan2001@youpixels.hpkrfpg.mongodb.net/you-pixels?retryWrites=true&w=majority'

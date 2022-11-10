@@ -94,3 +94,20 @@
     background-color: #4b4f58;
   }
 }
+
+.upload-btn {
+  display: flex;
+  height: 40px;
+  background-color: var(--button-background-color);
+  line-height: 40px;
+  border-radius: 20px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+.upload-icon {
+  display: block;
+  margin: auto;
+  margin-right: 8px;
+  height: 16px;
+}
