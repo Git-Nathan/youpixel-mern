@@ -13,13 +13,14 @@
   width: var(--watch-sidebar-width);
   height: 1000px;
   padding: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .filter-bar {
   width: 100%;
   height: 56px;
   display: flex;
-  position: fixed;
   background-color: var(--background-color);
 }
 

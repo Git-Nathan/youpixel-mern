@@ -5,7 +5,7 @@ import SearchBar from '../SearchBar'
 import logo from '~/assets/images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faUser } from '@fortawesome/free-solid-svg-icons'
-import { SidebarIcon, UploadIcon } from '../icons'
+import { NotificationIcon, SidebarIcon, UploadIcon } from '../icons'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 
@@ -59,6 +59,26 @@ function Header() {
 
           <div className={cn('upload-btn')}>
             <UploadIcon className={cn('upload-icon')} /> Tạo video
+          </div>
+          <div className={cn('notification-btn')}>
+            <NotificationIcon className={cn('notification-icon')} />
+          </div>
+          <div className={cn('user-box')}>
+            <img
+              className={cn('user-img')}
+              src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
+              alt="user img"
+            />
+            <div className={cn('user-menu')}>
+              <div className={cn('user-menu-info-box')}>
+                <img
+                  className={cn('user-menu-img')}
+                  src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
+                  alt="user img"
+                />
+                <div className={cn('user-menu-name')}>Tên người dùng</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

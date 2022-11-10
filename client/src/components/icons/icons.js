@@ -1,4 +1,9 @@
-export const HomeIcon = ({ width = '24px', height = '24px', className }) => (
+export const HomeIcon = ({
+  width = '24px',
+  height = '24px',
+  className,
+  fill,
+}) => (
   <svg
     className={className}
     width={width}
@@ -9,7 +14,35 @@ export const HomeIcon = ({ width = '24px', height = '24px', className }) => (
   >
     <path
       d="M24 11.2121V19.9146C24 22.1713 22.2616 24 20.1081 24L16 24C15.4477 24 15 23.5523 15 23V16C15 15.4477 14.5523 15 14 15H11.5H10C9.44771 15 9 15.4477 9 16V23C9 23.5523 8.55229 24 8 24L3.89189 24C1.73838 24 0 22.1713 0 19.9146V11.2121C0 9.99298 0.505946 8.85166 1.40108 8.07349L9.50919 0.953256C10.9492 -0.317752 13.0508 -0.317752 14.4908 0.953256L22.5989 8.07349C23.4941 8.85166 24 9.99298 24 11.2121Z"
-      fill="white"
+      fill={fill}
+    />
+  </svg>
+)
+
+export const NotificationIcon = ({
+  width = '24px',
+  height = '24px',
+  className,
+}) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 24 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M11.9998 21.7969C19.5188 21.7969 22.9972 20.8324 23.3332 16.9608C23.3332 13.0918 20.908 13.3406 20.908 8.59356C20.908 4.8856 17.3935 0.666748 11.9998 0.666748C6.6062 0.666748 3.09163 4.8856 3.09163 8.59356C3.09163 13.3406 0.666504 13.0918 0.666504 16.9608C1.00377 20.847 4.4822 21.7969 11.9998 21.7969Z"
+      fill="#4B4F58"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M15.1848 25.8098C13.366 27.8294 10.5286 27.8534 8.69238 25.8098Z"
+      fill="#4B4F58"
     />
   </svg>
 )

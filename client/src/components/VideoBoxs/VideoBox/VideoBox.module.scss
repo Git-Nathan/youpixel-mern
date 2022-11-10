@@ -76,11 +76,22 @@
 .views-and-time {
   font-size: 14px;
   color: var(--text-color-darker);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.timer {
+  display: flex;
 }
 
 .timer::before {
-  content: '•';
-  margin: 0 4px;
+  content: ' ';
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  margin: auto 5px;
 }
 
 .thumbnail-link {

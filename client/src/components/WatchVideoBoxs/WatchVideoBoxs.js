@@ -6,7 +6,7 @@ const cn = classNames.bind(styles)
 
 function WatchVideoBoxs() {
   return (
-    <div className={cn('grid__row', 'videoboxs-row')}>
+    <div className={cn('wrapper')}>
       <WatchVideoBox />
       <WatchVideoBox />
       <WatchVideoBox />

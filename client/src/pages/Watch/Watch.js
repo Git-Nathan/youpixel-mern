@@ -1,13 +1,16 @@
 import styles from './Watch.module.scss'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
+import WatchVideoBoxs from '~/components/WatchVideoBoxs/WatchVideoBoxs'
 
 const cn = classNames.bind(styles)
 
 function Watch() {
   return (
     <div className={cn('wrapper')}>
-      <div className={cn('primary')}></div>
+      <div className={cn('primary')}>
+        <div className={cn('video-wrapper')}></div>
+      </div>
       <div className={cn('secondary')}>
         <div className={cn('filter-bar')}>
           <div className={cn('filter-bar-box')}>
@@ -20,6 +23,7 @@ function Watch() {
             <Link className={cn('filter-bar-link')}>Đề xuất mới</Link>
           </div>
         </div>
+        <WatchVideoBoxs />
       </div>
     </div>
   )
