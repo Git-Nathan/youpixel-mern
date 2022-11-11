@@ -22,6 +22,7 @@
 .start {
   display: flex;
   align-items: center;
+  width: 670px;
 }
 
 .end {
@@ -98,6 +99,7 @@
 
 .upload-btn {
   display: flex;
+  width: max-content;
   height: 40px;
   background-color: var(--button-background-color);
   line-height: 40px;
@@ -140,6 +142,10 @@
   text-align: center;
   border-color: var(--primary-color);
   margin-left: 16px;
+
+  &:hover item {
+    display: flex;
+  }
 }
 
 .user-img {
@@ -149,34 +155,4 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
-
-.user-menu {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 600px;
-  background-color: var(--button-background-color);
-  transform: translateX(-100%) translateX(40px);
-  border-radius: 12px;
-}
-
-.user-menu-info-box {
-  display: flex;
-  padding: 16px;
-  border-bottom: solid 1px var(--separate-color);
-}
-
-.user-menu-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-
-.user-menu-name {
-  display: block;
-  line-height: 40px;
-  margin-left: 16px;
-  font-size: 18px;
 }

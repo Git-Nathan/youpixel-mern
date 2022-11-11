@@ -1,0 +1,43 @@
+.user-menu {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  width: 250px;
+  background-color: var(--button-background-color);
+  transform: translateX(-100%) translateX(40px);
+  border-radius: 12px;
+  padding: 16px 16px 8px 16px;
+
+  &::before {
+    content: ' ';
+    height: 18px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.user-menu-info-box {
+  display: flex;
+  padding-bottom: 16px;
+}
+
+.user-menu-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.user-menu-name {
+  display: block;
+  line-height: 40px;
+  margin-left: 16px;
+  font-size: 16px;
+}
+
+.group-btn {
+  padding: 6px 0;
+  border-top: solid 1px var(--separate-color);
+}

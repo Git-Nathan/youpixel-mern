@@ -8,7 +8,9 @@ function SearchBar() {
   return (
     <>
       <form className={cn('search-box')}>
-        <SearchIcon className={cn('search-box-icon')} width="26" height="26" />
+        <div className={cn('search-box-icon')}>
+          <SearchIcon height="22" />
+        </div>
 
         <input
           className={cn('search-input')}
@@ -17,7 +19,9 @@ function SearchBar() {
           spellCheck={false}
         />
 
-        <SearchBySoundIcon className={cn('searchbysound-icon')} />
+        <div className={cn('searchbysound-icon')}>
+          <SearchBySoundIcon height="22" />
+        </div>
       </form>
     </>
   )

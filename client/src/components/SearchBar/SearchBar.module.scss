@@ -1,10 +1,10 @@
 .search-box {
   height: 40px;
-  width: 500px;
+  width: 100%;
   border-radius: 20px;
   background-color: var(--button-background-color);
   display: flex;
-  margin: 0 4px 0 18px;
+  margin: 0 16px 0 16px;
 }
 
 .search-box-icon {
@@ -12,7 +12,8 @@
   top: 50%;
   transform: translateY(-50%);
   margin: 0 12px;
-  height: 24px;
+  height: 22px;
+  width: 22px;
 }
 
 .search-input {
@@ -32,4 +33,6 @@
   top: 50%;
   transform: translateY(-50%);
   margin: 0 12px;
+  height: 22px;
+  width: 22px;
 }

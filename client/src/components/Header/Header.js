@@ -8,6 +8,7 @@ import { faEllipsisVertical, faUser } from '@fortawesome/free-solid-svg-icons'
 import { NotificationIcon, SidebarIcon, UploadIcon } from '../icons'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
+import UserMenu from '../UserMenu'
 
 const cn = classNames.bind(styles)
 
@@ -58,7 +59,8 @@ function Header() {
           </div> */}
 
           <div className={cn('upload-btn')}>
-            <UploadIcon className={cn('upload-icon')} /> Tạo video
+            <UploadIcon className={cn('upload-icon')} />
+            Tạo video
           </div>
           <div className={cn('notification-btn')}>
             <NotificationIcon className={cn('notification-icon')} />
@@ -69,16 +71,8 @@ function Header() {
               src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
               alt="user img"
             />
-            <div className={cn('user-menu')}>
-              <div className={cn('user-menu-info-box')}>
-                <img
-                  className={cn('user-menu-img')}
-                  src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
-                  alt="user img"
-                />
-                <div className={cn('user-menu-name')}>Tên người dùng</div>
-              </div>
-            </div>
+
+            <UserMenu />
           </div>
         </div>
       </div>
