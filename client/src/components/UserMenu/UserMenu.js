@@ -18,7 +18,11 @@ function UserMenu() {
       </div>
       <div className={cn('group-btn')}>
         <UserMenuItem title="Kênh của bạn" icon={<HomeIcon />}></UserMenuItem>
-        <UserMenuItem title="Quản lý kênh" icon={<HomeIcon />}></UserMenuItem>
+        <UserMenuItem
+          to="/studio/videos"
+          title="Quản lý kênh"
+          icon={<HomeIcon />}
+        ></UserMenuItem>
         <UserMenuItem title="Đăng xuất" icon={<HomeIcon />}></UserMenuItem>
       </div>
     </item>
