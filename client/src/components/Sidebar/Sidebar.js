@@ -13,7 +13,6 @@ import {
   TopWatchIcon,
   WatchedIcon,
 } from '../icons'
-import config from '~/config'
 
 const cn = classNames.bind(styles)
 
@@ -25,11 +24,7 @@ function Sidebar() {
           className={cn('nav-box')}
           style={{ borderTop: 'none', marginTop: '0' }}
         >
-          <MenuItem
-            to={config.routes.home}
-            title="Trang chủ"
-            icon={<HomeIcon />}
-          ></MenuItem>
+          <MenuItem to={'/'} title="Trang chủ" icon={<HomeIcon />}></MenuItem>
           <MenuItem
             to={'/notyet'}
             title="Kênh đăng ký"
@@ -56,7 +51,7 @@ function Sidebar() {
         <div className={cn('nav-box')}>
           <h3 className={cn('nav-box-title')}>Khám phá</h3>
           <MenuItem
-            to={config.routes.topviews}
+            to={'/topviews'}
             title="Top lượt xem"
             icon={<TopWatchIcon />}
           ></MenuItem>

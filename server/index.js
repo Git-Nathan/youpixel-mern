@@ -7,7 +7,6 @@ import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 
 const app = express()
-
 dotenv.config()
 
 //middlewares

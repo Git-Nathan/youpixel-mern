@@ -3,6 +3,7 @@ import styles from './StudioLayout.module.scss'
 
 import Header from '~/components/Header'
 import StudioSidebar from '~/components/StudioSidebar'
+import StudioVideoNav from '~/components/StudioVideoNav'
 
 const cn = classNames.bind(styles)
 
@@ -12,7 +13,10 @@ function StudioLayout({ children }) {
       <Header />
       <div className={cn('container')}>
         <StudioSidebar />
-        <div className={cn('content')}>{children}</div>
+        <div className={cn('content')}>
+          <StudioVideoNav />
+          {children}
+        </div>
       </div>
     </div>
   )

@@ -9,10 +9,19 @@ import { NotificationIcon, SidebarIcon, UploadIcon } from '../icons'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import UserMenu from '../UserMenu'
+import { useDispatch } from 'react-redux'
+import { signin } from '~/actions/authActions'
+import { useCallback, useEffect, useState } from 'react'
+import { LOGOUT } from '~/constants/actionsTypes'
 
 const cn = classNames.bind(styles)
 
 function Header() {
+  const dispatch = useDispatch()
+  const [currentUser, setcurrentUser] = useState(false)
+
+  // console.log(currentUser)
+
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
       try {
@@ -24,12 +33,27 @@ function Header() {
             },
           },
         )
-        console.log(res.data)
+        dispatch(
+          signin({
+            name: res.data.name,
+            email: res.data.email,
+            picture: res.data.picture,
+          }),
+        )
       } catch (err) {
         console.log(err)
       }
     },
   })
+
+  const logout = useCallback(() => {
+    dispatch({ type: LOGOUT })
+    setcurrentUser(null)
+  }, [dispatch])
+
+  useEffect(() => {
+    // setcurrentUser(JSON.parse(localStorage.getItem('profile')))
+  }, [])
 
   return (
     <header className={cn('wrapper')}>
@@ -45,35 +69,41 @@ function Header() {
         </div>
 
         <div className={cn('end')}>
-          {/* <button className={cn('menu-btn')}>
-            <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
-          </button>
-          <div className={cn('login-box')}>
-            <div className={cn('login-box-btn')} onClick={() => login()}>
-              <FontAwesomeIcon
-                className={cn('login-box-btn-icon')}
-                icon={faUser}
-              ></FontAwesomeIcon>
-              Đăng nhập
-            </div>
-          </div> */}
+          {currentUser ? (
+            <>
+              <div className={cn('upload-btn')}>
+                <UploadIcon className={cn('upload-icon')} />
+                Tạo video
+              </div>
+              <div className={cn('notification-btn')}>
+                <NotificationIcon className={cn('notification-icon')} />
+              </div>
+              <div className={cn('user-box')}>
+                <img
+                  className={cn('user-img')}
+                  src={currentUser.picture}
+                  alt="user img"
+                />
 
-          <div className={cn('upload-btn')}>
-            <UploadIcon className={cn('upload-icon')} />
-            Tạo video
-          </div>
-          <div className={cn('notification-btn')}>
-            <NotificationIcon className={cn('notification-icon')} />
-          </div>
-          <div className={cn('user-box')}>
-            <img
-              className={cn('user-img')}
-              src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
-              alt="user img"
-            />
-
-            <UserMenu />
-          </div>
+                <UserMenu currentUser={currentUser} logout={logout} />
+              </div>
+            </>
+          ) : (
+            <>
+              <button className={cn('menu-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
+              </button>
+              <div className={cn('login-box')}>
+                <div className={cn('login-box-btn')} onClick={() => login()}>
+                  <FontAwesomeIcon
+                    className={cn('login-box-btn-icon')}
+                    icon={faUser}
+                  ></FontAwesomeIcon>
+                  <span>Đăng nhập</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const VideoSchema = new mongoose.Schema(
   {
@@ -26,10 +26,6 @@ const VideoSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    tags: {
-      type: [String],
-      default: [],
-    },
     likes: {
       type: [String],
       default: [],
@@ -38,8 +34,12 @@ const VideoSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
   },
-  { timestamps: true }
-);
+  { timestamps: true },
+)
 
-export default mongoose.model("Video", VideoSchema);
+export default mongoose.model('Video', VideoSchema)
