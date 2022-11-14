@@ -13,14 +13,15 @@ import { useDispatch } from 'react-redux'
 import { signin } from '~/actions/authActions'
 import { useCallback, useEffect, useState } from 'react'
 import { LOGOUT } from '~/constants/actionsTypes'
+import Upload from '../Upload'
 
 const cn = classNames.bind(styles)
 
 function Header() {
   const dispatch = useDispatch()
-  const [currentUser, setcurrentUser] = useState(false)
-
-  // console.log(currentUser)
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem('profile')),
+  )
 
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
@@ -40,6 +41,11 @@ function Header() {
             picture: res.data.picture,
           }),
         )
+        setCurrentUser({
+          name: res.data.name,
+          email: res.data.email,
+          picture: res.data.picture,
+        })
       } catch (err) {
         console.log(err)
       }
@@ -48,65 +54,68 @@ function Header() {
 
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT })
-    setcurrentUser(null)
+    setCurrentUser(null)
   }, [dispatch])
 
   useEffect(() => {
-    // setcurrentUser(JSON.parse(localStorage.getItem('profile')))
+    setCurrentUser(JSON.parse(localStorage.getItem('profile')))
   }, [])
 
   return (
-    <header className={cn('wrapper')}>
-      <div className={cn('inner')}>
-        <div className={cn('start')}>
-          <div className={cn('sidebar-btn')}>
-            <SidebarIcon height="25px" />
+    <>
+      <header className={cn('wrapper')}>
+        <div className={cn('inner')}>
+          <div className={cn('start')}>
+            <div className={cn('sidebar-btn')}>
+              <SidebarIcon height="25px" />
+            </div>
+            <Link to="/" className={cn('logo-link')}>
+              <img className={cn('logo-img')} src={logo} alt="logo" />
+            </Link>
+            <SearchBar />
           </div>
-          <Link to="/" className={cn('logo-link')}>
-            <img className={cn('logo-img')} src={logo} alt="logo" />
-          </Link>
-          <SearchBar />
-        </div>
 
-        <div className={cn('end')}>
-          {currentUser ? (
-            <>
-              <div className={cn('upload-btn')}>
-                <UploadIcon className={cn('upload-icon')} />
-                Tạo video
-              </div>
-              <div className={cn('notification-btn')}>
-                <NotificationIcon className={cn('notification-icon')} />
-              </div>
-              <div className={cn('user-box')}>
-                <img
-                  className={cn('user-img')}
-                  src={currentUser.picture}
-                  alt="user img"
-                />
-
-                <UserMenu currentUser={currentUser} logout={logout} />
-              </div>
-            </>
-          ) : (
-            <>
-              <button className={cn('menu-btn')}>
-                <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
-              </button>
-              <div className={cn('login-box')}>
-                <div className={cn('login-box-btn')} onClick={() => login()}>
-                  <FontAwesomeIcon
-                    className={cn('login-box-btn-icon')}
-                    icon={faUser}
-                  ></FontAwesomeIcon>
-                  <span>Đăng nhập</span>
+          <div className={cn('end')}>
+            {currentUser ? (
+              <>
+                <div className={cn('upload-btn')}>
+                  <UploadIcon className={cn('upload-icon')} />
+                  Tạo video
                 </div>
-              </div>
-            </>
-          )}
+                <div className={cn('notification-btn')}>
+                  <NotificationIcon className={cn('notification-icon')} />
+                </div>
+                <div className={cn('user-box')}>
+                  <img
+                    className={cn('user-img')}
+                    src={currentUser.picture}
+                    alt="user img"
+                  />
+
+                  <UserMenu currentUser={currentUser} logout={logout} />
+                </div>
+              </>
+            ) : (
+              <>
+                <button className={cn('menu-btn')}>
+                  <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
+                </button>
+                <div className={cn('login-box')}>
+                  <div className={cn('login-box-btn')} onClick={() => login()}>
+                    <FontAwesomeIcon
+                      className={cn('login-box-btn-icon')}
+                      icon={faUser}
+                    ></FontAwesomeIcon>
+                    <span>Đăng nhập</span>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <Upload />
+    </>
   )
 }
 

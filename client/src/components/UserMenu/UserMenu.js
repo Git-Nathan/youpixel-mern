@@ -12,7 +12,7 @@ function UserMenu({ currentUser, logout }) {
       <div className={cn('user-menu-info-box')}>
         <img
           className={cn('user-menu-img')}
-          src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
+          src={currentUser.picture}
           alt="user img"
         />
         <div className={cn('user-menu-name')}>{currentUser.name}</div>
