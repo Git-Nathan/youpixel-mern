@@ -23,6 +23,7 @@ function Header() {
     JSON.parse(localStorage.getItem('profile')),
   )
   const [open, setOpen] = useState(false)
+  console.log(currentUser)
 
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
