@@ -22,6 +22,7 @@ function Header() {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('profile')),
   )
+  const [open, setOpen] = useState(false)
 
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
@@ -78,7 +79,7 @@ function Header() {
           <div className={cn('end')}>
             {currentUser ? (
               <>
-                <div className={cn('upload-btn')}>
+                <div className={cn('upload-btn')} onClick={() => setOpen(true)}>
                   <UploadIcon className={cn('upload-icon')} />
                   Tạo video
                 </div>
@@ -114,7 +115,7 @@ function Header() {
           </div>
         </div>
       </header>
-      <Upload />
+      {open && <Upload setOpen={setOpen} />}
     </>
   )
 }

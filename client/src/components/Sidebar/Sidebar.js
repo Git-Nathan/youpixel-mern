@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
+import styles2 from './Menu/Menu.module.scss'
 import { MenuItem } from './Menu'
 import {
   FeedbackIcon,
@@ -9,12 +10,14 @@ import {
   MyVideosIcon,
   SettingsIcon,
   SubcribedIcon,
+  TopLikesIcon,
   TopSubcribedIcon,
-  TopWatchIcon,
+  TopViewsIcon,
   WatchedIcon,
 } from '../icons'
 
 const cn = classNames.bind(styles)
+const cn2 = classNames.bind(styles2)
 
 function Sidebar() {
   return (
@@ -24,7 +27,11 @@ function Sidebar() {
           className={cn('nav-box')}
           style={{ borderTop: 'none', marginTop: '0' }}
         >
-          <MenuItem to={'/'} title="Trang chủ" icon={<HomeIcon />}></MenuItem>
+          <MenuItem
+            to={'/'}
+            title="Trang chủ"
+            icon={<HomeIcon className={cn2('fill-icon')} />}
+          ></MenuItem>
           <MenuItem
             to={'/notyet'}
             title="Kênh đăng ký"
@@ -53,9 +60,13 @@ function Sidebar() {
           <MenuItem
             to={'/topviews'}
             title="Top lượt xem"
-            icon={<TopWatchIcon />}
+            icon={<TopViewsIcon className={cn2('fill-icon')} />}
           ></MenuItem>
-          <MenuItem to={'/notyet'} title="Top like"></MenuItem>
+          <MenuItem
+            to={'/notyet'}
+            title="Top like"
+            icon={<TopLikesIcon className={cn2('fill-icon')} />}
+          ></MenuItem>
           <MenuItem
             to={'/notyet'}
             title="Top người đăng ký"

@@ -13,7 +13,11 @@
     color: var(--primary-color);
   }
 
-  &.active .icon svg {
+  &.active .icon .fill-icon {
+    fill: var(--primary-color);
+  }
+
+  &.active .icon .fill-icon path {
     fill: var(--primary-color);
   }
 
@@ -22,7 +26,7 @@
   }
 }
 
-.icon svg {
+.icon .fill-icon {
   fill: white;
 }
 
