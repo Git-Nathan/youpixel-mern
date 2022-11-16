@@ -1,10 +1,23 @@
 import classNames from 'classnames/bind'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { fetchChannel } from '~/api/api'
 import styles from './VideoBox.module.scss'
 
 const cn = classNames.bind(styles)
 
-function VideoBox() {
+function VideoBox({ video }) {
+  const [channel, setChannel] = useState({})
+  console.log(channel)
+
+  useEffect(() => {
+    const getChannel = async () => {
+      const { data } = await fetchChannel(video.userId)
+      setChannel(data)
+    }
+    getChannel()
+  }, [video.userId])
+
   return (
     <div className={cn('grid__column')}>
       <div className={cn('wrapper')}>
@@ -12,7 +25,7 @@ function VideoBox() {
           <Link className={cn('thumbnail-link')} to="/watch">
             <img
               className={cn('thumbnail')}
-              src="https://i.ytimg.com/vi/26Ny49WLWr0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB5zhzrlwZesJmU707qh-wLBz3VJA"
+              src={video.imgUrl}
               alt="thumbnail"
             ></img>
           </Link>
@@ -22,19 +35,16 @@ function VideoBox() {
             <Link>
               <img
                 className={cn('author-img')}
-                src="https://yt3.ggpht.com/ytc/AMLnZu8z37ZcdRrrOE5UccnysTQ5ort1CIj3SpofDjR9Kso=s68-c-k-c0x00ffffff-no-rj"
+                src={channel.picture}
                 alt="User avatar"
               />
             </Link>
           </div>
           <div className={cn('detail')}>
             <Link className={cn('video-link')}>
-              <h4 className={cn('video-name')}>
-                Đây là tên video ko biết ghi gì cho dài nên ghi như này nhưng
-                vẫn chưa đủ dài nên ghi thêm cho dài hơn
-              </h4>
+              <h4 className={cn('video-name')}>{video.title}</h4>
             </Link>
-            <Link className={cn('author-name')}>Tên tác giả</Link>
+            <Link className={cn('author-name')}>{channel.name}</Link>
             <div className={cn('views-and-time')}>
               <span>100 lượt xem</span>
               <span className={cn('timer')}>2 ngày trước</span>

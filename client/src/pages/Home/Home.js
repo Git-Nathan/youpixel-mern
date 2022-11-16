@@ -2,10 +2,19 @@ import styles from './Home.module.scss'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import VideoBoxs from '~/components/VideoBoxs'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { fetchVideos } from '~/actions/videoActions'
 
 const cn = classNames.bind(styles)
 
 function Home() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchVideos())
+  }, [dispatch])
+
   return (
     <div className={cn('grid')}>
       <div className={cn('filter-bar')}>

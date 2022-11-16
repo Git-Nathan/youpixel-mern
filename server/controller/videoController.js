@@ -10,3 +10,13 @@ export const addVideo = async (req, res, next) => {
     next(err)
   }
 }
+
+export const fetchVideos = async (req, res) => {
+  try {
+    const videos = await Video.find()
+
+    res.status(200).json({ data: videos })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}

@@ -5,9 +5,7 @@ export const googleAuth = async (req, res, next) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email })
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT, {
-        expiresIn: '1h',
-      })
+      const token = jwt.sign({ id: user._id }, process.env.JWT)
       res.status(200).json({ result: user, token })
     } else {
       const newUser = new UserModel({
@@ -19,5 +17,15 @@ export const googleAuth = async (req, res, next) => {
     }
   } catch (err) {
     next(err)
+  }
+}
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userId)
+
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
   }
 }

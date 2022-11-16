@@ -12,6 +12,10 @@ API.interceptors.request.use((req) => {
   return req
 })
 
-export const signIn = (data) => API.post('/user/google', data)
+// User
+export const signIn = (data) => API.post('/users/google', data)
+export const fetchChannel = (userId) => API.get(`/users/find/${userId}`)
 
+//Video
+export const fetchVideos = () => API.get(`/videos`)
 export const addVideo = (data) => API.post('/videos/add', data)
