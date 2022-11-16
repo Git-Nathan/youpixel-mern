@@ -65,7 +65,6 @@ function Upload({ setOpen }) {
 
   const handleUpload = async (e) => {
     e.preventDefault()
-    console.log({ ...inputs })
     dispatch(addVideo({ ...inputs }))
     setOpen(false)
   }

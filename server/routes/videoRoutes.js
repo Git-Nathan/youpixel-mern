@@ -1,8 +1,8 @@
 import express from 'express'
 import { addVideo } from '../controller/videoController.js'
-import { verifyToken } from '../verifyToken.js'
+import auth from '../middleware/auth.js'
 const router = express.Router()
 
-router.post('/add', verifyToken, addVideo)
+router.post('/add', auth, addVideo)
 
 export default router

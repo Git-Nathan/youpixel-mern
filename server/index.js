@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
-import authRoutes from './routes/authRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 import videoRoutes from './routes/videoRoutes.js'
 
 const app = express()
@@ -15,7 +15,7 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 app.use(cookieParser())
-app.use('/auth', authRoutes)
+app.use('/user', userRoutes)
 app.use('/videos', videoRoutes)
 
 const CONNECTION_URL =

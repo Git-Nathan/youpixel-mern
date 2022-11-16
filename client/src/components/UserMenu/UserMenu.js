@@ -6,16 +6,16 @@ import { UserMenuItem } from './UserMenuItem'
 
 const cn = classNames.bind(styles)
 
-function UserMenu({ currentUser, logout }) {
+function UserMenu({ menuId, currentUser, logout }) {
   return (
-    <item className={cn('user-menu')}>
+    <div className={cn('user-menu')} id={menuId}>
       <div className={cn('user-menu-info-box')}>
         <img
           className={cn('user-menu-img')}
-          src={currentUser.picture}
+          src={currentUser?.result.picture}
           alt="user img"
         />
-        <div className={cn('user-menu-name')}>{currentUser.name}</div>
+        <div className={cn('user-menu-name')}>{currentUser?.result.name}</div>
       </div>
       <div className={cn('group-btn')}>
         <UserMenuItem title="Kênh của bạn" icon={<HomeIcon />}></UserMenuItem>
@@ -31,7 +31,7 @@ function UserMenu({ currentUser, logout }) {
           <span className={cn('logout-text')}>Đăng xuất</span>
         </button>
       </div>
-    </item>
+    </div>
   )
 }
 

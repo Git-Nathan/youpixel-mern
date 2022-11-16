@@ -23,7 +23,6 @@ function Header() {
     JSON.parse(localStorage.getItem('profile')),
   )
   const [open, setOpen] = useState(false)
-  console.log(currentUser)
 
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
@@ -44,9 +43,11 @@ function Header() {
           }),
         )
         setCurrentUser({
-          name: res.data.name,
-          email: res.data.email,
-          picture: res.data.picture,
+          result: {
+            name: res.data.name,
+            email: res.data.email,
+            picture: res.data.picture,
+          },
         })
       } catch (err) {
         console.log(err)
@@ -78,7 +79,7 @@ function Header() {
           </div>
 
           <div className={cn('end')}>
-            {currentUser ? (
+            {currentUser?.result ? (
               <>
                 <div className={cn('upload-btn')} onClick={() => setOpen(true)}>
                   <UploadIcon className={cn('upload-icon')} />
@@ -90,11 +91,15 @@ function Header() {
                 <div className={cn('user-box')}>
                   <img
                     className={cn('user-img')}
-                    src={currentUser.picture}
+                    src={currentUser?.result.picture}
                     alt="user img"
                   />
 
-                  <UserMenu currentUser={currentUser} logout={logout} />
+                  <UserMenu
+                    menuId={cn('user-menu-id')}
+                    currentUser={currentUser}
+                    logout={logout}
+                  />
                 </div>
               </>
             ) : (

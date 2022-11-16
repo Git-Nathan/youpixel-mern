@@ -6,7 +6,7 @@ const cn = classNames.bind(styles)
 
 function MenuItem({ title, to, icon }) {
   return (
-    <Link className={cn('menu-item')} to={to} end>
+    <Link className={cn('menu-item')} to={to}>
       <div className={cn('wrap')}>
         <span className={cn('icon')}>{icon}</span>
         <span className={cn('title')}>{title}</span>

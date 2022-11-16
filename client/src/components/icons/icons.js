@@ -33,14 +33,14 @@ export const NotificationIcon = ({
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M11.9998 21.7969C19.5188 21.7969 22.9972 20.8324 23.3332 16.9608C23.3332 13.0918 20.908 13.3406 20.908 8.59356C20.908 4.8856 17.3935 0.666748 11.9998 0.666748C6.6062 0.666748 3.09163 4.8856 3.09163 8.59356C3.09163 13.3406 0.666504 13.0918 0.666504 16.9608C1.00377 20.847 4.4822 21.7969 11.9998 21.7969Z"
       fill="#4B4F58"
     />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M15.1848 25.8098C13.366 27.8294 10.5286 27.8534 8.69238 25.8098Z"
       fill="#4B4F58"
     />
@@ -108,9 +108,9 @@ export const SubcribedIcon = ({
       rx="1"
       fill="white"
       stroke="white"
-      stroke-width="2"
+      strokeWidth="2"
     />
-    <g clip-path="url(#clip0_74_173)">
+    <g clipPath="url(#clip0_74_173)">
       <path
         d="M12.7109 4.91407C12.3641 4.70079 11.9281 4.69376 11.5742 4.89298C11.2203 5.0922 11 5.4672 11 5.87501V14.125C11 14.5328 11.2203 14.9078 11.5742 15.107C11.9281 15.3063 12.3641 15.2969 12.7109 15.0859L19.4609 10.9609C19.7961 10.757 20 10.3938 20 10C20 9.60626 19.7961 9.24532 19.4609 9.03907L12.7109 4.91407Z"
         fill="#15141B"
@@ -119,9 +119,9 @@ export const SubcribedIcon = ({
     <path
       d="M1 2.97144V22C1 23.1046 1.89543 24 3 24H22.0286"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <defs>
       <clipPath id="clip0_74_173">
@@ -222,8 +222,8 @@ export const SettingsIcon = ({
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M9.92218 20.0001H9.92245H9.92273C11.0272 20.0001 11.9225 19.1047 11.9226 18.0002V18V16.7102C12.9874 16.3933 13.9461 15.8299 14.7323 15.0861L15.8513 15.7322L15.8514 15.7322C16.808 16.2844 18.0312 15.9567 18.5835 15.0001L18.5835 15.0001L18.5835 15C19.1358 14.0435 18.8081 12.8203 17.8515 12.2681L17.8515 12.2681L16.7338 11.6228C16.8574 11.102 16.9229 10.5587 16.9229 10.0001C16.9229 9.44142 16.8574 8.89804 16.7338 8.3772L17.8513 7.73206L17.8513 7.73202C18.8079 7.17977 19.1356 5.95666 18.5833 5.0001L18.5833 5.00004L18.5833 4.99999C18.031 4.04345 16.8078 3.71569 15.8512 4.26792L15.8511 4.26795L14.7322 4.91392C13.9459 4.17025 12.9874 3.60688 11.9226 3.29V2.00027V2C11.9225 0.895527 11.0272 0.000188692 9.92273 0.00012207H9.92245H9.92218C8.81771 0.000188788 7.92237 0.895527 7.9223 2V2.00027V3.28994C6.85751 3.60679 5.89888 4.17015 5.11261 4.91382L3.99388 4.26797L3.99382 4.26794C3.03723 3.71571 1.81404 4.04347 1.26172 5.00001L1.26169 5.00006L1.26166 5.00012C0.709365 5.95668 1.0371 7.17979 1.99367 7.73204L1.99373 7.73208L3.11095 8.37706C2.98728 8.89795 2.92181 9.44137 2.92181 10.0001C2.92181 10.5587 2.98726 11.1021 3.11091 11.623L1.99353 12.268L1.99347 12.2681C1.0369 12.8203 0.709166 14.0434 1.26146 15L1.26149 15L1.26152 15.0001C1.81384 15.9566 3.03703 16.2844 3.99362 15.7322L3.99368 15.7321L5.11248 15.0862C5.89878 15.83 6.85745 16.3934 7.9223 16.7102V18V18.0002C7.92237 19.1047 8.81771 20.0001 9.92218 20.0001Z"
       fill="white"
     />
@@ -233,9 +233,9 @@ export const SettingsIcon = ({
       rx="3.00023"
       ry="3"
       stroke="#15141B"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -276,9 +276,9 @@ export const HelpIcon = ({ width = '24px', height = '24px', className }) => (
     <path
       d="M14.88 15C14.17 15.62 13.25 16 12.24 16C10.03 16 8.23999 14.21 8.23999 12C8.23999 9.79 10.03 8 12.24 8C13.25 8 14.17 8.38 14.88 9"
       stroke="#15141B"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -303,31 +303,31 @@ export const FeedbackIcon = ({
     <path
       d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M22 10H18C15 10 14 9 14 6V2L18 6L22 10Z"
       fill="#15141B"
       stroke="white"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M13 15H7L9 17"
       stroke="#15141B"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M7 15L9 13"
       stroke="#15141B"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -428,16 +428,16 @@ export const UploadIcon = ({ width = '24px', height = '24px', className }) => (
     <path
       d="M11.1411 6.6377V15.971"
       stroke="#F05123"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M6.47461 11.3044H15.8079"
       stroke="#F05123"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -452,8 +452,8 @@ export const LikedIcon = ({ width = '24px', height = '24px', className }) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M0.840695 10.0817H4.91305C5.13535 10.0828 5.34819 10.1792 5.50502 10.3499C5.66185 10.5206 5.74989 10.7517 5.74989 10.9926V23.0891C5.74889 23.3296 5.66052 23.5601 5.50391 23.7305C5.34729 23.901 5.13504 23.9978 4.91305 24H0.840695C0.618041 23.9989 0.404797 23.9026 0.247355 23.732C0.0899135 23.5614 0.00101438 23.3303 0 23.0891V10.9926C0.00101438 10.7513 0.0899135 10.5203 0.247355 10.3497C0.404797 10.1791 0.618041 10.0828 0.840695 10.0817ZM11.5229 1.01029C11.9625 -1.42156 15.6338 0.81808 15.8768 4.73327C15.931 6.12499 15.8261 7.51864 15.5644 8.88245H20.813C22.9918 8.97855 24.8969 10.6708 23.551 13.4495C23.8595 14.6612 23.9058 16.0819 23.0728 16.646C23.177 18.5555 22.6872 19.7422 21.7732 20.6782C21.7558 21.5497 21.5184 22.3994 21.0868 23.1351C20.3811 24.2131 19.8103 23.9708 18.6997 23.9708H9.82996C8.42623 23.9708 7.66266 23.5529 6.74484 22.2994V11.5901C9.40961 10.8254 10.8133 6.91023 11.5229 4.3405V0.997752V1.01029Z"
       fill="white"
     />
