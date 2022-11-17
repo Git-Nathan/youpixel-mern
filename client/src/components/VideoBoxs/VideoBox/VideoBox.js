@@ -36,6 +36,7 @@ function VideoBox({ video }) {
             {channel?.picture ? (
               <Link to={`/channel/${video.userId}`}>
                 <img
+                  referrerpolicy="no-referrer"
                   className={cn('author-img')}
                   src={channel.picture}
                   alt="User avatar"

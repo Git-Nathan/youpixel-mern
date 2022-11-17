@@ -90,6 +90,7 @@ function Header() {
                 </div>
                 <div className={cn('user-box')}>
                   <img
+                    referrerpolicy="no-referrer"
                     className={cn('user-img')}
                     src={currentUser?.result.picture}
                     alt="user img"
