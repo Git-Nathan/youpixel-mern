@@ -18,4 +18,5 @@ export const fetchChannel = (userId) => API.get(`/users/find/${userId}`)
 
 //Video
 export const fetchVideos = () => API.get(`/videos`)
+export const getVideo = (videoId) => API.get(`/videos/${videoId}`)
 export const addVideo = (data) => API.post('/videos/add', data)

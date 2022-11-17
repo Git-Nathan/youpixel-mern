@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchChannel } from '~/api/api'
 import styles from './VideoBox.module.scss'
+import Moment from 'react-moment'
+import 'moment/locale/vi'
 
 const cn = classNames.bind(styles)
 
 function VideoBox({ video }) {
   const [channel, setChannel] = useState({})
-  console.log(channel)
 
   useEffect(() => {
     const getChannel = async () => {
@@ -22,7 +23,7 @@ function VideoBox({ video }) {
     <div className={cn('grid__column')}>
       <div className={cn('wrapper')}>
         <div className={cn('thumbnail-box')}>
-          <Link className={cn('thumbnail-link')} to="/watch">
+          <Link to={`/watch?v=${video._id}`} className={cn('thumbnail-link')}>
             <img
               className={cn('thumbnail')}
               src={video.imgUrl}
@@ -32,22 +33,37 @@ function VideoBox({ video }) {
         </div>
         <div className={cn('videobox-detail')}>
           <div className={cn('author-img-box')}>
-            <Link>
-              <img
-                className={cn('author-img')}
-                src={channel.picture}
-                alt="User avatar"
-              />
-            </Link>
+            {channel?.picture ? (
+              <Link to={`/channel/${video.userId}`}>
+                <img
+                  className={cn('author-img')}
+                  src={channel.picture}
+                  alt="User avatar"
+                />
+              </Link>
+            ) : (
+              <div className={cn('author-img-loading')}></div>
+            )}
           </div>
           <div className={cn('detail')}>
-            <Link className={cn('video-link')}>
+            <Link to={`/watch?v=${video._id}`} className={cn('video-link')}>
               <h4 className={cn('video-name')}>{video.title}</h4>
             </Link>
-            <Link className={cn('author-name')}>{channel.name}</Link>
+            {channel?.name ? (
+              <Link
+                to={`/channel/${video.userId}`}
+                className={cn('author-name')}
+              >
+                {channel.name}
+              </Link>
+            ) : (
+              <div className={cn('channel-name-loading')}></div>
+            )}
             <div className={cn('views-and-time')}>
-              <span>100 lượt xem</span>
-              <span className={cn('timer')}>2 ngày trước</span>
+              <span>{video.views} lượt xem</span>
+              <span className={cn('timer')}>
+                <Moment fromNow>{video.createdAt}</Moment>
+              </span>
             </div>
           </div>
         </div>

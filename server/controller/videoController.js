@@ -20,3 +20,15 @@ export const fetchVideos = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const getVideo = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const video = await Video.findById(id)
+
+    res.status(200).json(video)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}
