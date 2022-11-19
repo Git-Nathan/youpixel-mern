@@ -22,7 +22,15 @@
 
 .thumbnail {
   width: 100%;
+  aspect-ratio: 360 / 202;
   border-radius: 12px;
+}
+
+.thumbnail-loading {
+  width: 100%;
+  aspect-ratio: 360 / 202;
+  border-radius: 12px;
+  background-color: #27262d;
 }
 
 .detail {
@@ -85,6 +93,7 @@
   background-color: #27262d;
   width: 80px;
   margin-top: 8px;
+  border-radius: 4px;
 }
 
 .views-and-time {

@@ -1,10 +1,15 @@
 import styles from './StudioVideos.module.scss'
 import classNames from 'classnames/bind'
 import StudioVideoBox from '~/components/StudioVideoBox'
+import { useEffect } from 'react'
 
 const cn = classNames.bind(styles)
 
 function StudioVideos() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  })
+
   return (
     <div className={cn('wrapper')}>
       <table className={cn('table')}>

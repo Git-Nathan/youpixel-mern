@@ -1,10 +1,15 @@
 import styles from './StudioPending.module.scss'
 import classNames from 'classnames/bind'
 import StudioPendingBox from '~/components/StudioPendingBox'
+import { useEffect } from 'react'
 
 const cn = classNames.bind(styles)
 
 function StudioPending() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  })
+
   return (
     <div className={cn('wrapper')}>
       <table className={cn('table')}>

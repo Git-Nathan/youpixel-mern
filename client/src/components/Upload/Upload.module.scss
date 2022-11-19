@@ -80,6 +80,7 @@
 
 .left-form {
   width: calc(100% - 304px - 24px);
+  margin-bottom: 40px;
 }
 
 .title-box {
@@ -103,7 +104,7 @@
 
 .right-form {
   width: 328px;
-  height: 171px;
+  height: inherit;
   padding-left: 24px;
 }
 

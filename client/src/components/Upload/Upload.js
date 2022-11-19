@@ -12,6 +12,8 @@ import {
 import app from '~/firebase'
 import { useDispatch } from 'react-redux'
 import { addVideo } from '~/actions/videoActions'
+import PreviewImg from './PreviewImg'
+import PreviewVideo from './PreviewVideo'
 
 const cn = classNames.bind(styles)
 
@@ -107,26 +109,14 @@ function Upload({ setOpen }) {
                 của bạn. Hình thu nhỏ hấp dẫn sẽ làm nổi bật video của bạn và
                 thu hút người xem.
               </div>
-              {imgPerc > 0 ? (
-                'Uploading: ' + imgPerc + '%'
-              ) : (
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setImg(e.target.files[0])}
-                />
-              )}
+              <PreviewImg imgPerc={imgPerc} inputs={inputs} setImg={setImg} />
             </div>
             <div className={cn('right-form')}>
-              {videoPerc > 0 ? (
-                'Uploading: ' + videoPerc + '%'
-              ) : (
-                <input
-                  type="file"
-                  accept="video/*"
-                  onChange={(e) => setVideo(e.target.files[0])}
-                />
-              )}
+              <PreviewVideo
+                videoPerc={videoPerc}
+                inputs={inputs}
+                setVideo={setVideo}
+              />
             </div>
           </div>
         </div>

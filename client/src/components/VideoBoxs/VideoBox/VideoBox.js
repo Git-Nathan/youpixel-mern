@@ -24,11 +24,15 @@ function VideoBox({ video }) {
       <div className={cn('wrapper')}>
         <div className={cn('thumbnail-box')}>
           <Link to={`/watch?v=${video._id}`} className={cn('thumbnail-link')}>
-            <img
-              className={cn('thumbnail')}
-              src={video.imgUrl}
-              alt="thumbnail"
-            ></img>
+            {video?.imgUrl ? (
+              <img
+                className={cn('thumbnail')}
+                src={video?.imgUrl}
+                alt="thumbnail"
+              ></img>
+            ) : (
+              <div className={cn('thumbnail-loading')}></div>
+            )}
           </Link>
         </div>
         <div className={cn('videobox-detail')}>
@@ -36,7 +40,7 @@ function VideoBox({ video }) {
             {channel?.picture ? (
               <Link to={`/channel/${video.userId}`}>
                 <img
-                  referrerpolicy="no-referrer"
+                  referrerPolicy="no-referrer"
                   className={cn('author-img')}
                   src={channel.picture}
                   alt="User avatar"

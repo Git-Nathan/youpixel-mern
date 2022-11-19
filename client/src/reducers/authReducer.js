@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from '~/constants/actionsTypes'
+import { AUTH, LOGOUT, SUBSCRIBTION } from '~/constants/actionsTypes'
 
 const authReducer = (state = { currentUser: null }, action) => {
   switch (action.type) {

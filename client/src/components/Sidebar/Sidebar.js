@@ -6,7 +6,7 @@ import {
   FeedbackIcon,
   HelpIcon,
   HomeIcon,
-  LikedIcon,
+  LikeIcon,
   MyVideosIcon,
   SettingsIcon,
   SubcribedIcon,
@@ -52,7 +52,7 @@ function Sidebar() {
           <MenuItem
             to={'/notyet'}
             title="Video đã thích"
-            icon={<LikedIcon />}
+            icon={<LikeIcon pathFill={'white'} />}
           ></MenuItem>
         </div>
         <div className={cn('nav-box')}>

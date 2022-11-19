@@ -4,10 +4,13 @@ import { Link, useSearchParams } from 'react-router-dom'
 import WatchVideoBoxs from '~/components/WatchVideoBoxs/WatchVideoBoxs'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideo } from '~/actions/videoActions'
+import { dislike, getVideo, like } from '~/actions/videoActions'
 import { CircularProgress, Paper } from '@mui/material'
 import { fetchChannel } from '~/api/api'
 import { LikeIcon, ShareIcon } from '~/components/icons'
+import Moment from 'react-moment'
+import 'moment/locale/vi'
+import { sub, unsub } from '~/actions/authActions'
 
 const cn = classNames.bind(styles)
 
@@ -21,12 +24,28 @@ function Watch() {
 
   const videoId = searchParams.get('v')
 
+  const handleLike = async () => {
+    dispatch(like(video._id, currentUser.result._id))
+  }
+  const handleDislike = async () => {
+    dispatch(dislike(video._id, currentUser.result._id))
+  }
+
+  const handleSub = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? dispatch(sub(channel._id))
+      : dispatch(unsub(channel._id))
+  }
+
   useEffect(() => {
-    const getChannel = async () => {
-      const { data } = await fetchChannel(video?.userId)
-      setChannel(data)
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    if (video?.userId) {
+      const getChannel = async () => {
+        const { data } = await fetchChannel(video?.userId)
+        setChannel(data)
+      }
+      getChannel()
     }
-    getChannel()
   }, [video?.userId])
 
   useEffect(() => {
@@ -52,7 +71,7 @@ function Watch() {
           className={cn('video-player')}
           src={video.videoUrl}
           controls
-          autoPlay
+          // autoPlay
         ></video>
         <div className={cn('video-info-wrapper')}>
           <h2 className={cn('video-name')}>{video.title}</h2>
@@ -69,16 +88,60 @@ function Watch() {
                 <Link className={cn('channel-name')}>{channel.name}</Link>
                 <div className={cn('channel-sub')}>Số người đăng ký</div>
               </div>
-              <button className={cn('sub-btn')}>Đăng ký</button>
+              <button className={cn('sub-btn')} onClick={handleSub}>
+                {currentUser.subscribedUsers?.include(video._id)
+                  ? 'Đã đăng ký'
+                  : 'Đăng ký'}
+              </button>
             </div>
             <div className={cn('options-wrapper')}>
-              <button className={cn('like-btn')}>
-                <LikeIcon />
-                <span className={cn('like-btn-text')}>12 tr</span>
+              <button className={cn('like-btn')} onClick={handleLike}>
+                {video.likes?.includes(currentUser.result._id) ? (
+                  <>
+                    <LikeIcon pathFill={'#f05123'} />
+                    {video.likes.length > 0 && (
+                      <span
+                        className={cn('like-btn-text')}
+                        style={{ color: 'var(--primary-color)' }}
+                      >
+                        {video.likes.length}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <LikeIcon pathFill={'white'} />
+                    {video.likes.length > 0 && (
+                      <span className={cn('like-btn-text')}>
+                        {video.likes.length}
+                      </span>
+                    )}
+                  </>
+                )}
               </button>
-              <button className={cn('dislike-btn')}>
-                <LikeIcon />
-                <span className={cn('like-btn-text')}>8 tr</span>
+              <button className={cn('dislike-btn')} onClick={handleDislike}>
+                {video.dislikes?.includes(currentUser.result._id) ? (
+                  <>
+                    <LikeIcon pathFill={'#f05123'} />
+                    {video.dislikes.length > 0 && (
+                      <span
+                        className={cn('like-btn-text')}
+                        style={{ color: 'var(--primary-color)' }}
+                      >
+                        {video.dislikes.length}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <LikeIcon pathFill={'white'} />
+                    {video.dislikes.length > 0 && (
+                      <span className={cn('like-btn-text')}>
+                        {video.dislikes.length}
+                      </span>
+                    )}
+                  </>
+                )}
               </button>
               <button className={cn('share-btn')}>
                 <ShareIcon />
@@ -88,9 +151,11 @@ function Watch() {
           </div>
           <div className={cn('video-desc-wrapper')}>
             <div className={cn('video-views-and-time')}>
-              <span>77N lượt xem</span>
+              <span>{video.views} lượt xem</span>
               <div style={{ width: '12px' }}></div>
-              <span>3 năm trước</span>
+              <span>
+                <Moment fromNow>{video.createdAt}</Moment>
+              </span>
             </div>
             <div className={cn('video-desc')}>{video.desc}</div>
           </div>
@@ -99,7 +164,7 @@ function Watch() {
           </div>
           <div className={cn('comment-box')}>
             <img
-              referrerpolicy="no-referrer"
+              referrerPolicy="no-referrer"
               className={cn('user-img')}
               src={currentUser?.result.picture}
               alt="UserImg"

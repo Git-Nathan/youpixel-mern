@@ -1,8 +1,10 @@
 import {
   CREATE,
+  DISLIKE,
   END_LOADING,
   FETCH_ALL,
   FETCH_VIDEO,
+  LIKE,
   START_LOADING,
 } from '~/constants/actionsTypes.js'
 import * as api from '../api/api.js'
@@ -36,6 +38,24 @@ export const addVideo = (formData) => async (dispatch) => {
   try {
     const { data } = await api.addVideo(formData)
     dispatch({ type: CREATE, payload: data })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const like = (videoId, userId) => async (dispatch) => {
+  try {
+    await api.like(videoId)
+    dispatch({ type: LIKE, payload: userId })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const dislike = (videoId, userId) => async (dispatch) => {
+  try {
+    await api.dislike(videoId)
+    dispatch({ type: DISLIKE, payload: userId })
   } catch (error) {
     console.log(error)
   }

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import { memo } from 'react'
-import { HomeIcon } from '../icons'
+import { LogoutIcon, StudioIcon, YourChannelIcon } from '../icons'
 import styles from './UserMenu.module.scss'
 import { UserMenuItem } from './UserMenuItem'
 
@@ -18,15 +18,18 @@ function UserMenu({ menuId, currentUser, logout }) {
         <div className={cn('user-menu-name')}>{currentUser?.result.name}</div>
       </div>
       <div className={cn('group-btn')}>
-        <UserMenuItem title="Kênh của bạn" icon={<HomeIcon />}></UserMenuItem>
+        <UserMenuItem
+          title="Kênh của bạn"
+          icon={<YourChannelIcon />}
+        ></UserMenuItem>
         <UserMenuItem
           to="/studio/videos/upload"
           title="Quản lý kênh"
-          icon={<HomeIcon />}
+          icon={<StudioIcon />}
         ></UserMenuItem>
         <button className={cn('logout-btn')} onClick={logout}>
           <span className={cn('logout-icon')}>
-            <HomeIcon fill="white" />
+            <LogoutIcon fill="white" />
           </span>
           <span className={cn('logout-text')}>Đăng xuất</span>
         </button>
