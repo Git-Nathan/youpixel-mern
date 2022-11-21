@@ -32,3 +32,16 @@ export const getVideo = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const addView = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    await Video.findByIdAndUpdate(id, {
+      $inc: { views: 1 },
+    })
+    res.status(200).json({ message: 'Added' })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}

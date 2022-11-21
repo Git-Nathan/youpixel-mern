@@ -24,3 +24,8 @@ export const unsub = (channelId) => API.patch(`/users/unsub/${channelId}`)
 export const fetchVideos = () => API.get(`/videos`)
 export const getVideo = (videoId) => API.get(`/videos/${videoId}`)
 export const addVideo = (data) => API.post('/videos/add', data)
+export const addView = (videoId) => API.patch(`/videos/addview/${videoId}`)
+
+//Comment
+export const addComment = (comment, videoId) =>
+  API.post(`/comment/${videoId}`, { comment })

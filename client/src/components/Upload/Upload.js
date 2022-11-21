@@ -17,7 +17,7 @@ import PreviewVideo from './PreviewVideo'
 
 const cn = classNames.bind(styles)
 
-function Upload({ setOpen }) {
+function Upload({ notify, setOpen }) {
   const [img, setImg] = useState(undefined)
   const [video, setVideo] = useState(undefined)
   const [imgPerc, setImgPerc] = useState(0)
@@ -68,6 +68,7 @@ function Upload({ setOpen }) {
   const handleUpload = async (e) => {
     e.preventDefault()
     dispatch(addVideo({ ...inputs }))
+    notify()
     setOpen(false)
   }
 

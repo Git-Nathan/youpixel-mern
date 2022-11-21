@@ -4,13 +4,16 @@ import { Link, useSearchParams } from 'react-router-dom'
 import WatchVideoBoxs from '~/components/WatchVideoBoxs/WatchVideoBoxs'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { dislike, getVideo, like } from '~/actions/videoActions'
+import { addView, dislike, getVideo, like } from '~/actions/videoActions'
 import { CircularProgress, Paper } from '@mui/material'
 import { fetchChannel } from '~/api/api'
-import { LikeIcon, ShareIcon } from '~/components/icons'
+import { ShareIcon } from '~/components/icons'
 import Moment from 'react-moment'
 import 'moment/locale/vi'
 import { sub, unsub } from '~/actions/authActions'
+import SubcribeButton from '~/components/SubcribeButton'
+import LikeButton from '~/components/LikeButton'
+import Comments from '~/components/Comments'
 
 const cn = classNames.bind(styles)
 
@@ -18,7 +21,9 @@ function Watch() {
   const { video, isLoading } = useSelector((store) => store.videoReducer)
   const [channel, setChannel] = useState({})
   const [searchParams] = useSearchParams({})
-  const currentUser = JSON.parse(localStorage.getItem('profile'))
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem('profile')),
+  )
 
   const dispatch = useDispatch()
 
@@ -32,9 +37,24 @@ function Watch() {
   }
 
   const handleSub = async () => {
-    currentUser.subscribedUsers.includes(channel._id)
-      ? dispatch(sub(channel._id))
-      : dispatch(unsub(channel._id))
+    if (currentUser?.result.subscribedUsers.includes(channel._id)) {
+      let archive = structuredClone(currentUser)
+      archive.result.subscribedUsers.splice(
+        archive.result.subscribedUsers.findIndex(
+          (item) => item === channel._id,
+        ),
+      )
+      setCurrentUser(archive)
+      setChannel({ ...channel, subscribers: channel.subscribers - 1 })
+      dispatch(unsub(channel._id, setCurrentUser))
+    } else {
+      setCurrentUser({
+        ...currentUser,
+        result: { ...currentUser.result, subscribedUsers: channel._id },
+      })
+      setChannel({ ...channel, subscribers: channel.subscribers + 1 })
+      dispatch(sub(channel._id, setCurrentUser))
+    }
   }
 
   useEffect(() => {
@@ -47,6 +67,17 @@ function Watch() {
       getChannel()
     }
   }, [video?.userId])
+
+  useEffect(() => {
+    if (video._id) {
+      const addVideoView = setTimeout(() => {
+        dispatch(addView(video._id))
+      }, 30000)
+      return () => {
+        clearTimeout(addVideoView)
+      }
+    }
+  }, [dispatch, video._id])
 
   useEffect(() => {
     dispatch(getVideo(videoId))
@@ -86,63 +117,23 @@ function Watch() {
               </Link>
               <div className={cn('channel-text')}>
                 <Link className={cn('channel-name')}>{channel.name}</Link>
-                <div className={cn('channel-sub')}>Số người đăng ký</div>
+                <div className={cn('channel-sub')}>
+                  {channel.subscribers} người đăng ký
+                </div>
               </div>
-              <button className={cn('sub-btn')} onClick={handleSub}>
-                {currentUser.subscribedUsers?.include(video._id)
-                  ? 'Đã đăng ký'
-                  : 'Đăng ký'}
-              </button>
+              <SubcribeButton
+                currentUser={currentUser}
+                channel={channel}
+                handleSub={handleSub}
+              />
             </div>
             <div className={cn('options-wrapper')}>
-              <button className={cn('like-btn')} onClick={handleLike}>
-                {video.likes?.includes(currentUser.result._id) ? (
-                  <>
-                    <LikeIcon pathFill={'#f05123'} />
-                    {video.likes.length > 0 && (
-                      <span
-                        className={cn('like-btn-text')}
-                        style={{ color: 'var(--primary-color)' }}
-                      >
-                        {video.likes.length}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <LikeIcon pathFill={'white'} />
-                    {video.likes.length > 0 && (
-                      <span className={cn('like-btn-text')}>
-                        {video.likes.length}
-                      </span>
-                    )}
-                  </>
-                )}
-              </button>
-              <button className={cn('dislike-btn')} onClick={handleDislike}>
-                {video.dislikes?.includes(currentUser.result._id) ? (
-                  <>
-                    <LikeIcon pathFill={'#f05123'} />
-                    {video.dislikes.length > 0 && (
-                      <span
-                        className={cn('like-btn-text')}
-                        style={{ color: 'var(--primary-color)' }}
-                      >
-                        {video.dislikes.length}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <LikeIcon pathFill={'white'} />
-                    {video.dislikes.length > 0 && (
-                      <span className={cn('like-btn-text')}>
-                        {video.dislikes.length}
-                      </span>
-                    )}
-                  </>
-                )}
-              </button>
+              <LikeButton
+                video={video}
+                currentUser={currentUser}
+                handleLike={handleLike}
+                handleDislike={handleDislike}
+              />
               <button className={cn('share-btn')}>
                 <ShareIcon />
                 <span className={cn('like-btn-text')}>Chia sẻ</span>
@@ -162,21 +153,8 @@ function Watch() {
           <div className={cn('comment-header')}>
             <span className={cn('numof-comment')}>32 bình luận</span>
           </div>
-          <div className={cn('comment-box')}>
-            <img
-              referrerPolicy="no-referrer"
-              className={cn('user-img')}
-              src={currentUser?.result.picture}
-              alt="UserImg"
-            />
-            <div className={cn('comment-imput-wrapper')}>
-              <textarea
-                className={cn('comment-imput')}
-                placeholder="Viết bình luận..."
-                rows="1"
-              ></textarea>
-            </div>
-          </div>
+
+          <Comments videoId={video._id} currentUser={currentUser} />
         </div>
       </div>
       <div className={cn('secondary')}>

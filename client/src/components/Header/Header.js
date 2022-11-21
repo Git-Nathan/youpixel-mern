@@ -14,6 +14,8 @@ import { signin } from '~/actions/authActions'
 import { useCallback, useEffect, useState } from 'react'
 import { LOGOUT } from '~/constants/actionsTypes'
 import Upload from '../Upload'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const cn = classNames.bind(styles)
 
@@ -42,13 +44,6 @@ function Header() {
             picture: res.data.picture,
           }),
         )
-        setCurrentUser({
-          result: {
-            name: res.data.name,
-            email: res.data.email,
-            picture: res.data.picture,
-          },
-        })
       } catch (err) {
         console.log(err)
       }
@@ -64,6 +59,18 @@ function Header() {
     setCurrentUser(JSON.parse(localStorage.getItem('profile')))
   }, [])
 
+  const notify = () =>
+    toast.success('Đăng tải video thành công.', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    })
+
   return (
     <>
       <header className={cn('wrapper')}>
@@ -77,6 +84,8 @@ function Header() {
             </Link>
             <SearchBar />
           </div>
+
+          <ToastContainer />
 
           <div className={cn('end')}>
             {currentUser?.result ? (
@@ -122,7 +131,7 @@ function Header() {
           </div>
         </div>
       </header>
-      {open && <Upload setOpen={setOpen} />}
+      {open && <Upload notify={notify} setOpen={setOpen} />}
     </>
   )
 }

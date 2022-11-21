@@ -6,6 +6,14 @@ const authReducer = (state = { currentUser: null }, action) => {
       localStorage.setItem('profile', JSON.stringify({ ...action?.data }))
 
       return { ...state, currentUser: action.data }
+    case SUBSCRIBTION: {
+      let user = {
+        ...JSON.parse(localStorage.getItem('profile')),
+        result: action.data,
+      }
+      localStorage.setItem('profile', JSON.stringify({ ...user }))
+      return { ...state }
+    }
     case LOGOUT:
       localStorage.clear()
 

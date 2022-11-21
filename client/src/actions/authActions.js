@@ -6,24 +6,29 @@ export const signin = (formData) => async (dispatch) => {
     const { data } = await api.signIn(formData)
 
     dispatch({ type: AUTH, data })
+    window.location.reload(false)
   } catch (error) {
     console.log(error)
   }
 }
 
-export const sub = (id) => async (dispatch) => {
+export const sub = (id, setCurrentUser) => async (dispatch) => {
   try {
-    await api.sub(id)
-    // dispatch({ type: SUBSCRIBTION, id })
+    const { data } = await api.sub(id)
+
+    dispatch({ type: SUBSCRIBTION, data })
+    setCurrentUser(JSON.parse(localStorage.getItem('profile')))
   } catch (error) {
     console.log(error)
   }
 }
 
-export const unsub = (id) => async (dispatch) => {
+export const unsub = (id, setCurrentUser) => async (dispatch) => {
   try {
-    await api.unsub(id)
-    // dispatch({ type: SUBSCRIBTION, id })
+    const { data } = await api.unsub(id)
+
+    dispatch({ type: SUBSCRIBTION, data })
+    setCurrentUser(JSON.parse(localStorage.getItem('profile')))
   } catch (error) {
     console.log(error)
   }

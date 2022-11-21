@@ -60,3 +60,11 @@ export const dislike = (videoId, userId) => async (dispatch) => {
     console.log(error)
   }
 }
+
+export const addView = (videoId) => async () => {
+  try {
+    await api.addView(videoId)
+  } catch (error) {
+    console.log(error)
+  }
+}

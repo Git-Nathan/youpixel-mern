@@ -74,7 +74,8 @@ export const sub = async (req, res, next) => {
     await User.findByIdAndUpdate(channelId, {
       $inc: { subscribers: 1 },
     })
-    res.status(200).json('Subscription successfull.')
+    const updatedUser = await User.findById(userId)
+    res.status(200).json(updatedUser)
   } catch (err) {
     next(err)
   }
@@ -91,7 +92,8 @@ export const unsub = async (req, res, next) => {
     await User.findByIdAndUpdate(channelId, {
       $inc: { subscribers: -1 },
     })
-    res.status(200).json('Unsubscription successfull.')
+    const updatedUser = await User.findById(userId)
+    res.status(200).json(updatedUser)
   } catch (err) {
     next(err)
   }
