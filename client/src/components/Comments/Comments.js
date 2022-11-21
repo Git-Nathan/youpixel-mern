@@ -1,10 +1,10 @@
 import styles from './Comments.module.scss'
 import classNames from 'classnames/bind'
 import unName from '~/assets/images/unnamed.jpg'
-import { useState } from 'react'
-import { async } from '@firebase/util'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addComment } from '~/actions/commentActions'
+import { getComments } from '~/api/api'
 
 const cn = classNames.bind(styles)
 
@@ -16,7 +16,18 @@ function Comments({ videoId, currentUser }) {
 
   const handleComment = async () => {
     dispatch(addComment(comment, videoId))
+    setComment('')
+    setOpen(false)
   }
+
+  useEffect(() => {
+    const Comments = async () => {
+      const { data } = await getComments(videoId)
+      console.log(data)
+      setComments(data)
+    }
+    Comments()
+  }, [videoId])
 
   return (
     <>
@@ -59,8 +70,6 @@ function Comments({ videoId, currentUser }) {
                   className={cn('btn', 'btn-active')}
                   onClick={() => {
                     handleComment()
-                    setComment('')
-                    setOpen(false)
                   }}
                 >
                   Bình luận

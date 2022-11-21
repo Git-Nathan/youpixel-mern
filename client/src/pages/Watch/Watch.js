@@ -154,7 +154,7 @@ function Watch() {
             <span className={cn('numof-comment')}>32 bình luận</span>
           </div>
 
-          <Comments videoId={video._id} currentUser={currentUser} />
+          <Comments videoId={video?._id} currentUser={currentUser} />
         </div>
       </div>
       <div className={cn('secondary')}>

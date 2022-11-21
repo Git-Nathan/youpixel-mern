@@ -28,4 +28,5 @@ export const addView = (videoId) => API.patch(`/videos/addview/${videoId}`)
 
 //Comment
 export const addComment = (comment, videoId) =>
-  API.post(`/comment/${videoId}`, { comment })
+  API.post(`/comment/add/${videoId}`, { comment })
+export const getComments = (videoId) => API.get(`/comment/${videoId}`)
