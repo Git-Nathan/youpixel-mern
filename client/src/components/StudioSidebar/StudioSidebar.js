@@ -6,16 +6,18 @@ import { HomeIcon, MyVideosIcon, SubcribedIcon, WatchedIcon } from '../icons'
 const cn = classNames.bind(styles)
 
 function StudioSidebar() {
+  const currentUser = JSON.parse(localStorage.getItem('profile'))
+
   return (
     <aside className={cn('wrapper')}>
       <div className={cn('start')}>
         <img
           className={cn('user-img')}
-          src="https://lh3.googleusercontent.com/a/ALm5wu2IGYTzIgPQZsVlP3NMlVc45QHcC52_hpLlBYbnwA=s96-c"
+          src={currentUser.result.picture}
           alt="user img"
         />
         <div className={cn('user-title')}>Kênh của bạn</div>
-        <div className={cn('user-name')}>Tên Người Dùng</div>
+        <div className={cn('user-name')}>{currentUser.result.name}</div>
       </div>
       <div className={cn('center')}>
         <nav className={cn('nav-wrap')}>
@@ -28,23 +30,23 @@ function StudioSidebar() {
               title="Nội dung"
               icon={<HomeIcon />}
             ></MenuItem>
-            <MenuItem
+            {/* <MenuItem
               to={'/notyet'}
               title="Số liệu phân tích"
               icon={<SubcribedIcon />}
-            ></MenuItem>
-            <MenuItem
+            ></MenuItem> */}
+            {/* <MenuItem
               to={'/notyet'}
               title="Bình luận"
               icon={<SubcribedIcon />}
-            ></MenuItem>
+            ></MenuItem> */}
           </div>
           <div className={cn('nav-box')}>
-            <MenuItem
+            {/* <MenuItem
               to={'/notyet'}
               title="Cài đặt"
               icon={<WatchedIcon />}
-            ></MenuItem>
+            ></MenuItem> */}
             <MenuItem
               to={'/notyet'}
               title="Gửi phản hồi"

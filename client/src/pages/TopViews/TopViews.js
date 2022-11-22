@@ -1,14 +1,23 @@
 import styles from './TopViews.module.scss'
 import classNames from 'classnames/bind'
 import SearchVideoBox from '~/components/SearchVideoBox'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { getTopView } from '~/api/api'
 
 const cn = classNames.bind(styles)
 
 function TopViews() {
+  const [videos, setVideos] = useState([])
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  })
+    const getdata = async () => {
+      const { data } = await getTopView()
+      console.log(data.videos)
+      setVideos(data.videos)
+    }
+    getdata()
+  }, [])
 
   return (
     <>
@@ -22,12 +31,9 @@ function TopViews() {
       </div>
       <div className={cn('separate')}></div>
       <div className={cn('wrapper-videos')}>
-        <SearchVideoBox />
-        <SearchVideoBox />
-        <SearchVideoBox />
-        <SearchVideoBox />
-        <SearchVideoBox />
-        <SearchVideoBox />
+        {videos.map((video) => (
+          <SearchVideoBox key={video._id} video={video} />
+        ))}
       </div>
     </>
   )

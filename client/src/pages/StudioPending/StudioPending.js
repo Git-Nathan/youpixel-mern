@@ -1,14 +1,23 @@
 import styles from './StudioPending.module.scss'
 import classNames from 'classnames/bind'
 import StudioPendingBox from '~/components/StudioPendingBox'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { getUserVideosPending } from '~/api/api'
 
 const cn = classNames.bind(styles)
 
 function StudioPending() {
+  const currentUser = JSON.parse(localStorage.getItem('profile'))
+  const [videos, setVideos] = useState([])
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  })
+    const getdata = async () => {
+      const { data } = await getUserVideosPending(currentUser?.result._id)
+      setVideos(data.videos)
+    }
+    getdata()
+  }, [currentUser?.result._id])
 
   return (
     <div className={cn('wrapper')}>
@@ -25,11 +34,9 @@ function StudioPending() {
             Trạng thái
           </th>
         </tr>
-        <StudioPendingBox />
-        <StudioPendingBox />
-        <StudioPendingBox />
-        <StudioPendingBox />
-        <StudioPendingBox />
+        {videos.map((video) => (
+          <StudioPendingBox key={video._id} video={video} />
+        ))}
       </table>
     </div>
   )

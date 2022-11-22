@@ -49,6 +49,7 @@
   width: 32px;
   height: 32px;
   border-radius: 16px;
+  background-color: var(--button-background-color);
 }
 
 .author {
@@ -65,13 +66,22 @@
   margin-left: 10px;
 }
 
+.author-name-load {
+  width: 80px;
+  height: 16px;
+  margin: 8px 0;
+  margin-left: 10px;
+  border-radius: 4px;
+  background-color: var(--button-background-color);
+}
+
 .video-desc {
   color: var(--text-color-darker);
   font-size: 14px;
   margin-top: 12px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
 }

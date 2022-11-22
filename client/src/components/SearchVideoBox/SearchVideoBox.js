@@ -1,38 +1,49 @@
 import classNames from 'classnames/bind'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { fetchChannel } from '~/api/api'
 import styles from './SearchVideoBox.module.scss'
 
 const cn = classNames.bind(styles)
 
-function SearchVideoBox() {
+function SearchVideoBox({ video }) {
+  const [channel, setChannel] = useState({})
+
+  useEffect(() => {
+    const getChannel = async () => {
+      const { data } = await fetchChannel(video.userId)
+      setChannel(data)
+    }
+    getChannel()
+  }, [video.userId])
+
   return (
     <div className={cn('wrapper')}>
-      <img
-        className={cn('video-img')}
-        src="https://i.ytimg.com/vi/FWNdhysYxwc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCHYe52nyNC_2KRGpY1tOZzumyjPQ"
-        alt="video-img"
-      />
+      <img className={cn('video-img')} src={video.imgUrl} alt="video-img" />
       <div className={cn('video-details')}>
-        <div className={cn('video-name')}>
-          Đây là tên video mà nó ngắn quá nên mình ghi thêm thế này cho nó dài
-          ra maf vaaxn chua dur dafi neen mifnh ghi tieesp vafo nhuw thees nafy
-        </div>
+        <div className={cn('video-name')}>{video.title}</div>
         <div className={cn('views-and-time')}>
-          <span>100 lượt xem</span>
+          <span>{video.views} lượt xem</span>
           <span className={cn('timer')}>2 ngày trước</span>
         </div>
         <Link className={cn('author')}>
-          <img
-            className={cn('author-img')}
-            src="https://yt3.ggpht.com/yc6EL14g0qHwprb7fZTQN9pYPvzxeJUO2TkxpWJWhApPJCQTSjPfdZBiC1nbGjVLdoTXm_TR1Q=s68-c-k-c0x00ffffff-no-rj"
-            alt="author"
-          />
-          <div className={cn('author-name')}>Tên Tác Giả</div>
+          {channel?.picture ? (
+            <>
+              <img
+                className={cn('author-img')}
+                src={channel.picture}
+                alt="author"
+              />
+              <div className={cn('author-name')}>{channel.name}</div>
+            </>
+          ) : (
+            <>
+              <div className={cn('author-img')}></div>
+              <div className={cn('author-name-load')}></div>
+            </>
+          )}
         </Link>
-        <div className={cn('video-desc')}>
-          Đây là tên video mà nó ngắn quá nên mình ghi thêm thế này cho nó dài
-          ra maf vaaxn chua dur dafi neen mifnh ghi tieesp vafo nhuw thees nafy
-        </div>
+        <div className={cn('video-desc')}>{video.desc}</div>
       </div>
     </div>
   )

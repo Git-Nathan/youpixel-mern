@@ -45,3 +45,39 @@ export const addView = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const getTopView = async (req, res) => {
+  try {
+    const videos = await Video.find().sort({ views: -1 })
+    res.status(200).json({ videos })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}
+
+export const getUserVideos = async (req, res) => {
+  const { id } = req.query
+
+  try {
+    const videos = await Video.find({ userId: id, approved: 'approved' })
+
+    res.status(200).json({ videos })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}
+
+export const getUserVideosPending = async (req, res) => {
+  const { id } = req.query
+
+  try {
+    const videos = await Video.find({
+      userId: id,
+      approved: ['pending', 'denied'],
+    })
+
+    res.status(200).json({ videos })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}

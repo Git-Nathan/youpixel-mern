@@ -1,14 +1,23 @@
 import styles from './StudioVideos.module.scss'
 import classNames from 'classnames/bind'
 import StudioVideoBox from '~/components/StudioVideoBox'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { getUserVideos } from '~/api/api'
 
 const cn = classNames.bind(styles)
 
 function StudioVideos() {
+  const currentUser = JSON.parse(localStorage.getItem('profile'))
+  const [videos, setVideos] = useState([])
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  })
+    const getdata = async () => {
+      const { data } = await getUserVideos(currentUser?.result._id)
+      setVideos(data.videos)
+    }
+    getdata()
+  }, [currentUser?.result._id])
 
   return (
     <div className={cn('wrapper')}>
@@ -28,11 +37,9 @@ function StudioVideos() {
             Lượt thích(%)
           </th>
         </tr>
-        <StudioVideoBox />
-        <StudioVideoBox />
-        <StudioVideoBox />
-        <StudioVideoBox />
-        <StudioVideoBox />
+        {videos.map((video) => (
+          <StudioVideoBox key={video._id} video={video} />
+        ))}
       </table>
     </div>
   )

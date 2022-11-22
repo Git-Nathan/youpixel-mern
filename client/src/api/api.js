@@ -23,6 +23,10 @@ export const unsub = (channelId) => API.patch(`/users/unsub/${channelId}`)
 //Video
 export const fetchVideos = () => API.get(`/videos`)
 export const getVideo = (videoId) => API.get(`/videos/${videoId}`)
+export const getTopView = () => API.get(`videos/topview`)
+export const getUserVideos = (userId) => API.get(`/videos/author?id=${userId}`)
+export const getUserVideosPending = (userId) =>
+  API.get(`/videos/author/pending?id=${userId}`)
 export const addVideo = (data) => API.post('/videos/add', data)
 export const addView = (videoId) => API.patch(`/videos/addview/${videoId}`)
 

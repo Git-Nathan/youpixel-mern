@@ -1,34 +1,45 @@
 import styles from './StudioVideoBox.module.scss'
 import classNames from 'classnames/bind'
+import { useEffect, useState } from 'react'
+import { getComments } from '~/api/api'
+import Moment from 'react-moment'
+import 'moment/locale/vi'
 
 const cn = classNames.bind(styles)
 
-function StudioVideoBox() {
+function StudioVideoBox({ video }) {
+  const [comments, setComments] = useState([])
+
+  const likePercent =
+    (video.likes.length / (video.likes.length + video.dislikes.length)) * 100
+
+  useEffect(() => {
+    const Comments = async () => {
+      const { data } = await getComments(video._id)
+      setComments(data)
+    }
+    Comments()
+  }, [video._id])
+
   return (
     <tr className={cn('video-row')}>
       <td className={cn('video-col')} style={{ padding: '0 0 0 12px' }}>
-        <img
-          className={cn('video-img')}
-          src="https://i9.ytimg.com/vi/zfUhTwZaWkA/mqdefault.jpg?sqp=CLybwpsG-oaymwEmCMACELQB8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgWShDMA8=&rs=AOn4CLCp7qfiDBrc0SyoNis0FIAKD9CrcQ"
-          alt="video img"
-        />
+        <img className={cn('video-img')} src={video.imgUrl} alt="video img" />
         <div className={cn('video-col-end')}>
-          <div className={cn('video-name')}>
-            Tên videogg aj dafi moojt ty chu the nay ngan qua van chua du dau
-            nen viet them di
-          </div>
-          <div className={cn('video-desc')}>
-            Tên videogg aj dafi moojt ty chu the nay ngan qua van chua du dau
-            nen viet them di
-          </div>
+          <div className={cn('video-name')}>{video.title}</div>
+          <div className={cn('video-desc')}>{video.desc}</div>
         </div>
       </td>
-      <td style={{ padding: '12px' }}>7 th 12, 2022</td>
-      <td style={{ textAlign: 'right' }}>122</td>
-      <td style={{ textAlign: 'right' }}>340</td>
+      <td style={{ padding: '12px' }}>
+        <Moment format="Do MMM, YYYY">{video.createdAt}</Moment>
+      </td>
+      <td style={{ textAlign: 'right' }}>{video.views}</td>
+      <td style={{ textAlign: 'right' }}>{comments.length}</td>
       <td style={{ textAlign: 'right' }}>
-        <div>100%</div>
-        <div style={{ color: 'var(--text-color-darker)' }}>23 lượt thích</div>
+        <div>{likePercent}%</div>
+        <div style={{ color: 'var(--text-color-darker)' }}>
+          {video.likes.length} lượt thích
+        </div>
       </td>
     </tr>
   )
