@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import { getComments } from '~/api/api'
 import Moment from 'react-moment'
-import 'moment/locale/vi'
+import { Link } from 'react-router-dom'
 
 const cn = classNames.bind(styles)
 
@@ -24,10 +24,20 @@ function StudioVideoBox({ video }) {
   return (
     <tr className={cn('video-row')}>
       <td className={cn('video-col')} style={{ padding: '0 0 0 12px' }}>
-        <img className={cn('video-img')} src={video.imgUrl} alt="video img" />
-        <div className={cn('video-col-end')}>
-          <div className={cn('video-name')}>{video.title}</div>
-          <div className={cn('video-desc')}>{video.desc}</div>
+        <div style={{ display: 'flex' }}>
+          <Link className={cn('video-link')} to={`/watch?v=${video._id}`}>
+            <img
+              className={cn('video-img')}
+              src={video.imgUrl}
+              alt="video img"
+            />
+          </Link>
+          <div className={cn('video-col-end')}>
+            <Link className={cn('title-link')} to={`/watch?v=${video._id}`}>
+              <div className={cn('video-name')}>{video.title}</div>
+            </Link>
+            <div className={cn('video-desc')}>{video.desc}</div>
+          </div>
         </div>
       </td>
       <td style={{ padding: '12px' }}>

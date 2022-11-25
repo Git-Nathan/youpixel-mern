@@ -1,5 +1,11 @@
 .comment-box {
   display: flex;
+  flex-direction: column;
+}
+
+.user-comment-wrap {
+  display: flex;
+  margin-bottom: 32px;
 }
 
 .user-img {
@@ -58,4 +64,16 @@
   &:hover {
     background-color: var(--hover-color);
   }
+}
+
+.comment-header {
+  margin: 24px 0 32px;
+}
+
+.numof-comment {
+  margin-bottom: 24px;
+  font-size: 18px;
+  color: var(--text-color);
+  font-weight: 300;
+  padding-left: 2px;
 }

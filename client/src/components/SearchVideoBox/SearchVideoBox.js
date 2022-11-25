@@ -1,8 +1,10 @@
 import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
+import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { fetchChannel } from '~/api/api'
 import styles from './SearchVideoBox.module.scss'
+import 'moment/locale/vi'
 
 const cn = classNames.bind(styles)
 
@@ -19,14 +21,20 @@ function SearchVideoBox({ video }) {
 
   return (
     <div className={cn('wrapper')}>
-      <img className={cn('video-img')} src={video.imgUrl} alt="video-img" />
+      <Link to={`/watch?v=${video._id}`} className={cn('img-link')}>
+        <img className={cn('video-img')} src={video.imgUrl} alt="video-img" />
+      </Link>
       <div className={cn('video-details')}>
-        <div className={cn('video-name')}>{video.title}</div>
-        <div className={cn('views-and-time')}>
-          <span>{video.views} lượt xem</span>
-          <span className={cn('timer')}>2 ngày trước</span>
-        </div>
-        <Link className={cn('author')}>
+        <Link to={`/watch?v=${video._id}`} className={cn('title-link')}>
+          <div className={cn('video-name')}>{video.title}</div>
+          <div className={cn('views-and-time')}>
+            <span>{video.views} lượt xem</span>
+            <span className={cn('timer')}>
+              <Moment fromNow>{video.createdAt}</Moment>
+            </span>
+          </div>
+        </Link>
+        <Link to={`/channel/${channel._id}`} className={cn('author')}>
           {channel?.picture ? (
             <>
               <img

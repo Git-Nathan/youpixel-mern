@@ -25,6 +25,15 @@ const UserSchema = new mongoose.Schema(
     },
     subscribedUsers: {
       type: [String],
+      default: [],
+    },
+    likedVideos: {
+      type: [String],
+      default: [],
+    },
+    watchedVideo: {
+      type: [String],
+      default: [],
     },
   },
   { timestamps: true },

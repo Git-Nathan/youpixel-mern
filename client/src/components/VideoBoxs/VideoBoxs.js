@@ -1,4 +1,3 @@
-import { CircularProgress } from '@mui/material'
 import classNames from 'classnames/bind'
 import { useSelector } from 'react-redux'
 import VideoBox from './VideoBox/VideoBox'
@@ -13,11 +12,9 @@ function VideoBoxs() {
 
   return (
     <div className={cn('grid__row', 'videoboxs-row')}>
-      {false ? (
-        <CircularProgress />
-      ) : (
-        videos?.map((video) => <VideoBox key={video._id} video={video} />)
-      )}
+      {videos?.map((video) => (
+        <VideoBox key={video._id} video={video} />
+      ))}
     </div>
   )
 }

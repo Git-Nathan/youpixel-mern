@@ -27,10 +27,17 @@ export const getTopView = () => API.get(`videos/topview`)
 export const getUserVideos = (userId) => API.get(`/videos/author?id=${userId}`)
 export const getUserVideosPending = (userId) =>
   API.get(`/videos/author/pending?id=${userId}`)
+export const getUserVideosToApproval = () => API.get(`/videos/approval`)
 export const addVideo = (data) => API.post('/videos/add', data)
 export const addView = (videoId) => API.patch(`/videos/addview/${videoId}`)
+export const approveVideo = (videoId, data) =>
+  API.post(`/videos/approval/approve/${videoId}`, data)
+export const denyVideo = (videoId, data) =>
+  API.post(`/videos/approval/deny/${videoId}`, data)
 
 //Comment
 export const addComment = (comment, videoId) =>
   API.post(`/comment/add/${videoId}`, { comment })
 export const getComments = (videoId) => API.get(`/comment/${videoId}`)
+export const deleteComment = (commentId) =>
+  API.delete(`/comment/delete/${commentId}`)

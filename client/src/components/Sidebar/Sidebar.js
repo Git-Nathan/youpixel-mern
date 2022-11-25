@@ -59,12 +59,12 @@ function Sidebar() {
           <h3 className={cn('nav-box-title')}>Khám phá</h3>
           <MenuItem
             to={'/topviews'}
-            title="Top lượt xem"
+            title="Xu hướng"
             icon={<TopViewsIcon className={cn2('fill-icon')} />}
           ></MenuItem>
           <MenuItem
             to={'/notyet'}
-            title="Top like"
+            title="Top liked"
             icon={<TopLikesIcon className={cn2('fill-icon')} />}
           ></MenuItem>
           <MenuItem

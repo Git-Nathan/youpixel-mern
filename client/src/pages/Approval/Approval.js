@@ -1,26 +1,25 @@
-import styles from './StudioVideos.module.scss'
+import styles from './Approval.module.scss'
 import classNames from 'classnames/bind'
-import StudioVideoBox from '~/components/StudioVideoBox'
 import { useEffect, useState } from 'react'
-import { getUserVideos } from '~/api/api'
+import { getUserVideosToApproval } from '~/api/api'
+import ApprovalVideoBox from '~/components/ApprovalVideoBox'
 import { CircularProgress } from '@mui/material'
 
 const cn = classNames.bind(styles)
 
-function StudioVideos() {
-  const currentUser = JSON.parse(localStorage.getItem('profile'))
+function Approval() {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
-      const { data } = await getUserVideos(currentUser?.result._id)
+      const { data } = await getUserVideosToApproval()
       setVideos(data.videos)
       setLoading(false)
     }
     getdata()
-  }, [currentUser?.result._id])
+  }, [])
 
   if (loading) {
     return (
@@ -38,25 +37,22 @@ function StudioVideos() {
             Video
           </th>
           <th style={{ textAlign: 'left', width: '16%', padding: '0 12px' }}>
-            Ngày tải lên
-          </th>
-          <th style={{ textAlign: 'right', padding: '0 12px' }}>Số lượt xem</th>
-          <th style={{ textAlign: 'right', padding: '0 12px' }}>
-            Số bình luận
+            Kênh
           </th>
           <th style={{ textAlign: 'right', width: '16%', padding: '0 12px' }}>
-            Lượt thích(%)
+            Ngày tải lên
           </th>
+          <th style={{ textAlign: 'right', padding: '0 12px' }}>Tùy chọn</th>
         </tr>
-        {videos.length === 0 && !loading && (
+        {videos.length === 0 && (
           <div style={{ marginTop: '12px' }}>Không có video nào</div>
         )}
         {videos.map((video) => (
-          <StudioVideoBox key={video._id} video={video} />
+          <ApprovalVideoBox key={video._id} video={video} />
         ))}
       </table>
     </div>
   )
 }
 
-export default StudioVideos
+export default Approval

@@ -7,7 +7,7 @@
   justify-content: center;
   padding: 20px;
   border-radius: 15px;
-  height: 120vh;
+  background-color: var(--background-color);
 }
 
 .circularProgress {
@@ -100,6 +100,7 @@
   width: 40px;
   height: 40px;
   border-radius: 20px;
+  background-color: var(--button-background-color);
 }
 
 .channel-name {
@@ -158,16 +159,4 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 20px;
-}
-
-.comment-header {
-  margin: 24px 0 32px;
-}
-
-.numof-comment {
-  margin-bottom: 24px;
-  font-size: 18px;
-  color: var(--text-color);
-  font-weight: 300;
-  padding-left: 2px;
 }

@@ -34,7 +34,7 @@ const VideoSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
-    approved: {
+    status: {
       type: String,
       default: 'pending',
     },

@@ -3,17 +3,12 @@ import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from 'firebase/storage'
-import app from '~/firebase'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { useDispatch } from 'react-redux'
 import { addVideo } from '~/actions/videoActions'
 import PreviewImg from './PreviewImg'
 import PreviewVideo from './PreviewVideo'
+import { storage } from '~/firebase'
 
 const cn = classNames.bind(styles)
 
@@ -33,7 +28,6 @@ function Upload({ notify, setOpen }) {
   }
 
   const uploadFile = (file, urlType) => {
-    const storage = getStorage(app)
     const fileName = new Date().getTime() + file.name
     const storageRef = ref(storage, fileName)
     const uploadTask = uploadBytesResumable(storageRef, file)

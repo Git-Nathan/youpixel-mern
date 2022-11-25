@@ -1,40 +1,16 @@
 import { LikeIcon } from '../icons'
 import classNames from 'classnames/bind'
 import styles from './LikeButton.module.scss'
-import { useGoogleLogin } from '@react-oauth/google'
-import axios from 'axios'
-import { signin } from '~/actions/authActions'
-import { useDispatch } from 'react-redux'
 
 const cn = classNames.bind(styles)
 
-function LikeButton({ video, currentUser, handleLike, handleDislike }) {
-  const dispatch = useDispatch()
-
-  const login = useGoogleLogin({
-    onSuccess: async (respose) => {
-      try {
-        const res = await axios.get(
-          'https://www.googleapis.com/oauth2/v3/userinfo',
-          {
-            headers: {
-              Authorization: `Bearer ${respose.access_token}`,
-            },
-          },
-        )
-        dispatch(
-          signin({
-            name: res.data.name,
-            email: res.data.email,
-            picture: res.data.picture,
-          }),
-        )
-      } catch (err) {
-        console.log(err)
-      }
-    },
-  })
-
+function LikeButton({
+  video,
+  currentUser,
+  handleLike,
+  handleDislike,
+  handleLogin,
+}) {
   return (
     <>
       {currentUser ? (
@@ -90,13 +66,13 @@ function LikeButton({ video, currentUser, handleLike, handleDislike }) {
         </>
       ) : (
         <>
-          <button className={cn('like-btn')} onClick={login}>
+          <button className={cn('like-btn')} onClick={handleLogin}>
             <LikeIcon pathFill={'white'} />
             {video.likes.length > 0 && (
               <span className={cn('like-btn-text')}>{video.likes.length}</span>
             )}
           </button>
-          <button className={cn('dislike-btn')} onClick={login}>
+          <button className={cn('dislike-btn')} onClick={handleLogin}>
             <LikeIcon pathFill={'white'} />
             {video.dislikes.length > 0 && (
               <span className={cn('like-btn-text')}>

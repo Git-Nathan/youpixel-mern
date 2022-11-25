@@ -14,7 +14,6 @@
 .video-name {
   line-height: 15px;
   height: 15px;
-  max-width: 100%;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -27,7 +26,6 @@
   font-size: 14px;
   line-height: 14px;
   height: 28px;
-  max-width: 100%;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -40,6 +38,47 @@
   &:hover {
     background-color: #ffffff0a;
   }
+}
+
+.btn {
+  width: fit-content;
+  height: 36px;
+  background-color: var(--button-background-color);
+  border-radius: 18px;
+  padding: 0 16px;
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}
+
+.channel-text {
+  margin-left: 12px;
+}
+
+.channel-picture {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--button-background-color);
+}
+
+.channel-name {
+  font-size: 15px;
+  line-height: 16px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.channel-sub {
+  font-size: 14px;
+  color: var(--text-color-darker);
+  line-height: 16px;
+}
+
+.channel-link {
+  display: flex;
+  align-items: center;
 }
 
 .video-link {

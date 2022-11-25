@@ -13,7 +13,6 @@ function TopViews() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await getTopView()
-      console.log(data.videos)
       setVideos(data.videos)
     }
     getdata()
@@ -27,7 +26,8 @@ function TopViews() {
           src="https://www.youtube.com/img/trending/avatar/trending_avatar.png"
           alt="title img"
         />
-        <h2 className={cn('channel-name')}>Top lượt xem</h2>
+
+        <h2 className={cn('channel-name')}>Xu hướng</h2>
       </div>
       <div className={cn('separate')}></div>
       <div className={cn('wrapper-videos')}>

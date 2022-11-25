@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import SearchBar from '../SearchBar'
 import logo from '~/assets/images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -25,6 +25,15 @@ function Header() {
     JSON.parse(localStorage.getItem('profile')),
   )
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const uploading = searchParams.get('upload')
+
+  useEffect(() => {
+    if (uploading) {
+      setOpen(true)
+    }
+  }, [uploading])
 
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
@@ -53,7 +62,8 @@ function Header() {
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT })
     setCurrentUser(null)
-  }, [dispatch])
+    navigate('/')
+  }, [dispatch, navigate])
 
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem('profile')))
@@ -90,7 +100,13 @@ function Header() {
           <div className={cn('end')}>
             {currentUser?.result ? (
               <>
-                <div className={cn('upload-btn')} onClick={() => setOpen(true)}>
+                <div
+                  className={cn('upload-btn')}
+                  onClick={() => {
+                    navigate('/studio/videos/pending?upload=true')
+                    setOpen(true)
+                  }}
+                >
                   <UploadIcon className={cn('upload-icon')} />
                   Tạo video
                 </div>

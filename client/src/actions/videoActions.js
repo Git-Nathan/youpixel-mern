@@ -1,5 +1,4 @@
 import {
-  CREATE,
   DISLIKE,
   END_LOADING,
   FETCH_ALL,
@@ -36,8 +35,7 @@ export const getVideo = (videoId) => async (dispatch) => {
 
 export const addVideo = (formData) => async (dispatch) => {
   try {
-    const { data } = await api.addVideo(formData)
-    dispatch({ type: CREATE, payload: data })
+    await api.addVideo(formData)
   } catch (error) {
     console.log(error)
   }

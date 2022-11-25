@@ -1,8 +1,19 @@
 import * as api from '../api/api.js'
 
-export const addComment = (comment, videoId) => async (dispatch) => {
+export const addComment = (comment, videoId, setUpdate) => async (dispatch) => {
   try {
     await api.addComment(comment, videoId)
+    setUpdate((preState) => !preState)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteComment = (commentId, setUpdate, notify) => async () => {
+  try {
+    await api.deleteComment(commentId)
+    setUpdate((preState) => !preState)
+    notify()
   } catch (error) {
     console.log(error)
   }

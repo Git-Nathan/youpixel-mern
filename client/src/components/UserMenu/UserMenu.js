@@ -19,6 +19,7 @@ function UserMenu({ menuId, currentUser, logout }) {
       </div>
       <div className={cn('group-btn')}>
         <UserMenuItem
+          to={`/channel/${currentUser.result._id}`}
           title="Kênh của bạn"
           icon={<YourChannelIcon />}
         ></UserMenuItem>

@@ -24,3 +24,20 @@ export const getComments = async (req, res, next) => {
     next(err)
   }
 }
+
+export const deleteComment = async (req, res, next) => {
+  const { commentId } = req.params
+  const userId = req.userId
+
+  try {
+    const comment = await Comment.findById(commentId)
+    if (userId === comment.userId) {
+      await Comment.findByIdAndDelete(commentId)
+      res.status(200).json({ message: 'delete successfully' })
+    } else {
+      return next(createError(403, 'You can only delete your comment!'))
+    }
+  } catch (err) {
+    next(err)
+  }
+}
