@@ -10,7 +10,7 @@ function PreviewVideo({ videoPerc, inputs, setVideo }) {
       <div className={cn('wrapper')}>
         <label className={cn('input-label')} htmlFor={cn('video-input')}>
           <AddVideoIcon />
-          <span style={{ marginTop: '4px' }}>Tải video lên</span>
+          <span style={{ marginTop: '4px' }}>Tải video lên (bắt buộc)</span>
         </label>
         <input
           className={cn('video-input')}
@@ -27,6 +27,7 @@ function PreviewVideo({ videoPerc, inputs, setVideo }) {
         <video
           className={cn('video-player')}
           src={inputs.videoUrl}
+          id="video_player"
           controls
         ></video>
       </div>

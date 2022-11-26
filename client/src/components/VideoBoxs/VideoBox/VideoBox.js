@@ -11,6 +11,14 @@ const cn = classNames.bind(styles)
 function VideoBox({ video }) {
   const [channel, setChannel] = useState({})
 
+  let videoDuration
+
+  if (video.duration < 3600) {
+    videoDuration = new Date(video.duration * 1000).toISOString().slice(14, 19)
+  } else {
+    videoDuration = new Date(video.duration * 1000).toISOString().slice(11, 19)
+  }
+
   useEffect(() => {
     const getChannel = async () => {
       const { data } = await fetchChannel(video.userId)
@@ -25,11 +33,13 @@ function VideoBox({ video }) {
         <div className={cn('thumbnail-box')}>
           <Link to={`/watch?v=${video._id}`} className={cn('thumbnail-link')}>
             {video?.imgUrl ? (
-              <img
-                className={cn('thumbnail')}
-                src={video?.imgUrl}
-                alt="thumbnail"
-              ></img>
+              <>
+                <div
+                  className={cn('thumbnail')}
+                  style={{ backgroundImage: `url(${video?.imgUrl})` }}
+                ></div>
+                <div className={cn('video-duration')}>{videoDuration}</div>
+              </>
             ) : (
               <div className={cn('thumbnail-loading')}></div>
             )}

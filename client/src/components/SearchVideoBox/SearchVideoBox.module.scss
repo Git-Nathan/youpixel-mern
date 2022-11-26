@@ -9,10 +9,14 @@
   }
 }
 
-.video-img {
+.thumbnail {
   width: 360px;
-  height: 202px;
-  border-radius: 10px;
+  aspect-ratio: 360 / 202;
+  background-color: black;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .video-details {
@@ -97,9 +101,22 @@
 }
 
 .img-link {
-  line-height: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .title-link {
   text-decoration: none;
+}
+
+.video-duration {
+  color: var(--text-color);
+  text-decoration: none;
+  position: absolute;
+  font-size: 14px;
+  background-color: #15141bcc;
+  padding: 0 6px;
+  border-radius: 4px;
+  margin: 4px;
 }

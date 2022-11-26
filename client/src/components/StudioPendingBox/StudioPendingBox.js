@@ -1,13 +1,20 @@
 import styles from './StudioPendingBox.module.scss'
 import classNames from 'classnames/bind'
-import { EditIcon, TrashIcon } from '../icons'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+import DeleteButton from '../DeleteButton'
+import EditButton from '../EditButton'
 
 const cn = classNames.bind(styles)
 
 function StudioPendingBox({ video }) {
-  console.log(video.status)
+  let videoDuration
+
+  if (video.duration < 3600) {
+    videoDuration = new Date(video.duration * 1000).toISOString().slice(14, 19)
+  } else {
+    videoDuration = new Date(video.duration * 1000).toISOString().slice(11, 19)
+  }
 
   return (
     <tr className={cn('video-row')}>
@@ -19,6 +26,7 @@ function StudioPendingBox({ video }) {
               src={video.imgUrl}
               alt="video img"
             />
+            <div className={cn('video-duration')}>{videoDuration}</div>
           </Link>
           <div className={cn('video-col-end')}>
             <Link className={cn('title-link')} to={`/watch?v=${video._id}`}>
@@ -30,12 +38,8 @@ function StudioPendingBox({ video }) {
       </td>
       <td>
         <div className={cn('option-col-box')}>
-          <div className={cn('option-icon')}>
-            <EditIcon />
-          </div>
-          <div className={cn('option-icon')}>
-            <TrashIcon />
-          </div>
+          <EditButton video={video} />
+          <DeleteButton video={video} title="Bạn thực sự muốn xóa video?" />
         </div>
       </td>
       <td style={{ padding: '12px', textAlign: 'right' }}>

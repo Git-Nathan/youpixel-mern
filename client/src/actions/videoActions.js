@@ -4,6 +4,7 @@ import {
   FETCH_ALL,
   FETCH_VIDEO,
   LIKE,
+  RELOAD,
   START_LOADING,
 } from '~/constants/actionsTypes.js'
 import * as api from '../api/api.js'
@@ -36,6 +37,7 @@ export const getVideo = (videoId) => async (dispatch) => {
 export const addVideo = (formData) => async (dispatch) => {
   try {
     await api.addVideo(formData)
+    dispatch({ type: RELOAD })
   } catch (error) {
     console.log(error)
   }
@@ -62,6 +64,15 @@ export const dislike = (videoId, userId) => async (dispatch) => {
 export const addView = (videoId) => async () => {
   try {
     await api.addView(videoId)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteVideo = (videoId) => async (dispatch) => {
+  try {
+    await api.deleteVideo(videoId)
+    dispatch({ type: RELOAD })
   } catch (error) {
     console.log(error)
   }

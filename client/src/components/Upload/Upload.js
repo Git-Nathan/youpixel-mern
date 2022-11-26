@@ -2,7 +2,7 @@ import styles from './Upload.module.scss'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { useDispatch } from 'react-redux'
 import { addVideo } from '~/actions/videoActions'
@@ -12,7 +12,7 @@ import { storage } from '~/firebase'
 
 const cn = classNames.bind(styles)
 
-function Upload({ notify, setOpen }) {
+function Upload({ notify, setOpen, edit, title, videoEdit }) {
   const [img, setImg] = useState(undefined)
   const [video, setVideo] = useState(undefined)
   const [imgPerc, setImgPerc] = useState(0)
@@ -27,36 +27,99 @@ function Upload({ notify, setOpen }) {
     })
   }
 
-  const uploadFile = (file, urlType) => {
+  const uploadVideo = (file) => {
     const fileName = new Date().getTime() + file.name
-    const storageRef = ref(storage, fileName)
+    const videoPath = `videos/${fileName}`
+    const storageRef = ref(storage, videoPath)
     const uploadTask = uploadBytesResumable(storageRef, file)
 
     uploadTask.on(
       'state_changed',
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        urlType === 'imgUrl'
-          ? setImgPerc(Math.round(progress))
-          : setVideoPerc(Math.round(progress))
+        setVideoPerc(Math.round(progress))
       },
       (error) => {},
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setInputs((prev) => {
-            return { ...prev, [urlType]: downloadURL }
+            return {
+              ...prev,
+              videoUrl: downloadURL,
+              videoPath: videoPath,
+            }
           })
         })
       },
     )
   }
 
+  const uploadImage = (file) => {
+    const fileName = new Date().getTime() + file.name
+    const imagePath = `images/${fileName}`
+    const storageRef = ref(storage, imagePath)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setImgPerc(Math.round(progress))
+      },
+      (error) => {},
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setInputs((prev) => {
+            return {
+              ...prev,
+              imgUrl: downloadURL,
+              imgPath: imagePath,
+            }
+          })
+        })
+      },
+    )
+  }
+
+  useLayoutEffect(() => {
+    if (edit) {
+      setInputs({
+        title: videoEdit?.title,
+        desc: videoEdit?.desc,
+        imgUrl: videoEdit?.imgUrl,
+        videoUrl: videoEdit?.videoUrl,
+      })
+      setImgPerc(100)
+      setVideoPerc(100)
+    }
+  }, [
+    edit,
+    videoEdit?.desc,
+    videoEdit?.imgUrl,
+    videoEdit?.title,
+    videoEdit?.videoUrl,
+  ])
+
   useEffect(() => {
-    video && uploadFile(video, 'videoUrl')
+    if (videoPerc === 100) {
+      const myVideoPlayer = document.getElementById('video_player')
+      myVideoPlayer?.addEventListener('loadedmetadata', function () {
+        setInputs((prev) => {
+          return {
+            ...prev,
+            duration: myVideoPlayer.duration,
+          }
+        })
+      })
+    }
+  }, [videoPerc])
+
+  useEffect(() => {
+    video && uploadVideo(video)
   }, [video])
 
   useEffect(() => {
-    img && uploadFile(img, 'imgUrl')
+    img && uploadImage(img)
   }, [img])
 
   const handleUpload = async (e) => {
@@ -70,7 +133,7 @@ function Upload({ notify, setOpen }) {
     <div className={cn('wrapper')}>
       <div className={cn('form')}>
         <div className={cn('start')}>
-          <div className={cn('form-title')}>Đăng tải video</div>
+          <div className={cn('form-title')}>{title}</div>
           <div className={cn('close-icon')} onClick={() => setOpen(false)}>
             <FontAwesomeIcon icon={faXmark} />
           </div>
@@ -85,6 +148,7 @@ function Upload({ notify, setOpen }) {
                   className={cn('text-input')}
                   placeholder="Thêm tiêu đề để mô tả video của bạn"
                   name="title"
+                  value={inputs.title}
                   onChange={handleChange}
                 />
               </div>
@@ -95,6 +159,7 @@ function Upload({ notify, setOpen }) {
                   rows="6"
                   placeholder="Giới thiệu về video của bạn cho người xem"
                   name="desc"
+                  value={inputs.desc}
                   onChange={handleChange}
                 />
               </div>
@@ -116,9 +181,16 @@ function Upload({ notify, setOpen }) {
           </div>
         </div>
         <div className={cn('end')}>
-          <button className={cn('save-btn')} onClick={handleUpload}>
-            Lưu
-          </button>
+          {inputs?.imgUrl &&
+          inputs?.videoUrl &&
+          inputs?.duration &&
+          inputs?.title ? (
+            <button className={cn('save-btn')} onClick={handleUpload}>
+              Lưu
+            </button>
+          ) : (
+            <div className={cn('save-btn', 'inactive-btn')}>Lưu</div>
+          )}
         </div>
       </div>
     </div>

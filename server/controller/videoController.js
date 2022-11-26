@@ -127,3 +127,20 @@ export const denyVideo = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const deleteVideo = async (req, res, next) => {
+  const { videoId } = req.params
+  const userId = req.userId
+
+  try {
+    const video = await Video.findById(videoId)
+    if (userId === video.userId) {
+      await Video.findByIdAndDelete(videoId)
+      res.status(200).json({ message: 'delete successfully' })
+    } else {
+      return next(createError(403, 'You can only delete your video!'))
+    }
+  } catch (err) {
+    next(err)
+  }
+}

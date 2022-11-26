@@ -3,6 +3,7 @@ import {
   addVideo,
   addView,
   approveVideo,
+  deleteVideo,
   denyVideo,
   fetchVideos,
   getTopView,
@@ -16,6 +17,7 @@ const router = express.Router()
 
 router.post('/approval/approve/:videoId', auth, approveVideo)
 router.post('/approval/deny/:videoId', auth, denyVideo)
+router.delete('/delete/:videoId', auth, deleteVideo)
 router.patch('/addview/:id', addView)
 router.post('/add', auth, addVideo)
 

@@ -9,6 +9,7 @@ export const DISLIKE = 'DISLIKE'
 export const SUBSCRIBTION = 'SUBSCRIBTION'
 export const END_LOADING = 'END_LOADING'
 export const START_LOADING = 'START_LOADING'
+export const RELOAD = 'RELOAD'
 
 export const AUTH = 'AUTH'
 export const LOGOUT = 'LOGOUT'

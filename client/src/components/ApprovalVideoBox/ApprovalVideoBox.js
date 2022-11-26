@@ -12,6 +12,14 @@ function ApprovalVideoBox({ video }) {
   const currentUser = JSON.parse(localStorage.getItem('profile'))
   const [channel, setChannel] = useState({})
 
+  let videoDuration
+
+  if (video.duration < 3600) {
+    videoDuration = new Date(video.duration * 1000).toISOString().slice(14, 19)
+  } else {
+    videoDuration = new Date(video.duration * 1000).toISOString().slice(11, 19)
+  }
+
   useEffect(() => {
     if (video?.userId) {
       const getChannel = async () => {
@@ -23,8 +31,7 @@ function ApprovalVideoBox({ video }) {
   }, [video?.userId])
 
   const handleApprove = async (videoId) => {
-    const a = await approveVideo(videoId, currentUser.result)
-    console.log(a)
+    await approveVideo(videoId, currentUser.result)
   }
 
   const handleDeny = async (videoId) => {
@@ -41,6 +48,7 @@ function ApprovalVideoBox({ video }) {
               src={video.imgUrl}
               alt="video img"
             />
+            <div className={cn('video-duration')}>{videoDuration}</div>
           </Link>
           <div className={cn('video-col-end')}>
             <Link to={`/watch?v=${video._id}`} className={cn('title-link')}>

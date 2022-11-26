@@ -36,14 +36,43 @@
   margin-top: 8px;
 }
 
+.option-btn {
+  display: flex;
+  margin-top: 22px;
+  position: absolute;
+  visibility: hidden;
+}
+
 .video-row {
   &:hover {
     background-color: #ffffff0a;
+  }
+
+  &:hover .video-desc {
+    display: none;
+  }
+
+  &:hover .option-btn {
+    visibility: visible;
   }
 }
 
 .video-link {
   height: 83px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.video-duration {
+  color: var(--text-color);
+  text-decoration: none;
+  position: absolute;
+  font-size: 14px;
+  background-color: #15141bcc;
+  padding: 0 6px;
+  border-radius: 4px;
+  margin: 11px 2px;
 }
 
 .title-link {

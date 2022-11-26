@@ -2,7 +2,7 @@ import styles from './Watch.module.scss'
 import classNames from 'classnames/bind'
 import { Link, useSearchParams } from 'react-router-dom'
 import WatchVideoBoxs from '~/components/WatchVideoBoxs/WatchVideoBoxs'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addView, dislike, getVideo, like } from '~/actions/videoActions'
 import { CircularProgress } from '@mui/material'
@@ -120,12 +120,14 @@ function Watch() {
   return (
     <div className={cn('wrapper')}>
       <div className={cn('primary')}>
-        <video
-          className={cn('video-player')}
-          src={video.videoUrl}
-          controls
-          // autoPlay
-        ></video>
+        {
+          <video
+            className={cn('video-player')}
+            src={video.videoUrl}
+            controls
+            // autoPlay
+          ></video>
+        }
         <div className={cn('video-info-wrapper')}>
           <h2 className={cn('video-name')}>{video.title}</h2>
           <div className={cn('video-options-wrapper')}>

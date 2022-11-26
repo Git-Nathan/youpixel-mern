@@ -34,6 +34,7 @@ export const approveVideo = (videoId, data) =>
   API.post(`/videos/approval/approve/${videoId}`, data)
 export const denyVideo = (videoId, data) =>
   API.post(`/videos/approval/deny/${videoId}`, data)
+export const deleteVideo = (videoId) => API.delete(`/videos/delete/${videoId}`)
 
 //Comment
 export const addComment = (comment, videoId) =>

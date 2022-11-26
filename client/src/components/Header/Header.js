@@ -147,7 +147,14 @@ function Header() {
           </div>
         </div>
       </header>
-      {open && <Upload notify={notify} setOpen={setOpen} />}
+      {open && (
+        <Upload
+          notify={notify}
+          setOpen={setOpen}
+          edit={false}
+          title="Đăng tải video"
+        />
+      )}
     </>
   )
 }

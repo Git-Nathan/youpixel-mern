@@ -44,26 +44,25 @@
   display: flex;
 }
 
-.option-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 12px;
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-
-  &:hover {
-    background-color: var(--hover-color);
-    cursor: pointer;
-  }
-}
-
 .video-link {
   height: 83px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .title-link {
   text-decoration: none;
   color: var(--text-color);
+}
+
+.video-duration {
+  color: var(--text-color);
+  text-decoration: none;
+  position: absolute;
+  font-size: 14px;
+  background-color: #15141bcc;
+  padding: 0 6px;
+  border-radius: 4px;
+  margin: 11px 2px;
 }

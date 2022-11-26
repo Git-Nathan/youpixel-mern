@@ -23,7 +23,11 @@
 .thumbnail {
   width: 100%;
   aspect-ratio: 360 / 202;
+  background-color: black;
   border-radius: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .thumbnail-loading {
@@ -118,6 +122,21 @@
 }
 
 .thumbnail-link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   padding-bottom: 2px;
   margin-bottom: -2px;
+  margin-bottom: 6px;
+}
+
+.video-duration {
+  color: var(--text-color);
+  text-decoration: none;
+  position: absolute;
+  font-size: 14px;
+  background-color: #15141bcc;
+  padding: 0 6px;
+  border-radius: 4px;
+  margin: 4px;
 }

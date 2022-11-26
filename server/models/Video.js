@@ -12,13 +12,25 @@ const VideoSchema = new mongoose.Schema(
     },
     desc: {
       type: String,
-      required: true,
+      default: '',
+    },
+    duration: {
+      type: Number,
+      default: 0,
     },
     imgUrl: {
       type: String,
       required: true,
     },
+    imgPath: {
+      type: String,
+      required: true,
+    },
     videoUrl: {
+      type: String,
+      required: true,
+    },
+    videoPath: {
       type: String,
       required: true,
     },

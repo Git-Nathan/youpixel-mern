@@ -149,3 +149,11 @@
   font-size: 14px;
   color: var(--text-color-darker);
 }
+
+.inactive-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--hover-color);
+  color: var(--text-color-darker);
+}

@@ -10,7 +10,9 @@ function PreviewImg({ imgPerc, inputs, setImg }) {
       <div className={cn('wrapper')}>
         <label className={cn('input-label')} htmlFor={cn('img-input')}>
           <AddImgIcon />
-          <span style={{ marginTop: '4px' }}>Tải hình thu nhỏ lên</span>
+          <span style={{ marginTop: '4px' }}>
+            Tải hình thu nhỏ lên (bắt buộc)
+          </span>
         </label>
         <input
           className={cn('img-input')}

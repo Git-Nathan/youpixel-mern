@@ -4,23 +4,28 @@ import StudioVideoBox from '~/components/StudioVideoBox'
 import { useEffect, useState } from 'react'
 import { getUserVideos } from '~/api/api'
 import { CircularProgress } from '@mui/material'
+import { useSelector } from 'react-redux'
 
 const cn = classNames.bind(styles)
 
 function StudioVideos() {
+  const { reload } = useSelector((store) => store.videoReducer)
   const currentUser = JSON.parse(localStorage.getItem('profile'))
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await getUserVideos(currentUser?.result._id)
       setVideos(data.videos)
       setLoading(false)
     }
     getdata()
-  }, [currentUser?.result._id])
+  }, [currentUser?.result._id, reload])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [])
 
   if (loading) {
     return (

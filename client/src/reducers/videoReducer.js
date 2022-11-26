@@ -5,11 +5,12 @@ import {
   FETCH_ALL,
   FETCH_VIDEO,
   LIKE,
+  RELOAD,
   START_LOADING,
 } from '~/constants/actionsTypes'
 
 const videoReducer = (
-  state = { isLoading: true, videos: [], video: {} },
+  state = { isLoading: true, videos: [], video: {}, reload: false },
   action,
 ) => {
   switch (action.type) {
@@ -17,6 +18,8 @@ const videoReducer = (
       return { ...state, isLoading: true }
     case END_LOADING:
       return { ...state, isLoading: false }
+    case RELOAD:
+      return { ...state, reload: !state.reload }
     case FETCH_ALL:
       return { ...state, videos: action.payload.data }
     case FETCH_VIDEO:
