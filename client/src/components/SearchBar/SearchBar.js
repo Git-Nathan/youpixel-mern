@@ -1,3 +1,5 @@
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import { createSearchParams, useNavigate } from 'react-router-dom'
@@ -12,7 +14,7 @@ const cn = classNames.bind(styles)
 function SearchBar() {
   const [searchValue, setSearchValue] = useState('')
   const [searchResult, setSearchResult] = useState([])
-  const [debouncedValue] = useDebounce(searchValue, 100)
+  const [debouncedValue] = useDebounce(searchValue, 200)
   const navigate = useNavigate()
 
   const handleKeyDown = (e) => {
@@ -23,9 +25,10 @@ function SearchBar() {
         navigate({
           pathname: '/results',
           search: `?${createSearchParams({
-            search_query: searchValue,
+            search_query: searchValue.trim(),
           })}`,
         })
+        setSearchValue((prev) => prev.trim())
       }
     }
   }
@@ -38,7 +41,7 @@ function SearchBar() {
 
     if (debouncedValue.length > 0) {
       const getData = async () => {
-        const result = await getSearchResult(debouncedValue)
+        const result = await getSearchResult(debouncedValue.trim())
         setSearchResult(result.data)
       }
       getData()
@@ -52,21 +55,34 @@ function SearchBar() {
           <SearchIcon height="22" />
         </div>
 
-        <input
-          className={cn('search-input')}
-          type="text"
-          placeholder="Tìm kiếm"
-          spellCheck={false}
-          value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value)
-          }}
-          onKeyDown={handleKeyDown}
-        />
+        <div className={cn('input-box')}>
+          <input
+            className={cn('search-input')}
+            type="text"
+            placeholder="Tìm kiếm"
+            spellCheck={false}
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value)
+            }}
+            onKeyDown={handleKeyDown}
+          />
+          {searchValue.length > 0 && (
+            <div
+              className={cn('delete-input')}
+              onMouseDown={() => {
+                setSearchValue('')
+              }}
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
+          )}
+        </div>
 
         <div className={cn('searchbysound-icon')}>
           <SearchBySoundIcon height="22" />
         </div>
+
         {searchResult.length > 0 && (
           <div className={cn('search-result')}>
             {searchResult.map((item) => (
@@ -74,6 +90,7 @@ function SearchBar() {
                 key={item._id}
                 content={item.content}
                 setSearchValue={setSearchValue}
+                navigate={navigate}
               />
             ))}
           </div>

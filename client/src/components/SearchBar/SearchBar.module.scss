@@ -10,6 +10,10 @@
   background-color: var(--button-background-color);
   display: flex;
   margin: 0 16px 0 16px;
+
+  &:focus-within .search-result {
+    display: block;
+  }
 }
 
 .search-box-icon {
@@ -24,7 +28,7 @@
 .search-input {
   background-color: transparent;
   border: none;
-  width: 100%;
+  width: calc(100% - 40px);
   color: var(--text-color);
   font-size: 16px;
 
@@ -43,6 +47,7 @@
 }
 
 .search-result {
+  display: none;
   width: fit-content;
   min-width: 418px;
   background-color: white;
@@ -50,4 +55,24 @@
   transform: translateY(50px);
   border-radius: 10px;
   padding: 8px 0;
+}
+
+.delete-input {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+  }
+}
+
+.input-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }

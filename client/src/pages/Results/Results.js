@@ -24,7 +24,7 @@ function Results() {
     }
     getData()
     setIsLoading(false)
-    addSearchResult(searchQuery)
+    addSearchResult(searchQuery.trim())
   }, [searchQuery])
 
   if (isLoading) {
