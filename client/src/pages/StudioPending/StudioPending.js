@@ -1,10 +1,10 @@
 import styles from './StudioPending.module.scss'
 import classNames from 'classnames/bind'
-import StudioPendingBox from '~/components/StudioPendingBox'
+import StudioPendingBox from '~/components/Boxs/StudioPendingBox'
 import { useEffect, useState } from 'react'
 import { getUserVideosPending } from '~/api/api'
-import { CircularProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
+import Loading from '~/components/Loading'
 
 const cn = classNames.bind(styles)
 
@@ -28,11 +28,7 @@ function StudioPending() {
   }, [])
 
   if (loading) {
-    return (
-      <div className={cn('loadingPaper')}>
-        <CircularProgress className={cn('circularProgress')} size="5em" />
-      </div>
-    )
+    return <Loading />
   }
 
   return (

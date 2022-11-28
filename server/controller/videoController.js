@@ -144,3 +144,34 @@ export const deleteVideo = async (req, res, next) => {
     next(err)
   }
 }
+
+export const editVideo = async (req, res, next) => {
+  const { videoId } = req.params
+  const userId = req.userId
+
+  try {
+    const video = await Video.findById(videoId)
+    if (userId === video.userId) {
+      await Video.findByIdAndUpdate(videoId, { ...req.body })
+      res.status(200).json({ message: 'edit successfully' })
+    } else {
+      return next(createError(403, 'You can only edit your video!'))
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const getVideosBySearch = async (req, res, next) => {
+  const { search_query } = req.query
+
+  try {
+    const result = await Video.find({
+      title: { $regex: search_query, $options: 'i' },
+      status: 'approved',
+    })
+    res.status(200).json(result)
+  } catch (err) {
+    next(err)
+  }
+}

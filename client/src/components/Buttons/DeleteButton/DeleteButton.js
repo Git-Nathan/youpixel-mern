@@ -1,10 +1,10 @@
-import { TrashIcon } from '../icons'
+import { TrashIcon } from '../../icons'
 import classNames from 'classnames/bind'
 import styles from './DeleteButton.module.scss'
 import { useState } from 'react'
 import { deleteObject, ref } from 'firebase/storage'
 import { storage } from '~/firebase'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { deleteVideo } from '~/actions/videoActions'
 import { useDispatch } from 'react-redux'
 
@@ -41,7 +41,6 @@ function DeleteButton({ video, title }) {
 
   return (
     <>
-      <ToastContainer />
       <button
         onClick={() => {
           setOpen(true)

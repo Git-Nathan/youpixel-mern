@@ -14,7 +14,7 @@ import { signin } from '~/actions/authActions'
 import { useCallback, useEffect, useState } from 'react'
 import { LOGOUT } from '~/constants/actionsTypes'
 import Upload from '../Upload'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const cn = classNames.bind(styles)
@@ -94,8 +94,6 @@ function Header() {
             </Link>
             <SearchBar />
           </div>
-
-          <ToastContainer />
 
           <div className={cn('end')}>
             {currentUser?.result ? (

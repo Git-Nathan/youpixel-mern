@@ -1,4 +1,4 @@
-import { LikeIcon } from '../icons'
+import { LikeIcon } from '../../icons'
 import classNames from 'classnames/bind'
 import styles from './LikeButton.module.scss'
 

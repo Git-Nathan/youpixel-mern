@@ -1,10 +1,10 @@
 import styles from './StudioVideos.module.scss'
 import classNames from 'classnames/bind'
-import StudioVideoBox from '~/components/StudioVideoBox'
+import StudioVideoBox from '~/components/Boxs/StudioVideoBox'
 import { useEffect, useState } from 'react'
 import { getUserVideos } from '~/api/api'
-import { CircularProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
+import Loading from '~/components/Loading'
 
 const cn = classNames.bind(styles)
 
@@ -28,11 +28,7 @@ function StudioVideos() {
   }, [])
 
   if (loading) {
-    return (
-      <div className={cn('loadingPaper')}>
-        <CircularProgress className={cn('circularProgress')} size="5em" />
-      </div>
-    )
+    return <Loading />
   }
 
   return (

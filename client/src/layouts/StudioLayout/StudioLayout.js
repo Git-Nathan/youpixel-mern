@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import styles from './StudioLayout.module.scss'
 
 import Header from '~/components/Header'
-import StudioSidebar from '~/components/StudioSidebar'
+import StudioSidebar from '~/components/SideBars/StudioSidebar'
 import StudioVideoNav from '~/components/StudioVideoNav'
 
 const cn = classNames.bind(styles)

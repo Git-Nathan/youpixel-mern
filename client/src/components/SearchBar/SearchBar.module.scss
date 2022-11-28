@@ -1,3 +1,8 @@
+.search-wrapper {
+  width: 100%;
+  display: flex;
+}
+
 .search-box {
   height: 40px;
   width: 100%;
@@ -35,4 +40,14 @@
   margin: 0 12px;
   height: 22px;
   width: 22px;
+}
+
+.search-result {
+  width: fit-content;
+  min-width: 418px;
+  background-color: white;
+  position: absolute;
+  transform: translateY(50px);
+  border-radius: 10px;
+  padding: 8px 0;
 }

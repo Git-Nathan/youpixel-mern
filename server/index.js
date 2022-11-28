@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
 import videoRoutes from './routes/videoRoutes.js'
 import commentRoutes from './routes/commentRoutes.js'
+import SearchRoutes from './routes/SearchRoutes.js'
 
 const app = express()
 dotenv.config()
@@ -19,6 +20,7 @@ app.use(cookieParser())
 app.use('/users', userRoutes)
 app.use('/videos', videoRoutes)
 app.use('/comment', commentRoutes)
+app.use('/search', SearchRoutes)
 
 const CONNECTION_URL =
   'mongodb+srv://ngothuan2422001:Ngovanthuan2001@youpixels.hpkrfpg.mongodb.net/you-pixels?retryWrites=true&w=majority'

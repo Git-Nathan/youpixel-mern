@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { addComment } from '~/actions/commentActions'
 import { getComments } from '~/api/api'
 import Comment from './Comment'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const cn = classNames.bind(styles)
 
@@ -45,7 +45,6 @@ function Comments({ videoId, currentUser, handleLogin }) {
 
   return (
     <>
-      <ToastContainer />
       <div className={cn('comment-header')}>
         <span className={cn('numof-comment')}>{comments.length} bình luận</span>
       </div>

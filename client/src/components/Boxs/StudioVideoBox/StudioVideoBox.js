@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { getComments } from '~/api/api'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
-import DeleteButton from '../DeleteButton'
+import DeleteButton from '~/components/Buttons/DeleteButton'
+import EditButton from '~/components/Buttons/EditButton'
 
 const cn = classNames.bind(styles)
 
@@ -48,6 +49,7 @@ function StudioVideoBox({ video }) {
             </Link>
             <div className={cn('video-desc')}>{video.desc}</div>
             <div className={cn('option-btn')}>
+              <EditButton video={video} />
               <DeleteButton video={video} title="Bạn thực sự muốn xóa video?" />
             </div>
           </div>

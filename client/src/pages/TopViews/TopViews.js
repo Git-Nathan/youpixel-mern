@@ -1,6 +1,6 @@
 import styles from './TopViews.module.scss'
 import classNames from 'classnames/bind'
-import SearchVideoBox from '~/components/SearchVideoBox'
+import SearchVideoBox from '~/components/Boxs/SearchVideoBox'
 import { useEffect, useState } from 'react'
 import { getTopView } from '~/api/api'
 

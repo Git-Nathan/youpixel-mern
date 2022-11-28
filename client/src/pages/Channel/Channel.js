@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { sub, unsub } from '~/actions/authActions'
 import { fetchChannel, getUserVideos } from '~/api/api'
-import SubcribeButton from '~/components/SubcribeButton'
-import VideoBox from '~/components/VideoBoxs/VideoBox'
+import SubcribeButton from '~/components/Buttons/SubcribeButton'
+import VideoBox from '~/components/Boxs/VideoBoxs/VideoBox'
 import styles from './Channel.module.scss'
 
 const cn = classNames.bind(styles)

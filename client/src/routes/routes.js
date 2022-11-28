@@ -8,12 +8,14 @@ import StudioLayout from '~/layouts/StudioLayout'
 import StudioPending from '~/pages/StudioPending'
 import Approval from '~/pages/Approval'
 import Channel from '~/pages/Channel'
+import Results from '~/pages/Results'
 
 export const publicRoutes = [
   { path: '/', conponemt: Home, layout: DefaultLayout },
   { path: '/topviews', conponemt: TopViews, layout: DefaultLayout },
   { path: '/watch', conponemt: Watch, layout: HeaderOnly },
   { path: '/channel/:id', conponemt: Channel, layout: DefaultLayout },
+  { path: '/results', conponemt: Results, layout: DefaultLayout },
 ]
 
 export const privateRoutes = [

@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { useDispatch } from 'react-redux'
-import { addVideo } from '~/actions/videoActions'
+import { addVideo, editVideo } from '~/actions/videoActions'
 import PreviewImg from './PreviewImg'
 import PreviewVideo from './PreviewVideo'
 import { storage } from '~/firebase'
@@ -124,7 +124,11 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
 
   const handleUpload = async (e) => {
     e.preventDefault()
-    dispatch(addVideo({ ...inputs }))
+    if (edit) {
+      dispatch(editVideo(videoEdit._id, { ...inputs }))
+    } else {
+      dispatch(addVideo({ ...inputs }))
+    }
     notify()
     setOpen(false)
   }

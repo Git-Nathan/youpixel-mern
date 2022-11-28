@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import styles from './StudioSidebar.module.scss'
 import { MenuItem } from './Menu'
-import { HomeIcon, MyVideosIcon } from '../icons'
+import { HomeIcon, MyVideosIcon } from '../../icons'
 
 const cn = classNames.bind(styles)
 

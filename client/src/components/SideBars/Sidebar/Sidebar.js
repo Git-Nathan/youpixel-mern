@@ -14,7 +14,7 @@ import {
   TopSubcribedIcon,
   TopViewsIcon,
   WatchedIcon,
-} from '../icons'
+} from '../../icons'
 
 const cn = classNames.bind(styles)
 const cn2 = classNames.bind(styles2)

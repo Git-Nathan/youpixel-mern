@@ -2,19 +2,6 @@
   display: flex;
 }
 
-.loadingPaper {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  border-radius: 15px;
-  background-color: var(--background-color);
-}
-
-.circularProgress {
-  margin-top: 200px;
-  color: var(--primary-color);
-}
-
 .primary {
   width: calc(100% - var(--watch-sidebar-width));
   margin: 0 0 0 24px;
@@ -159,4 +146,5 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 20px;
+  white-space: pre-line;
 }

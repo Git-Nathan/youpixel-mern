@@ -22,6 +22,8 @@ export const unsub = (channelId) => API.patch(`/users/unsub/${channelId}`)
 
 //Video
 export const fetchVideos = () => API.get(`/videos`)
+export const getVideosBySearch = (searchQuery) =>
+  API.get(`/videos/search?${searchQuery}`)
 export const getVideo = (videoId) => API.get(`/videos/${videoId}`)
 export const getTopView = () => API.get(`videos/topview`)
 export const getUserVideos = (userId) => API.get(`/videos/author?id=${userId}`)
@@ -29,12 +31,14 @@ export const getUserVideosPending = (userId) =>
   API.get(`/videos/author/pending?id=${userId}`)
 export const getUserVideosToApproval = () => API.get(`/videos/approval`)
 export const addVideo = (data) => API.post('/videos/add', data)
+export const editVideo = (videoId, data) =>
+  API.post(`/videos/edit/${videoId}`, data)
+export const deleteVideo = (videoId) => API.delete(`/videos/delete/${videoId}`)
 export const addView = (videoId) => API.patch(`/videos/addview/${videoId}`)
 export const approveVideo = (videoId, data) =>
   API.post(`/videos/approval/approve/${videoId}`, data)
 export const denyVideo = (videoId, data) =>
   API.post(`/videos/approval/deny/${videoId}`, data)
-export const deleteVideo = (videoId) => API.delete(`/videos/delete/${videoId}`)
 
 //Comment
 export const addComment = (comment, videoId) =>
@@ -42,3 +46,7 @@ export const addComment = (comment, videoId) =>
 export const getComments = (videoId) => API.get(`/comment/${videoId}`)
 export const deleteComment = (commentId) =>
   API.delete(`/comment/delete/${commentId}`)
+
+//Search
+export const getSearchResult = (value) => API.get(`/search/get/${value}`)
+export const addSearchResult = (value) => API.get(`/search/add/${value}`)

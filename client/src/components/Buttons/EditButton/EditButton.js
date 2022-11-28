@@ -1,13 +1,26 @@
 import classNames from 'classnames/bind'
 import { useState } from 'react'
-import { EditIcon } from '../icons'
-import Upload from '../Upload'
+import { toast } from 'react-toastify'
+import { EditIcon } from '../../icons'
+import Upload from '../../Upload'
 import styles from './EditButton.module.scss'
 
 const cn = classNames.bind(styles)
 
 function EditButton({ video }) {
   const [open, setOpen] = useState(false)
+
+  const notify = () =>
+    toast.success('Chỉnh sửa video thành công.', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    })
 
   return (
     <>
@@ -26,6 +39,7 @@ function EditButton({ video }) {
             title="Chỉnh sửa video"
             edit={true}
             videoEdit={video}
+            notify={notify}
           />
         )}
       </div>

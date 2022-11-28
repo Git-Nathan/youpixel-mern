@@ -1,21 +1,21 @@
 import styles from './Watch.module.scss'
 import classNames from 'classnames/bind'
 import { Link, useSearchParams } from 'react-router-dom'
-import WatchVideoBoxs from '~/components/WatchVideoBoxs/WatchVideoBoxs'
+import WatchVideoBoxs from '~/components/Boxs/WatchVideoBoxs/WatchVideoBoxs'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addView, dislike, getVideo, like } from '~/actions/videoActions'
-import { CircularProgress } from '@mui/material'
 import { fetchChannel } from '~/api/api'
 import { ShareIcon } from '~/components/icons'
 import Moment from 'react-moment'
 import 'moment/locale/vi'
 import { signin, sub, unsub } from '~/actions/authActions'
-import SubcribeButton from '~/components/SubcribeButton'
-import LikeButton from '~/components/LikeButton'
+import SubcribeButton from '~/components/Buttons/SubcribeButton'
+import LikeButton from '~/components/Buttons/LikeButton'
 import Comments from '~/components/Comments'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
+import Loading from '~/components/Loading'
 
 const cn = classNames.bind(styles)
 
@@ -110,11 +110,7 @@ function Watch() {
   }, [dispatch, videoId])
 
   if (isLoading) {
-    return (
-      <div className={cn('loadingPaper')}>
-        <CircularProgress className={cn('circularProgress')} size="5em" />
-      </div>
-    )
+    return <Loading />
   }
 
   return (

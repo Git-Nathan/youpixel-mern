@@ -43,6 +43,15 @@ export const addVideo = (formData) => async (dispatch) => {
   }
 }
 
+export const editVideo = (videoId, formData) => async (dispatch) => {
+  try {
+    await api.editVideo(videoId, formData)
+    dispatch({ type: RELOAD })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const like = (videoId, userId) => async (dispatch) => {
   try {
     await api.like(videoId)

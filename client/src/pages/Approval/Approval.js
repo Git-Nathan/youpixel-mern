@@ -2,8 +2,8 @@ import styles from './Approval.module.scss'
 import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import { getUserVideosToApproval } from '~/api/api'
-import ApprovalVideoBox from '~/components/ApprovalVideoBox'
-import { CircularProgress } from '@mui/material'
+import ApprovalVideoBox from '~/components/Boxs/ApprovalVideoBox'
+import Loading from '~/components/Loading'
 
 const cn = classNames.bind(styles)
 
@@ -22,11 +22,7 @@ function Approval() {
   }, [])
 
   if (loading) {
-    return (
-      <div className={cn('loadingPaper')}>
-        <CircularProgress className={cn('circularProgress')} size="5em" />
-      </div>
-    )
+    return <Loading />
   }
 
   return (
