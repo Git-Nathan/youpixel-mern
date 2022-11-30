@@ -1,11 +1,15 @@
 .wrapper {
-  height: 94px;
   width: 100%;
-  margin: 4px 0;
+  margin: 0 -4px;
+  padding: 4px;
   border-radius: 10px;
   display: flex;
   text-decoration: none;
   color: var(--text-color);
+
+  &:hover {
+    background-color: #ffffff14;
+  }
 }
 
 .video-img {
@@ -62,4 +66,21 @@
   border-radius: 3px;
   background-color: var(--primary-color);
   margin: auto 5px;
+}
+
+.thumbnail {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.video-duration {
+  color: var(--text-color);
+  text-decoration: none;
+  position: absolute;
+  font-size: 14px;
+  background-color: #15141bcc;
+  padding: 0 6px;
+  border-radius: 4px;
+  margin: 4px 12px;
 }

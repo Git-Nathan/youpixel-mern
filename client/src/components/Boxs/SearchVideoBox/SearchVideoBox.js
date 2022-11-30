@@ -4,7 +4,6 @@ import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { fetchChannel } from '~/api/api'
 import styles from './SearchVideoBox.module.scss'
-import 'moment/locale/vi'
 
 const cn = classNames.bind(styles)
 

@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
+import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { fetchChannel } from '~/api/api'
 import styles from './WatchVideoBox.module.scss'
@@ -26,20 +27,25 @@ function WatchVideoBox({ video }) {
   }, [video.userId])
 
   return (
-    <Link className={cn('wrapper')}>
-      <div
-        className={cn('video-img')}
-        style={{
-          backgroundImage: `url(${video.imgUrl})`,
-        }}
-      ></div>
+    <Link to={`/watch?v=${video._id}`} className={cn('wrapper')}>
+      <div className={cn('thumbnail')}>
+        <div
+          className={cn('video-img')}
+          style={{
+            backgroundImage: `url(${video.imgUrl})`,
+          }}
+        ></div>
+        <div className={cn('video-duration')}>{videoDuration}</div>
+      </div>
 
       <div className={cn('video-detail')}>
         <div className={cn('video-detail-name')}>{video.title}</div>
         <div className={cn('video-detail-author')}>{channel.name}</div>
         <div className={cn('views-and-time')}>
-          <span>100 lượt xem</span>
-          <span className={cn('timer')}>2 ngày trước</span>
+          <span>{video.views} lượt xem</span>
+          <span className={cn('timer')}>
+            <Moment fromNow>{video.createdAt}</Moment>
+          </span>
         </div>
       </div>
     </Link>

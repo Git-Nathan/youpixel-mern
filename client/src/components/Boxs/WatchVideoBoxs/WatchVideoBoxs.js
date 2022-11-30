@@ -12,7 +12,6 @@ function WatchVideoBoxs() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await fetchVideos()
       setVideos(data.data)

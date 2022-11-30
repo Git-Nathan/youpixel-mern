@@ -3,20 +3,27 @@ import classNames from 'classnames/bind'
 import SearchVideoBox from '~/components/Boxs/SearchVideoBox'
 import { useEffect, useState } from 'react'
 import { getTopView } from '~/api/api'
+import Loading from '~/components/Loading'
 
 const cn = classNames.bind(styles)
 
 function TopViews() {
   const [videos, setVideos] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await getTopView()
       setVideos(data.videos)
+      setLoading(false)
     }
     getdata()
   }, [])
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <>
