@@ -4,7 +4,7 @@ import styles from './Menu.module.scss'
 
 const cn = classNames.bind(styles)
 
-function MenuItem({ title, to, icon }) {
+function MenuItem({ title, to, icon, activeIcon }) {
   return (
     <NavLink
       className={(nav) => cn('menu-item', { active: nav.isActive })}
@@ -12,6 +12,7 @@ function MenuItem({ title, to, icon }) {
     >
       <div className={cn('wrap')}>
         <span className={cn('icon')}>{icon}</span>
+        <span className={cn('active-icon')}>{activeIcon}</span>
         <span className={cn('title')}>{title}</span>
       </div>
     </NavLink>

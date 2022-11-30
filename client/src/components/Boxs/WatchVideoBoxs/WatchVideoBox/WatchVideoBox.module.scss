@@ -13,9 +13,13 @@
   height: 94px;
   border-radius: 10px;
   margin-right: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .video-detail {
+  width: calc(100% - 168px);
   padding-right: 24px;
 }
 
@@ -30,6 +34,8 @@
 }
 
 .video-detail-author {
+  width: fit-content;
+  height: 21px;
   font-size: 14px;
   color: var(--text-color-darker);
   margin-top: 4px;

@@ -13,7 +13,10 @@ export const addVideo = async (req, res, next) => {
 
 export const fetchVideos = async (req, res) => {
   try {
-    const videos = await Video.find({ status: 'approved' })
+    const videos = await Video.aggregate([
+      { $match: { status: 'approved' } },
+      { $sample: { size: 20 } },
+    ])
 
     res.status(200).json({ data: videos })
   } catch (error) {

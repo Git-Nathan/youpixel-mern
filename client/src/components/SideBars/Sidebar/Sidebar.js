@@ -1,23 +1,21 @@
 import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
-import styles2 from './Menu/Menu.module.scss'
 import { MenuItem } from './Menu'
 import {
   FeedbackIcon,
   HelpIcon,
   HomeIcon,
+  HomeIconActive,
   LikeIcon,
   MyVideosIcon,
   SettingsIcon,
-  SubcribedIcon,
-  TopLikesIcon,
-  TopSubcribedIcon,
   TopViewsIcon,
+  TopViewsIconActive,
   WatchedIcon,
+  WatchedIconActive,
 } from '../../icons'
 
 const cn = classNames.bind(styles)
-const cn2 = classNames.bind(styles2)
 
 function Sidebar() {
   return (
@@ -30,29 +28,32 @@ function Sidebar() {
           <MenuItem
             to={'/'}
             title="Trang chủ"
-            icon={<HomeIcon className={cn2('fill-icon')} />}
+            icon={<HomeIcon />}
+            activeIcon={<HomeIconActive />}
           ></MenuItem>
-          <MenuItem
+          {/* <MenuItem
             to={'/notyet'}
             title="Kênh đăng ký"
             icon={<SubcribedIcon />}
-          ></MenuItem>
+          ></MenuItem> */}
         </div>
         <div className={cn('nav-box')}>
           <MenuItem
-            to={'/notyet'}
+            to={'/feed/history'}
             title="Video đã xem"
             icon={<WatchedIcon />}
+            activeIcon={<WatchedIconActive />}
           ></MenuItem>
           <MenuItem
-            to={'/notyet'}
+            to={'/studio/videos/upload'}
             title="Video của bạn"
             icon={<MyVideosIcon />}
           ></MenuItem>
           <MenuItem
-            to={'/notyet'}
+            to={'/liked'}
             title="Video đã thích"
-            icon={<LikeIcon pathFill={'white'} />}
+            icon={<LikeIcon pathFill="white" />}
+            activeIcon={<LikeIcon pathFill="var(--primary-color)" />}
           ></MenuItem>
         </div>
         <div className={cn('nav-box')}>
@@ -60,34 +61,38 @@ function Sidebar() {
           <MenuItem
             to={'/topviews'}
             title="Xu hướng"
-            icon={<TopViewsIcon className={cn2('fill-icon')} />}
+            icon={<TopViewsIcon />}
+            activeIcon={<TopViewsIconActive />}
           ></MenuItem>
-          <MenuItem
+          {/* <MenuItem
             to={'/notyet'}
             title="Top liked"
-            icon={<TopLikesIcon className={cn2('fill-icon')} />}
-          ></MenuItem>
-          <MenuItem
+            icon={<TopLikesIcon />}
+          ></MenuItem> */}
+          {/* <MenuItem
             to={'/notyet'}
             title="Top người đăng ký"
             icon={<TopSubcribedIcon />}
-          ></MenuItem>
+          ></MenuItem> */}
         </div>
         <div className={cn('nav-box')}>
           <MenuItem
             to={'/notyet'}
             title="Cài đặt"
             icon={<SettingsIcon />}
+            unusable
           ></MenuItem>
           <MenuItem
             to={'/notyet'}
             title="Trợ giúp"
             icon={<HelpIcon />}
+            unusable
           ></MenuItem>
           <MenuItem
             to={'/notyet'}
             title="Gửi phản hồi"
             icon={<FeedbackIcon />}
+            unusable
           ></MenuItem>
         </div>
       </nav>

@@ -72,7 +72,7 @@ export const dislike = (videoId, userId) => async (dispatch) => {
 
 export const addView = (videoId) => async () => {
   try {
-    await api.addView(videoId)
+    api.addView(videoId)
   } catch (error) {
     console.log(error)
   }

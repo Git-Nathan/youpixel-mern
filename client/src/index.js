@@ -13,13 +13,13 @@ const store = configureStore({ reducer: reducers })
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <GoogleOAuthProvider clientId="36544663310-pcqsqlhvlllbf1msfi532jda281o613t.apps.googleusercontent.com">
-        <GlobalStyles>
-          <App />
-        </GlobalStyles>
-      </GoogleOAuthProvider>
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <GoogleOAuthProvider clientId="36544663310-pcqsqlhvlllbf1msfi532jda281o613t.apps.googleusercontent.com">
+      <GlobalStyles>
+        <App />
+      </GlobalStyles>
+    </GoogleOAuthProvider>
+    {/* </React.StrictMode> */}
   </Provider>,
 )
 

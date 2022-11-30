@@ -3,6 +3,7 @@ const router = express.Router()
 
 import {
   dislike,
+  getLiked,
   getUser,
   googleAuth,
   like,
@@ -12,8 +13,10 @@ import {
 import auth from '../middleware/auth.js'
 
 router.get('/find/:userId', getUser)
+router.get('/getLiked', auth, getLiked)
 
 router.post('/google', googleAuth)
+
 router.patch('/like/:videoId', auth, like)
 router.patch('/dislike/:videoId', auth, dislike)
 router.patch('/sub/:channelId', auth, sub)

@@ -9,6 +9,8 @@ import StudioPending from '~/pages/StudioPending'
 import Approval from '~/pages/Approval'
 import Channel from '~/pages/Channel'
 import Results from '~/pages/Results'
+import Watched from '~/pages/Watched'
+import Liked from '~/pages/Liked'
 
 export const publicRoutes = [
   { path: '/', conponemt: Home, layout: DefaultLayout },
@@ -33,5 +35,15 @@ export const privateRoutes = [
     path: '/studio/videos/approval',
     conponemt: Approval,
     layout: StudioLayout,
+  },
+  {
+    path: '/feed/history',
+    conponemt: Watched,
+    layout: DefaultLayout,
+  },
+  {
+    path: '/liked',
+    conponemt: Liked,
+    layout: DefaultLayout,
   },
 ]

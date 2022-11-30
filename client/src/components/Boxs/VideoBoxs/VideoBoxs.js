@@ -1,14 +1,29 @@
 import classNames from 'classnames/bind'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { fetchVideos } from '~/api/api'
+import Loading from '~/components/Loading'
 import VideoBox from './VideoBox/VideoBox'
 import styles from './VideoBoxs.module.scss'
 
 const cn = classNames.bind(styles)
 
 function VideoBoxs() {
-  const { videos, isLoading } = useSelector((store) => store.videoReducer)
+  const [videos, setVideos] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  if (!videos.length && !isLoading) return 'No videos'
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    const getdata = async () => {
+      const { data } = await fetchVideos()
+      setVideos(data.data)
+      setLoading(false)
+    }
+    getdata()
+  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <div className={cn('grid__row', 'videoboxs-row')}>

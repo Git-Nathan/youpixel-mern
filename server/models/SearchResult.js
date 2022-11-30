@@ -5,10 +5,7 @@ const SearchResultSchema = new mongoose.Schema(
     content: {
       type: String,
       required: true,
-    },
-    times: {
-      type: Number,
-      default: 1,
+      unique: true,
     },
   },
   { timestamps: true },

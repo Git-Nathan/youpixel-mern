@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import styles from './StudioSidebar.module.scss'
 import { MenuItem } from './Menu'
-import { HomeIcon, MyVideosIcon } from '../../icons'
+import { HomeIcon, HomeIconActive, MyVideosIcon } from '../../icons'
 
 const cn = classNames.bind(styles)
 
@@ -29,6 +29,7 @@ function StudioSidebar() {
               to={'/studio/videos'}
               title="Nội dung"
               icon={<HomeIcon />}
+              activeIcon={<HomeIconActive />}
             ></MenuItem>
             {/* <MenuItem
               to={'/notyet'}

@@ -11,10 +11,14 @@
   &.active {
     background-color: var(--button-background-color);
     color: var(--primary-color);
-  }
 
-  &.active .icon svg {
-    fill: var(--primary-color);
+    .icon {
+      display: none;
+    }
+
+    .active-icon {
+      display: flex;
+    }
   }
 
   &:hover {
@@ -22,8 +26,10 @@
   }
 }
 
-.icon svg {
-  fill: white;
+.active-icon {
+  display: none;
+  margin-right: 24px;
+  align-items: center;
 }
 
 .wrap {

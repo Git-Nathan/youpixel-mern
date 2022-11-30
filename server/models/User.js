@@ -27,14 +27,14 @@ const UserSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
-    likedVideos: {
-      type: [String],
-      default: [],
-    },
-    watchedVideos: {
-      type: [String],
-      default: [],
-    },
+    likedVideos: [
+      {
+        type: new mongoose.Schema(
+          { videoId: { type: String, unique: true } },
+          { timestamps: true },
+        ),
+      },
+    ],
   },
   { timestamps: true },
 )

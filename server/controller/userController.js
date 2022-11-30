@@ -1,6 +1,7 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 import Video from '../models/Video.js'
+import mongoose from 'mongoose'
 
 export const googleAuth = async (req, res, next) => {
   try {
@@ -42,6 +43,11 @@ export const like = async (req, res) => {
       $addToSet: { likes: userId },
       $pull: { dislikes: userId },
     })
+    await User.findByIdAndUpdate(userId, {
+      $addToSet: {
+        likedVideos: { videoId },
+      },
+    })
     res.status(200).json({ message: 'Liked' })
   } catch (error) {
     res.status(404).json({ message: error.message })
@@ -56,6 +62,11 @@ export const dislike = async (req, res) => {
     await Video.findByIdAndUpdate(videoId, {
       $addToSet: { dislikes: userId },
       $pull: { likes: userId },
+    })
+    await User.findByIdAndUpdate(userId, {
+      $pull: {
+        likedVideos: { videoId },
+      },
     })
     res.status(200).json({ message: 'Disliked' })
   } catch (error) {
@@ -94,6 +105,37 @@ export const unsub = async (req, res, next) => {
     })
     const updatedUser = await User.findById(userId)
     res.status(200).json(updatedUser)
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const getLiked = async (req, res, next) => {
+  const userId = mongoose.Types.ObjectId(req.userId)
+
+  try {
+    const likedVideos = await User.aggregate([
+      {
+        $match: { _id: userId },
+      },
+      {
+        $unwind: '$likedVideos',
+      },
+      { $replaceRoot: { newRoot: '$likedVideos' } },
+      {
+        $sort: { updatedAt: -1 },
+      },
+      { $addFields: { videoObjectId: { $toObjectId: '$videoId' } } },
+      {
+        $lookup: {
+          from: 'videos',
+          localField: 'videoObjectId',
+          foreignField: '_id',
+          as: 'liked',
+        },
+      },
+    ])
+    res.status(200).json({ data: likedVideos })
   } catch (err) {
     next(err)
   }

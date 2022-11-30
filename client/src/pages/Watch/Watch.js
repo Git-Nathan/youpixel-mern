@@ -5,7 +5,7 @@ import WatchVideoBoxs from '~/components/Boxs/WatchVideoBoxs/WatchVideoBoxs'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addView, dislike, getVideo, like } from '~/actions/videoActions'
-import { fetchChannel } from '~/api/api'
+import { addWatchedVideo, fetchChannel } from '~/api/api'
 import { ShareIcon } from '~/components/icons'
 import Moment from 'react-moment'
 import 'moment/locale/vi'
@@ -96,11 +96,15 @@ function Watch() {
 
   useEffect(() => {
     if (video._id) {
+      const addWatched = setTimeout(() => {
+        addWatchedVideo(video._id)
+      }, 1000)
       const addVideoView = setTimeout(() => {
         dispatch(addView(video._id))
       }, 30000)
       return () => {
         clearTimeout(addVideoView)
+        clearTimeout(addWatched)
       }
     }
   }, [dispatch, video._id])

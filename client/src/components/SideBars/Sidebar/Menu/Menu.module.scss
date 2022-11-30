@@ -11,14 +11,14 @@
   &.active {
     background-color: var(--button-background-color);
     color: var(--primary-color);
-  }
 
-  &.active .icon .fill-icon {
-    fill: var(--primary-color);
-  }
+    .icon {
+      display: none;
+    }
 
-  &.active .icon .fill-icon path {
-    fill: var(--primary-color);
+    .active-icon {
+      display: flex;
+    }
   }
 
   &:hover {
@@ -26,8 +26,10 @@
   }
 }
 
-.icon .fill-icon {
-  fill: white;
+.active-icon {
+  display: none;
+  margin-right: 24px;
+  align-items: center;
 }
 
 .wrap {

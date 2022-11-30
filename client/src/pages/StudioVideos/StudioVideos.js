@@ -49,13 +49,13 @@ function StudioVideos() {
             Lượt thích(%)
           </th>
         </tr>
-        {videos.length === 0 && !loading && (
-          <div style={{ marginTop: '12px' }}>Không có video nào</div>
-        )}
         {videos.map((video) => (
           <StudioVideoBox key={video._id} video={video} />
         ))}
       </table>
+      {videos.length === 0 && (
+        <div className={cn('no-video')}>Không có video nào!</div>
+      )}
     </div>
   )
 }

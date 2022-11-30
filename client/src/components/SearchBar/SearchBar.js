@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import { useDebounce } from 'use-debounce'
 import { getSearchResult } from '~/api/api'
-import { SearchBySoundIcon, SearchIcon } from '../icons'
+import { SearchIcon } from '../icons'
 import SearchResult from '../SearchResult'
 import styles from './SearchBar.module.scss'
 
@@ -79,9 +79,9 @@ function SearchBar() {
           )}
         </div>
 
-        <div className={cn('searchbysound-icon')}>
+        {/* <div className={cn('searchbysound-icon')}>
           <SearchBySoundIcon height="22" />
-        </div>
+        </div> */}
 
         {searchResult.length > 0 && (
           <div className={cn('search-result')}>

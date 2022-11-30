@@ -40,13 +40,13 @@ function Approval() {
           </th>
           <th style={{ textAlign: 'right', padding: '0 12px' }}>Tùy chọn</th>
         </tr>
-        {videos.length === 0 && (
-          <div style={{ marginTop: '12px' }}>Không có video nào</div>
-        )}
         {videos.map((video) => (
           <ApprovalVideoBox key={video._id} video={video} />
         ))}
       </table>
+      {videos.length === 0 && (
+        <div className={cn('no-video')}>Không có video nào!</div>
+      )}
     </div>
   )
 }
