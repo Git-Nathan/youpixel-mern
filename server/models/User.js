@@ -35,6 +35,17 @@ const UserSchema = new mongoose.Schema(
         ),
       },
     ],
+    watchedVideos: [
+      {
+        type: new mongoose.Schema(
+          {
+            videoId: { type: String, unique: true },
+            times: { type: Number, default: 0 },
+          },
+          { timestamps: true },
+        ),
+      },
+    ],
   },
   { timestamps: true },
 )

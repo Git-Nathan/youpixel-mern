@@ -16,6 +16,7 @@ import Comments from '~/components/Comments'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import Loading from '~/components/Loading'
+import FilterBar from '~/components/FilterBar'
 
 const cn = classNames.bind(styles)
 
@@ -96,8 +97,8 @@ function Watch() {
 
   useEffect(() => {
     if (video._id) {
-      const addWatched = setTimeout(() => {
-        addWatchedVideo(video._id)
+      const addWatched = setTimeout(async () => {
+        await addWatchedVideo(video._id)
       }, 1000)
       const addVideoView = setTimeout(() => {
         dispatch(addView(video._id))
@@ -125,7 +126,7 @@ function Watch() {
             className={cn('video-player')}
             src={video.videoUrl}
             controls
-            autoPlay
+            // autoPlay
           ></video>
         }
         <div className={cn('video-info-wrapper')}>
@@ -196,15 +197,7 @@ function Watch() {
       </div>
       <div className={cn('secondary')}>
         <div className={cn('filter-bar')}>
-          <div className={cn('filter-bar-box')}>
-            <Link className={cn('filter-bar-link')}>Tất cả</Link>
-            <Link className={cn('filter-bar-link')}>Danh sách kết hợp</Link>
-            <Link className={cn('filter-bar-link')}>Trực tiếp</Link>
-            <Link className={cn('filter-bar-link')}>Âm nhạc</Link>
-            <Link className={cn('filter-bar-link')}>Mới tải lên gần đây</Link>
-            <Link className={cn('filter-bar-link')}>Đã xem</Link>
-            <Link className={cn('filter-bar-link')}>Đề xuất mới</Link>
-          </div>
+          <FilterBar />
         </div>
         <WatchVideoBoxs />
       </div>

@@ -35,7 +35,7 @@ function Liked() {
           <div className={cn('no-video')}>Không có video nào!</div>
         )}
         {videos.map((video) => (
-          <SearchVideoBox key={video._id} video={video.liked[0]} />
+          <SearchVideoBox key={video._id} video={video} />
         ))}
       </div>
     </>

@@ -7,11 +7,7 @@ const cn = classNames.bind(styles)
 function MenuItem({ title, to, icon, activeIcon, unusable }) {
   if (unusable) {
     return (
-      <div
-        className={(nav) => cn('menu-item', { active: nav.isActive })}
-        to={to}
-        end
-      >
+      <div className={cn('menu-item')}>
         <div className={cn('wrap')}>
           <span className={cn('icon')}>{icon}</span>
           <span className={cn('active-icon')}>{activeIcon}</span>

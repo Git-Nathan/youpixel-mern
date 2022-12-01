@@ -15,11 +15,14 @@ API.interceptors.request.use((req) => {
 // User
 export const fetchChannel = (userId) => API.get(`/users/find/${userId}`)
 export const getLiked = () => API.get(`users/getLiked`)
+export const getWatched = () => API.get(`users/getWatched`)
 
 export const like = (videoId) => API.patch(`/users/like/${videoId}`)
 export const dislike = (videoId) => API.patch(`/users/dislike/${videoId}`)
 export const sub = (channelId) => API.patch(`/users/sub/${channelId}`)
 export const unsub = (channelId) => API.patch(`/users/unsub/${channelId}`)
+export const addWatchedVideo = (videoId) =>
+  API.patch(`/users/watched/add/${videoId}`)
 
 export const signIn = (data) => API.post('/users/google', data)
 
@@ -58,8 +61,4 @@ export const deleteComment = (commentId) =>
 //Search
 export const getSearchResult = (value) => API.get(`/search/get/${value}`)
 export const addSearchResult = (value) => API.get(`/search/add/${value}`)
-
-//Watched
-export const getWatched = () => API.get(`watched/get`)
-
-export const addWatchedVideo = (videoId) => API.patch(`/watched/add/${videoId}`)
+export const getAllSearch = () => API.get(`/search/getAll`)

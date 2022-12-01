@@ -35,3 +35,12 @@ export const addSearchResult = async (req, res, next) => {
     next(err)
   }
 }
+
+export const getAllSearch = async (req, res, next) => {
+  try {
+    const result = await SearchResult.find().limit(9).sort({ __v: -1 })
+    res.status(200).json({ result })
+  } catch (err) {
+    next(err)
+  }
+}

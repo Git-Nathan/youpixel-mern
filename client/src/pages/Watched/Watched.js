@@ -15,7 +15,8 @@ function Watched() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await getWatched()
-      setVideos(data.watched)
+      console.log(data.watchedVideos)
+      setVideos(data.watchedVideos)
       setLoading(false)
     }
     getdata()
@@ -35,11 +36,7 @@ function Watched() {
           <div className={cn('no-video')}>Không có video nào!</div>
         )}
         {videos.map((video) => (
-          <SearchVideoBox
-            key={video._id}
-            video={video.watched[0]}
-            onlyId={true}
-          />
+          <SearchVideoBox key={video._id} video={video} onlyId={true} />
         ))}
       </div>
     </>

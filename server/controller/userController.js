@@ -134,8 +134,88 @@ export const getLiked = async (req, res, next) => {
           as: 'liked',
         },
       },
+      {
+        $unwind: '$liked',
+      },
+      { $replaceRoot: { newRoot: '$liked' } },
     ])
     res.status(200).json({ data: likedVideos })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const addWatchedVideo = async (req, res, next) => {
+  const userId = mongoose.Types.ObjectId(req.userId)
+  const { videoId } = req.params
+
+  try {
+    const exist = await User.aggregate([
+      {
+        $match: { _id: userId },
+      },
+      {
+        $unwind: '$watchedVideos',
+      },
+      { $replaceRoot: { newRoot: '$watchedVideos' } },
+      {
+        $match: { videoId },
+      },
+    ])
+    if (exist.length > 0) {
+      await User.findByIdAndUpdate(userId, {
+        $pull: {
+          watchedVideos: { videoId },
+        },
+      })
+      await User.findByIdAndUpdate(userId, {
+        $addToSet: {
+          watchedVideos: { videoId },
+        },
+      })
+    } else {
+      await User.findByIdAndUpdate(userId, {
+        $addToSet: {
+          watchedVideos: { videoId },
+        },
+      })
+    }
+    res.status(200).json({ data: exist })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const getWatched = async (req, res, next) => {
+  const userId = mongoose.Types.ObjectId(req.userId)
+
+  try {
+    const watchedVideos = await User.aggregate([
+      {
+        $match: { _id: userId },
+      },
+      {
+        $unwind: '$watchedVideos',
+      },
+      { $replaceRoot: { newRoot: '$watchedVideos' } },
+      {
+        $sort: { updatedAt: -1 },
+      },
+      { $addFields: { videoObjectId: { $toObjectId: '$videoId' } } },
+      {
+        $lookup: {
+          from: 'videos',
+          localField: 'videoObjectId',
+          foreignField: '_id',
+          as: 'watched',
+        },
+      },
+      {
+        $unwind: '$watched',
+      },
+      { $replaceRoot: { newRoot: '$watched' } },
+    ])
+    res.status(200).json({ watchedVideos })
   } catch (err) {
     next(err)
   }

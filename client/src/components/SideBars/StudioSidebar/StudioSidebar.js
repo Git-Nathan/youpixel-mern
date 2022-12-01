@@ -52,6 +52,7 @@ function StudioSidebar() {
               to={'/notyet'}
               title="Gửi phản hồi"
               icon={<MyVideosIcon />}
+              unusable
             ></MenuItem>
           </div>
         </nav>

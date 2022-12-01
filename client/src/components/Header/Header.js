@@ -108,9 +108,9 @@ function Header() {
                   <UploadIcon className={cn('upload-icon')} />
                   Tạo video
                 </div>
-                <div className={cn('notification-btn')}>
+                {/* <div className={cn('notification-btn')}>
                   <NotificationIcon className={cn('notification-icon')} />
-                </div>
+                </div> */}
                 <div className={cn('user-box')}>
                   <img
                     referrerPolicy="no-referrer"
