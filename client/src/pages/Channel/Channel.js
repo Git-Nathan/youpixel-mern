@@ -4,9 +4,11 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { sub, unsub } from '~/actions/authActions'
 import { fetchChannel, getUserVideos } from '~/api/api'
-import SubcribeButton from '~/components/Buttons/SubcribeButton'
+import SubcribeButton from '~/components/Button/SubcribeButton'
 import VideoBox from '~/components/Boxs/VideoBoxs/VideoBox'
 import styles from './Channel.module.scss'
+import BlockButton from '~/components/Button/BlockButton'
+import Loading from '~/components/Loading'
 
 const cn = classNames.bind(styles)
 
@@ -18,6 +20,7 @@ function Channel() {
   )
   const dispatch = useDispatch()
   const [videos, setVideos] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
@@ -26,14 +29,12 @@ function Channel() {
       setChannel(data)
     }
     getChannel()
-  }, [id])
-
-  useEffect(() => {
     const getdata = async () => {
       const { data } = await getUserVideos(id)
       setVideos(data.videos)
     }
     getdata()
+    setIsLoading(false)
   }, [id])
 
   const handleSub = async () => {
@@ -57,6 +58,10 @@ function Channel() {
     }
   }
 
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
     <>
       <div className={cn('wrapper-title')}>
@@ -74,11 +79,15 @@ function Channel() {
           </div>
         </div>
         <div className={cn('title-right')}>
-          <SubcribeButton
-            currentUser={currentUser}
-            channel={channel}
-            handleSub={handleSub}
-          />
+          <BlockButton channel={channel} currentUser={currentUser} />
+
+          {channel?._id && (
+            <SubcribeButton
+              currentUser={currentUser}
+              channel={channel}
+              handleSub={handleSub}
+            />
+          )}
         </div>
       </div>
       <div className={cn('separate')}></div>
