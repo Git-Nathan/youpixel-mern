@@ -7,6 +7,7 @@ import { storage } from '~/firebase'
 import { toast } from 'react-toastify'
 import { deleteVideo } from '~/actions/videoActions'
 import { useDispatch } from 'react-redux'
+import ConfirmOverlay from '~/components/ConfirmOverlay'
 
 const cn = classNames.bind(styles)
 
@@ -50,28 +51,12 @@ function DeleteButton({ video, title }) {
         <TrashIcon />
       </button>
       {open && (
-        <div className={cn('confirm-overlay')} onClick={() => setOpen(false)}>
-          <div className={cn('confirm-wrapper')}>
-            <div className={cn('confirm-text')}>{title}</div>
-            <div className={cn('confirm-btn')}>
-              <button
-                className={cn('close-btn')}
-                onClick={() => setOpen(false)}
-              >
-                Hủy
-              </button>
-              <button
-                onClick={() => {
-                  setOpen(false)
-                  handleDelete()
-                }}
-                className={cn('close-btn', 'accept-btn')}
-              >
-                Xóa
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmOverlay
+          setOpen={setOpen}
+          title="Bạn có chắc muốn xóa video?"
+          confirmText="Xóa"
+          onConfirm={handleDelete}
+        />
       )}
     </>
   )

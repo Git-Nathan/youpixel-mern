@@ -25,6 +25,7 @@ export const addWatchedVideo = (videoId) =>
   API.patch(`/users/watched/add/${videoId}`)
 
 export const signIn = (data) => API.post('/users/google', data)
+export const block = (userId, data) => API.post(`/users/block/${userId}`, data)
 
 //Video
 export const fetchVideos = () => API.get(`/videos`)
