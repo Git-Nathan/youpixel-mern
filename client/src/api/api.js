@@ -23,6 +23,7 @@ export const sub = (channelId) => API.patch(`/users/sub/${channelId}`)
 export const unsub = (channelId) => API.patch(`/users/unsub/${channelId}`)
 export const addWatchedVideo = (videoId) =>
   API.patch(`/users/watched/add/${videoId}`)
+export const unBlock = (userId) => API.patch(`/users/unblock/${userId}`)
 
 export const signIn = (data) => API.post('/users/google', data)
 export const block = (userId, data) => API.post(`/users/block/${userId}`, data)

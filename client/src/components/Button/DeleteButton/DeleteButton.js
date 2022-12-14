@@ -15,7 +15,7 @@ function DeleteButton({ video, title }) {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     const videoRef = ref(storage, video.videoPath)
     const imageRef = ref(storage, video.imgPath)
     try {

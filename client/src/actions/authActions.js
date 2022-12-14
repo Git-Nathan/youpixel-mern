@@ -1,12 +1,15 @@
 import { AUTH, SUBSCRIBTION } from '~/constants/actionsTypes'
 import * as api from '../api/api.js'
 
-export const signin = (formData) => async (dispatch) => {
+export const signin = (formData) => async (dispatch, navigate) => {
   try {
     const { data } = await api.signIn(formData)
-
-    dispatch({ type: AUTH, data })
-    window.location.reload(false)
+    if (data.message) {
+      navigate('/block')
+    } else {
+      dispatch({ type: AUTH, data })
+      window.location.reload(false)
+    }
   } catch (error) {
     console.log(error)
   }

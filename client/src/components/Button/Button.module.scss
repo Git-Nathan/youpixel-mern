@@ -15,6 +15,14 @@
   }
 }
 
+.primary {
+  background-color: var(--primary-color);
+
+  &:hover {
+    background-color: #af3a1a;
+  }
+}
+
 //Button sizes
 .small {
   height: 36px;

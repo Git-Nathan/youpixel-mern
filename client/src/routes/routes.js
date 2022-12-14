@@ -11,13 +11,15 @@ import Channel from '~/pages/Channel'
 import Results from '~/pages/Results'
 import Watched from '~/pages/Watched'
 import Liked from '~/pages/Liked'
+import Block from '~/pages/Block'
 
 export const publicRoutes = [
-  { path: '/', conponemt: Home, layout: DefaultLayout },
-  { path: '/topviews', conponemt: TopViews, layout: DefaultLayout },
+  { path: '/', conponemt: Home },
+  { path: '/topviews', conponemt: TopViews },
   { path: '/watch', conponemt: Watch, layout: HeaderOnly },
-  { path: '/channel/:id', conponemt: Channel, layout: DefaultLayout },
-  { path: '/results', conponemt: Results, layout: DefaultLayout },
+  { path: '/channel/:id', conponemt: Channel },
+  { path: '/results', conponemt: Results },
+  { path: '/block', conponemt: Block, layout: null },
 ]
 
 export const privateRoutes = [

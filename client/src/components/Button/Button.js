@@ -7,6 +7,7 @@ function Button({
   small = false,
   large = false,
   red = false,
+  primary = false,
   children,
   className,
   onClick,
@@ -23,6 +24,7 @@ function Button({
     small,
     large,
     red,
+    primary,
   })
 
   return (

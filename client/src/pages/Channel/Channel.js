@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { sub, unsub } from '~/actions/authActions'
 import { fetchChannel, getUserVideos } from '~/api/api'
@@ -13,6 +13,7 @@ import Loading from '~/components/Loading'
 const cn = classNames.bind(styles)
 
 function Channel() {
+  const { reload } = useSelector((store) => store.videoReducer)
   const { id } = useParams()
   const [channel, setChannel] = useState({})
   const [currentUser, setCurrentUser] = useState(
@@ -35,7 +36,7 @@ function Channel() {
     }
     getdata()
     setIsLoading(false)
-  }, [id])
+  }, [id, reload])
 
   const handleSub = async () => {
     if (currentUser?.result.subscribedUsers.includes(channel._id)) {
