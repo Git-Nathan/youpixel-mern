@@ -1,5 +1,9 @@
 .wrapper {
   background-color: var(--button-background-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 
   &:hover {
     background-color: var(--hover-color);
@@ -8,6 +12,7 @@
 
 // Button types
 .red {
+  color: var(--text-color);
   background-color: rgb(200, 0, 0);
 
   &:hover {
@@ -16,6 +21,7 @@
 }
 
 .primary {
+  color: var(--text-color);
   background-color: var(--primary-color);
 
   &:hover {

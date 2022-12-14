@@ -89,7 +89,7 @@ function BlockButton({ channel, currentUser }) {
           <ConfirmOverlay
             title={`Bạn có chắc muốn bỏ chặn ${channel.name}?`}
             setOpen={setOpen2}
-            confirmText="Chặn"
+            confirmText="Bỏ chặn"
             onConfirm={handleUnBlock}
           />
         )}

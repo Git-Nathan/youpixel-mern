@@ -1,11 +1,11 @@
 import { AUTH, SUBSCRIBTION } from '~/constants/actionsTypes'
 import * as api from '../api/api.js'
 
-export const signin = (formData) => async (dispatch, navigate) => {
+export const signin = (formData) => async (dispatch) => {
   try {
     const { data } = await api.signIn(formData)
     if (data.message) {
-      navigate('/block')
+      window.location.href = `/block?message=${data.message}`
     } else {
       dispatch({ type: AUTH, data })
       window.location.reload(false)
