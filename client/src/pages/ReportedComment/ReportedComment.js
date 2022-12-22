@@ -34,20 +34,20 @@ function ReportedComment() {
         <thead>
           <tr>
             <th
-              style={{ textAlign: 'left', paddingLeft: '24px', width: '24%' }}
+              style={{ textAlign: 'left', paddingLeft: '24px', width: '28%' }}
             >
               Video
             </th>
-            <th style={{ textAlign: 'left', padding: '0 12px', width: '18%' }}>
+            <th style={{ textAlign: 'left', padding: '0 12px', width: '14%' }}>
               Người bình luận
             </th>
-            <th style={{ textAlign: 'right', padding: '0 12px' }}>
+            <th style={{ textAlign: 'left', padding: '0 12px', width: '22%' }}>
               Nội dung bình luận
             </th>
-            <th style={{ textAlign: 'left', padding: '0 12px', width: '18%' }}>
+            <th style={{ textAlign: 'left', padding: '0 12px', width: '14%' }}>
               Người báo cáo
             </th>
-            <th style={{ textAlign: 'right', padding: '0 12px' }}>
+            <th style={{ textAlign: 'left', padding: '0 12px', width: '22%' }}>
               Nội dung báo cáo
             </th>
           </tr>

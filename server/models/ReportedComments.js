@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 const ReportedCommentSchema = new mongoose.Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     commentId: {
       type: String,
       required: true,
@@ -16,7 +20,7 @@ const ReportedCommentSchema = new mongoose.Schema(
     },
     reportContent: {
       type: String,
-      required: true,
+      default: '',
     },
   },
   { timestamps: true },

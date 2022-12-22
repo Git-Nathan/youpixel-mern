@@ -53,6 +53,7 @@ export const deleteVideo = (videoId) => API.delete(`/videos/delete/${videoId}`)
 
 //Comment
 export const getComments = (videoId) => API.get(`/comment/${videoId}`)
+export const getComment = (commentId) => API.get(`/comment/get/${commentId}`)
 export const getReportedComment = () => API.get(`/comment/reported/get`)
 
 export const reportComment = (commentId, data) =>

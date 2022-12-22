@@ -2,13 +2,16 @@ import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { sub, unsub } from '~/actions/authActions'
+import { signin, sub, unsub } from '~/actions/authActions'
 import { fetchChannel, getUserVideos } from '~/api/api'
 import SubcribeButton from '~/components/Button/SubcribeButton'
 import VideoBox from '~/components/Boxs/VideoBoxs/VideoBox'
 import styles from './Channel.module.scss'
 import BlockButton from '~/components/Button/BlockButton'
 import Loading from '~/components/Loading'
+import Button from '~/components/Button'
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 const cn = classNames.bind(styles)
 
@@ -37,6 +40,30 @@ function Channel() {
     getdata()
     setIsLoading(false)
   }, [id, reload])
+
+  const handleLogin = useGoogleLogin({
+    onSuccess: async (respose) => {
+      try {
+        const res = await axios.get(
+          'https://www.googleapis.com/oauth2/v3/userinfo',
+          {
+            headers: {
+              Authorization: `Bearer ${respose.access_token}`,
+            },
+          },
+        )
+        dispatch(
+          signin({
+            name: res.data.name,
+            email: res.data.email,
+            picture: res.data.picture,
+          }),
+        )
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  })
 
   const handleSub = async () => {
     if (currentUser?.result.subscribedUsers.includes(channel._id)) {
@@ -82,12 +109,15 @@ function Channel() {
         <div className={cn('title-right')}>
           <BlockButton channel={channel} currentUser={currentUser} />
 
-          {channel?._id && (
+          {currentUser?.result && (
             <SubcribeButton
               currentUser={currentUser}
               channel={channel}
               handleSub={handleSub}
             />
+          )}
+          {!currentUser?.result && (
+            <Button children="Đăng ký" small normal onClick={handleLogin} />
           )}
         </div>
       </div>

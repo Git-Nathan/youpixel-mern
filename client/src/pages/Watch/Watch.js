@@ -181,7 +181,7 @@ function Watch() {
             className={cn('video-player')}
             src={video.videoUrl}
             controls
-            // autoPlay
+            autoPlay
           ></video>
         }
         <div className={cn('video-info-wrapper')}>
@@ -219,11 +219,14 @@ function Watch() {
               />
             </div>
             <div className={cn('options-wrapper')}>
-              <DeleteButton
-                className={cn('delete-btn')}
-                video={video}
-                handle={handleDelete}
-              />
+              {currentUser?.result.role === 'admin' && (
+                <DeleteButton
+                  className={cn('delete-btn')}
+                  video={video}
+                  handle={handleDelete}
+                />
+              )}
+
               <LikeButton
                 video={video}
                 currentUser={currentUser}

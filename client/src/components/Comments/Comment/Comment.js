@@ -39,7 +39,7 @@ function Comment({
   }
 
   const handleReport = () => {
-    reportComment(comment._id, { videoId, reportMessage })
+    reportComment(comment._id, { videoId, reportMessage, userId: channel._id })
     notify2()
   }
 

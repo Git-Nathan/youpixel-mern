@@ -2,6 +2,7 @@ import express from 'express'
 import {
   addComment,
   deleteComment,
+  getComment,
   getComments,
   getReportedComments,
   reportComment,
@@ -17,5 +18,6 @@ router.post('/add/:videoId', auth, addComment)
 
 router.get('/reported/get', getReportedComments)
 router.get('/:videoId', getComments)
+router.get('/get/:commentId', getComment)
 
 export default router

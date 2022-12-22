@@ -58,7 +58,9 @@ export const reportComment = async (req, res, next) => {
   const { commentId } = req.params
   const reportContent = req.body.reportMessage
   const videoId = req.body.videoId
+  const userId = req.body.userId
   const newReportedComment = new ReportedComment({
+    userId,
     commentId,
     videoId,
     reportUserId,
@@ -68,6 +70,18 @@ export const reportComment = async (req, res, next) => {
   try {
     await newReportedComment.save()
     res.status(200).json({ message: 'Reported' })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const getComment = async (req, res, next) => {
+  const { commentId } = req.params
+
+  try {
+    const comment = await Comment.findById(commentId)
+
+    res.status(200).json(comment)
   } catch (err) {
     next(err)
   }
