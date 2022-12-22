@@ -7,6 +7,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { reducers } from './reducers'
+import 'moment/locale/vi'
 
 const store = configureStore({ reducer: reducers })
 
