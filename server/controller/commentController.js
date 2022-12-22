@@ -1,4 +1,5 @@
 import Comment from '../models/Comment.js'
+import ReportedComment from '../models/ReportedComments.js'
 
 export const addComment = async (req, res, next) => {
   const userId = req.userId
@@ -25,18 +26,48 @@ export const getComments = async (req, res, next) => {
   }
 }
 
+export const getReportedComments = async (req, res, next) => {
+  try {
+    const reportedComments = await ReportedComment.find()
+    res.status(200).json(reportedComments)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const deleteComment = async (req, res, next) => {
   const { commentId } = req.params
   const userId = req.userId
+  const userRole = req.role
 
   try {
     const comment = await Comment.findById(commentId)
-    if (userId === comment.userId) {
+    if (userRole === 'admin' || userId === comment.userId) {
       await Comment.findByIdAndDelete(commentId)
       res.status(200).json({ message: 'delete successfully' })
     } else {
       return next(createError(403, 'You can only delete your comment!'))
     }
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const reportComment = async (req, res, next) => {
+  const reportUserId = req.userId
+  const { commentId } = req.params
+  const reportContent = req.body.reportMessage
+  const videoId = req.body.videoId
+  const newReportedComment = new ReportedComment({
+    commentId,
+    videoId,
+    reportUserId,
+    reportContent,
+  })
+
+  try {
+    await newReportedComment.save()
+    res.status(200).json({ message: 'Reported' })
   } catch (err) {
     next(err)
   }

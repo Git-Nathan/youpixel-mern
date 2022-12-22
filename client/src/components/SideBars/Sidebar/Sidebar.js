@@ -2,13 +2,10 @@ import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
 import { MenuItem } from './Menu'
 import {
-  FeedbackIcon,
-  HelpIcon,
   HomeIcon,
   HomeIconActive,
   LikeIcon,
   MyVideosIcon,
-  SettingsIcon,
   TopViewsIcon,
   TopViewsIconActive,
   WatchedIcon,
@@ -139,7 +136,7 @@ function Sidebar() {
             icon={<TopSubcribedIcon />}
           ></MenuItem> */}
         </div>
-        <div className={cn('nav-box')}>
+        {/* <div className={cn('nav-box')}>
           <MenuItem
             to={'/notyet'}
             title="Cài đặt"
@@ -158,7 +155,7 @@ function Sidebar() {
             icon={<FeedbackIcon />}
             unusable
           ></MenuItem>
-        </div>
+        </div> */}
       </nav>
       <div className={cn('footer')}>
         <div className={cn('footer-box')}>

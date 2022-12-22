@@ -22,7 +22,7 @@ function ConfirmOverlay({
             onChange={(e) => {
               setMessage(e.target.value)
             }}
-            placeholder="Lời nhắn dành cho chủ kênh..."
+            placeholder="Điền lời nhắn"
             rows="6"
           />
         )}

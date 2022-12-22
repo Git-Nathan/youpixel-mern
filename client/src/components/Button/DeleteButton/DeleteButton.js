@@ -8,10 +8,16 @@ import { toast } from 'react-toastify'
 import { deleteVideo } from '~/actions/videoActions'
 import { useDispatch } from 'react-redux'
 import ConfirmOverlay from '~/components/ConfirmOverlay'
+import {
+  TooltipContent,
+  TooltipTrigger,
+  Tooltip,
+} from '~/components/Tooltip/Tooltip.tsx'
+import TooltipTag from '~/components/Tooltip/TooltipTag'
 
 const cn = classNames.bind(styles)
 
-function DeleteButton({ video, title }) {
+function DeleteButton({ video, className, handle }) {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
@@ -28,6 +34,14 @@ function DeleteButton({ video, title }) {
     }
   }
 
+  if (!handle) {
+    handle = handleDelete
+  }
+
+  const classes = cn('option-icon', {
+    [className]: className,
+  })
+
   const notify = () =>
     toast.success('Xóa video thành công.', {
       position: 'top-center',
@@ -42,20 +56,28 @@ function DeleteButton({ video, title }) {
 
   return (
     <>
-      <button
-        onClick={() => {
-          setOpen(true)
-        }}
-        className={cn('option-icon')}
-      >
-        <TrashIcon />
-      </button>
+      <Tooltip placement="bottom">
+        <TooltipTrigger asChild>
+          <button
+            onClick={() => {
+              setOpen(true)
+            }}
+            className={classes}
+          >
+            <TrashIcon />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <TooltipTag>Xóa</TooltipTag>
+        </TooltipContent>
+      </Tooltip>
+
       {open && (
         <ConfirmOverlay
           setOpen={setOpen}
           title="Bạn có chắc muốn xóa video?"
           confirmText="Xóa"
-          onConfirm={handleDelete}
+          onConfirm={handle}
         />
       )}
     </>
