@@ -11,16 +11,20 @@ import {
   WatchedIcon,
   WatchedIconActive,
 } from '../../icons'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import { signin } from '~/actions/authActions'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Button from '~/components/Button'
 
 const cn = classNames.bind(styles)
 
 function Sidebar() {
-  const [currentUser] = useState(JSON.parse(localStorage.getItem('profile')))
+  const { reload } = useSelector((store) => store.authReducer)
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem('profile')),
+  )
 
   const dispatch = useDispatch()
 
@@ -47,6 +51,10 @@ function Sidebar() {
       }
     },
   })
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem('profile')))
+  }, [reload])
 
   return (
     <aside className={cn('wrapper')}>
@@ -117,6 +125,57 @@ function Sidebar() {
             </>
           )}
         </div>
+        {currentUser ? (
+          <div className={cn('nav-box')}>
+            <h3 className={cn('nav-box-title')}>Kênh đăng ký</h3>
+            {currentUser.subscribedUsers
+              .slice(0)
+              .reverse()
+              .map((item) => (
+                <MenuItem
+                  key={item._id}
+                  to={`/channel/${item._id}`}
+                  title={item.name}
+                  icon={
+                    <div
+                      referrerPolicy="no-referrer"
+                      className={cn('author-img')}
+                      style={{ backgroundImage: `url(${item.picture})` }}
+                    ></div>
+                  }
+                  activeIcon={
+                    <div
+                      referrerPolicy="no-referrer"
+                      className={cn('author-img')}
+                      style={{ backgroundImage: `url(${item.picture})` }}
+                    ></div>
+                  }
+                ></MenuItem>
+              ))}
+
+            {currentUser.subscribedUsers.length === 0 && (
+              <div className={cn('guide-signin')}>
+                Những kênh bạn đăng ký sẽ được hiển thị ở đây.
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <div className={cn('nav-box')}>
+              <div className={cn('guide-signin')}>
+                Hãy đăng nhập để thích video, bình luận và đăng ký kênh.
+              </div>
+              <Button
+                className={cn('signin-btn')}
+                children="Đăng nhập"
+                small
+                normal
+                onClick={handleLogin}
+              />
+            </div>
+          </>
+        )}
+
         <div className={cn('nav-box')}>
           <h3 className={cn('nav-box-title')}>Khám phá</h3>
           <MenuItem
@@ -125,31 +184,7 @@ function Sidebar() {
             icon={<TopViewsIcon />}
             activeIcon={<TopViewsIconActive />}
           ></MenuItem>
-          {/* <MenuItem
-            to={'/notyet'}
-            title="Top liked"
-            icon={<TopLikesIcon />}
-          ></MenuItem> */}
-          {/* <MenuItem
-            to={'/notyet'}
-            title="Top người đăng ký"
-            icon={<TopSubcribedIcon />}
-          ></MenuItem> */}
         </div>
-        {/* <div className={cn('nav-box')}>
-          <MenuItem
-            to={'/notyet'}
-            title="Cài đặt"
-            icon={<SettingsIcon />}
-            unusable
-          ></MenuItem>
-          <MenuItem
-            to={'/notyet'}
-            title="Trợ giúp"
-            icon={<HelpIcon />}
-            unusable
-          ></MenuItem>
-        </div> */}
       </nav>
       <div className={cn('footer')}>
         <div className={cn('footer-box')}>

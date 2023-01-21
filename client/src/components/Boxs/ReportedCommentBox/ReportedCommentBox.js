@@ -68,6 +68,7 @@ function ReportedCommentBox({ item }) {
               className={cn('channel-link')}
             >
               <img
+                referrerPolicy="no-referrer"
                 className={cn('channel-picture')}
                 src={commentUser.picture}
                 alt="ChannelPicture"
@@ -101,6 +102,7 @@ function ReportedCommentBox({ item }) {
               className={cn('channel-link')}
             >
               <img
+                referrerPolicy="no-referrer"
                 className={cn('channel-picture')}
                 src={reportUser.picture}
                 alt="ChannelPicture"

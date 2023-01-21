@@ -12,7 +12,7 @@ function VideoBoxs() {
   const [videos, setVideos] = useState([])
   const [pageLoading, setPageLoading] = useState(true)
   const [loading, setLoading] = useState(false)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [startIndex, setStartIndex] = useState(20)
 
   const getMoreVideos = useCallback(() => {
@@ -50,12 +50,14 @@ function VideoBoxs() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await fetchVideos()
-      if (data.data.length < 20) {
-        setHasMore(false)
-      }
       setVideos(data.data)
       setCurrentVideos((prev) => prev.concat(data.data.slice(0, 20)))
       setPageLoading(false)
+      if (data.data.length < 20) {
+        setHasMore(false)
+      } else {
+        setHasMore(true)
+      }
     }
     getdata()
   }, [])

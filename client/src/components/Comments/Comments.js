@@ -18,23 +18,16 @@ function Comments({ videoId, currentUser, handleLogin }) {
   const [comment, setComment] = useState('')
   const [numOfComments, setNumOfComments] = useState(0)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [numberOfPages, setNumberOfPages] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   const handleComment = async () => {
     dispatch(addComment(comment, videoId))
     setComment('')
     setOpen(false)
-    const Comments = async () => {
-      const { data } = await getComments(videoId)
-      setComments(data.data)
-      setNumOfComments((prev) => ++prev)
-      setNumberOfPages(data.numberOfPages)
-      setPage(2)
-      setHasMore(true)
-    }
-    Comments()
+    setUpdate((prev) => !prev)
   }
 
   const getMoreComments = useCallback(async () => {
@@ -94,18 +87,21 @@ function Comments({ videoId, currentUser, handleLogin }) {
   )
 
   useEffect(() => {
+    setHasMore(false)
     const Comments = async () => {
-      const { data } = await getComments(videoId)
-      if (data.data.length < 20) {
-        setHasMore(false)
-      }
+      const { data } = await getComments(videoId, 1)
       setComments(data.data)
       setNumOfComments(data.total)
       setNumberOfPages(data.numberOfPages)
       setPage(2)
+      if (data.data.length < 20) {
+        setHasMore(false)
+      } else {
+        setHasMore(true)
+      }
     }
     Comments()
-  }, [videoId])
+  }, [videoId, update])
 
   return (
     <>

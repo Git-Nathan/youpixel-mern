@@ -63,6 +63,7 @@ function ApprovalVideoBox({ video }) {
           {channel?.picture ? (
             <Link to={`/channel/${channel._id}`} className={cn('channel-link')}>
               <img
+                referrerPolicy="no-referrer"
                 className={cn('channel-picture')}
                 src={channel.picture}
                 alt="ChannelPicture"

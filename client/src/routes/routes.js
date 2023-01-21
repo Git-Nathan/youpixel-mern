@@ -6,13 +6,11 @@ import Watch from '~/pages/Watch'
 import StudioVideos from '~/pages/StudioVideos'
 import StudioLayout from '~/layouts/StudioLayout'
 import StudioPending from '~/pages/StudioPending'
-import Approval from '~/pages/Approval'
 import Channel from '~/pages/Channel'
 import Results from '~/pages/Results'
 import Watched from '~/pages/Watched'
 import Liked from '~/pages/Liked'
 import Block from '~/pages/Block'
-import ReportedComment from '~/pages/ReportedComment'
 
 export const publicRoutes = [
   { path: '/', conponemt: Home },
@@ -32,16 +30,6 @@ export const privateRoutes = [
   {
     path: '/studio/videos/pending',
     conponemt: StudioPending,
-    layout: StudioLayout,
-  },
-  {
-    path: '/studio/videos/approval',
-    conponemt: Approval,
-    layout: StudioLayout,
-  },
-  {
-    path: '/studio/videos/reported',
-    conponemt: ReportedComment,
     layout: StudioLayout,
   },
   {

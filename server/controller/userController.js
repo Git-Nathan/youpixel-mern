@@ -7,12 +7,44 @@ export const googleAuth = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email })
     if (user) {
-      if (user.role === 'admin' || user.role === 'user') {
+      if (user.role === 'user') {
         const token = jwt.sign(
           { id: user._id, role: user.role },
           process.env.JWT,
         )
-        res.status(200).json({ result: user, token })
+
+        const subscribedUsers = await User.aggregate([
+          { $match: { email: req.body.email } },
+          {
+            $unwind: '$subscribedUsers',
+          },
+          { $addFields: { userObjectId: { $toObjectId: '$subscribedUsers' } } },
+          {
+            $lookup: {
+              from: 'users',
+              localField: 'userObjectId',
+              foreignField: '_id',
+              as: 'userInfo',
+            },
+          },
+          {
+            $project: {
+              userInfo: 1,
+            },
+          },
+          {
+            $unwind: '$userInfo',
+          },
+          { $replaceRoot: { newRoot: '$userInfo' } },
+          {
+            $project: {
+              name: 1,
+              picture: 1,
+            },
+          },
+        ])
+
+        res.status(200).json({ result: user, subscribedUsers, token })
       } else {
         res.status(200).json({ message: user.role })
       }
@@ -136,6 +168,7 @@ export const undislike = async (req, res) => {
 export const sub = async (req, res, next) => {
   const userId = req.userId
   const channelId = req.params.channelId
+  const objectUserId = mongoose.Types.ObjectId(req.userId)
 
   try {
     await User.findByIdAndUpdate(userId, {
@@ -144,8 +177,41 @@ export const sub = async (req, res, next) => {
     await User.findByIdAndUpdate(channelId, {
       $addToSet: { subscribers: userId },
     })
+
     const updatedUser = await User.findById(userId)
-    res.status(200).json(updatedUser)
+
+    const subscribedUsers = await User.aggregate([
+      { $match: { _id: objectUserId } },
+      {
+        $unwind: '$subscribedUsers',
+      },
+      { $addFields: { userObjectId: { $toObjectId: '$subscribedUsers' } } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userObjectId',
+          foreignField: '_id',
+          as: 'userInfo',
+        },
+      },
+      {
+        $project: {
+          userInfo: 1,
+        },
+      },
+      {
+        $unwind: '$userInfo',
+      },
+      { $replaceRoot: { newRoot: '$userInfo' } },
+      {
+        $project: {
+          name: 1,
+          picture: 1,
+        },
+      },
+    ])
+
+    res.status(200).json({ updatedUser, subscribedUsers })
   } catch (err) {
     next(err)
   }
@@ -154,6 +220,7 @@ export const sub = async (req, res, next) => {
 export const unsub = async (req, res, next) => {
   const userId = req.userId
   const channelId = req.params.channelId
+  const objectUserId = mongoose.Types.ObjectId(req.userId)
 
   try {
     await User.findByIdAndUpdate(userId, {
@@ -162,8 +229,41 @@ export const unsub = async (req, res, next) => {
     await User.findByIdAndUpdate(channelId, {
       $pull: { subscribers: userId },
     })
+
     const updatedUser = await User.findById(userId)
-    res.status(200).json(updatedUser)
+
+    const subscribedUsers = await User.aggregate([
+      { $match: { _id: objectUserId } },
+      {
+        $unwind: '$subscribedUsers',
+      },
+      { $addFields: { userObjectId: { $toObjectId: '$subscribedUsers' } } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userObjectId',
+          foreignField: '_id',
+          as: 'userInfo',
+        },
+      },
+      {
+        $project: {
+          userInfo: 1,
+        },
+      },
+      {
+        $unwind: '$userInfo',
+      },
+      { $replaceRoot: { newRoot: '$userInfo' } },
+      {
+        $project: {
+          name: 1,
+          picture: 1,
+        },
+      },
+    ])
+
+    res.status(200).json({ updatedUser, subscribedUsers })
   } catch (err) {
     next(err)
   }
@@ -269,8 +369,42 @@ export const getLiked = async (req, res, next) => {
         $unwind: '$liked',
       },
       { $replaceRoot: { newRoot: '$liked' } },
+      {
+        $project: {
+          status: 0,
+          videoPath: 0,
+          videoUrl: 0,
+          likes: 0,
+          __v: 0,
+          dislikes: 0,
+        },
+      },
       { $skip: startIndex },
       { $limit: 20 },
+      { $addFields: { userObjectId: { $toObjectId: '$userId' } } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userObjectId',
+          foreignField: '_id',
+          as: 'userInfo',
+        },
+      },
+      {
+        $unwind: '$userInfo',
+      },
+      {
+        $project: {
+          'userInfo.createdAt': 0,
+          'userInfo.email': 0,
+          'userInfo.likedVideos': 0,
+          'userInfo.subscribedUsers': 0,
+          'userInfo.updatedAt': 0,
+          'userInfo.watchedVideos': 0,
+          'userInfo.__v': 0,
+          'userInfo.subscribers': 0,
+        },
+      },
     ])
 
     res.status(200).json({
@@ -342,55 +476,49 @@ export const getWatched = async (req, res, next) => {
         $unwind: '$watched',
       },
       { $replaceRoot: { newRoot: '$watched' } },
+      {
+        $project: {
+          status: 0,
+          videoPath: 0,
+          videoUrl: 0,
+          likes: 0,
+          __v: 0,
+          dislikes: 0,
+        },
+      },
       { $skip: startIndex },
       { $limit: 20 },
+      { $addFields: { userObjectId: { $toObjectId: '$userId' } } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userObjectId',
+          foreignField: '_id',
+          as: 'userInfo',
+        },
+      },
+      {
+        $unwind: '$userInfo',
+      },
+      {
+        $project: {
+          'userInfo.createdAt': 0,
+          'userInfo.email': 0,
+          'userInfo.likedVideos': 0,
+          'userInfo.subscribedUsers': 0,
+          'userInfo.updatedAt': 0,
+          'userInfo.watchedVideos': 0,
+          'userInfo.__v': 0,
+          'userInfo.subscribers': 0,
+        },
+      },
     ])
-    res
-      .status(200)
-      .json({
-        data: watchedVideos,
-        numberOfPages: Math.ceil(total[0].count / 20),
-        total: total[0].count,
-      })
+    res.status(200).json({
+      data: watchedVideos,
+      numberOfPages: Math.ceil(total[0].count / 20),
+      total: total[0].count,
+    })
   } catch (err) {
-    next(err)
-  }
-}
-
-export const block = async (req, res, next) => {
-  const userId = req.params.userId
-  const message = req.body.blockMessage
-  const role = req.role
-
-  try {
-    if (role === 'admin') {
-      if (message === '') {
-        await User.findByIdAndUpdate(userId, { role: 'blocked' })
-        res.status(200).json({ message: 'Blocked' })
-      } else {
-        await User.findByIdAndUpdate(userId, { role: message })
-        res.status(200).json({ message: 'Blocked' })
-      }
-    } else {
-      return next(createError(403, 'You not an admin!'))
-    }
-  } catch (error) {
-    next(err)
-  }
-}
-
-export const unBlock = async (req, res, next) => {
-  const userId = req.params.userId
-  const role = req.role
-
-  try {
-    if (role === 'admin') {
-      await User.findByIdAndUpdate(userId, { role: 'user' })
-      res.status(200).json({ message: 'Unblock successfully' })
-    } else {
-      return next(createError(403, 'You not an admin!'))
-    }
-  } catch (error) {
     next(err)
   }
 }

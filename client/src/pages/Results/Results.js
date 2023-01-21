@@ -15,7 +15,7 @@ function Results() {
   const searchQuery = searchParams.get('search_query')
   const [isWebLoading, setIsWebLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [numberOfPages, setNumberOfPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -57,15 +57,17 @@ function Results() {
       const { data } = await getVideosBySearch(
         createSearchParams({ search_query: searchQuery, page: 1 }),
       )
-      if (data.data.total <= 20) {
-        setHasMore(false)
-      }
       setVideos(data.data)
       addSearchResult(searchQuery.trim())
       setNumberOfPages(data.numberOfPages)
       setPage(2)
       setIsWebLoading(false)
       setIsLoading(false)
+      if (data.data.total <= 20) {
+        setHasMore(false)
+      } else {
+        setHasMore(true)
+      }
     }
     getData()
   }, [searchQuery])

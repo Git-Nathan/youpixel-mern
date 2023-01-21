@@ -12,6 +12,7 @@ function StudioSidebar() {
     <aside className={cn('wrapper')}>
       <div className={cn('start')}>
         <img
+          referrerPolicy="no-referrer"
           className={cn('user-img')}
           src={currentUser.result.picture}
           alt="user img"

@@ -2,12 +2,11 @@ import classNames from 'classnames/bind'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { signin, sub, unsub } from '~/actions/authActions'
+import { signin } from '~/actions/authActions'
 import { fetchChannel, getUserVideos } from '~/api/api'
 import SubcribeButton from '~/components/Button/SubcribeButton'
 import VideoBox from '~/components/Boxs/VideoBoxs/VideoBox'
 import styles from './Channel.module.scss'
-import BlockButton from '~/components/Button/BlockButton'
 import Loading from '~/components/Loading'
 import Button from '~/components/Button'
 import { useGoogleLogin } from '@react-oauth/google'
@@ -26,7 +25,7 @@ function Channel() {
   const [videos, setVideos] = useState([])
   const [isPageLoading, setIsPageLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [numberOfPages, setNumberOfPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -63,21 +62,21 @@ function Channel() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-    const getChannel = async () => {
-      const { data } = await fetchChannel(id)
-      setChannel(data[0])
-    }
-    getChannel()
+    setIsPageLoading(true)
     const getdata = async () => {
-      const { data } = await getUserVideos(id)
-      if (data.data.total <= 20) {
-        setHasMore(false)
-      }
+      const channelData = await fetchChannel(id)
+      setChannel(channelData.data[0])
+      const { data } = await getUserVideos(id, 1)
       setVideos(data.data)
       setNumberOfPages(data.numberOfPages)
       setPage(2)
       setIsPageLoading(false)
       setIsLoading(false)
+      if (data.data.total <= 20) {
+        setHasMore(false)
+      } else {
+        setHasMore(true)
+      }
     }
     getdata()
   }, [id, reload])
@@ -106,27 +105,6 @@ function Channel() {
     },
   })
 
-  const handleSub = async () => {
-    if (currentUser?.result.subscribedUsers.includes(channel._id)) {
-      let archive = structuredClone(currentUser)
-      archive.result.subscribedUsers.splice(
-        archive.result.subscribedUsers.findIndex(
-          (item) => item === channel._id,
-        ),
-      )
-      setCurrentUser(archive)
-      setChannel({ ...channel, subscribers: channel.subscribers - 1 })
-      dispatch(unsub(channel._id, setCurrentUser))
-    } else {
-      setCurrentUser({
-        ...currentUser,
-        result: { ...currentUser.result, subscribedUsers: channel._id },
-      })
-      setChannel({ ...channel, subscribers: channel.subscribers + 1 })
-      dispatch(sub(channel._id, setCurrentUser))
-    }
-  }
-
   if (isPageLoading) {
     return <Loading />
   }
@@ -148,16 +126,14 @@ function Channel() {
           </div>
         </div>
         <div className={cn('title-right')}>
-          <BlockButton channel={channel} currentUser={currentUser} />
-
-          {currentUser?.result && (
+          {currentUser?.result ? (
             <SubcribeButton
               currentUser={currentUser}
               channel={channel}
-              handleSub={handleSub}
+              setCurrentUser={setCurrentUser}
+              setChannel={setChannel}
             />
-          )}
-          {!currentUser?.result && (
+          ) : (
             <Button children="Đăng ký" small normal onClick={handleLogin} />
           )}
         </div>

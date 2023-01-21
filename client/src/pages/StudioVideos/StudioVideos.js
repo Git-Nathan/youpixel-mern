@@ -15,7 +15,7 @@ function StudioVideos() {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [numberOfPages, setNumberOfPages] = useState(0)
 
   const getMoreVideos = async () => {
@@ -30,14 +30,17 @@ function StudioVideos() {
 
   useEffect(() => {
     const getdata = async () => {
-      const { data } = await getUserVideos(currentUser?.result._id)
-      if (data.total <= 20) {
-        setHasMore(false)
-      }
+      const { data } = await getUserVideos(currentUser?.result._id, 1)
       setVideos(data.data)
+      console.log(data.data)
       setNumberOfPages(data.numberOfPages)
       setPage(2)
       setLoading(false)
+      if (data.total <= 20) {
+        setHasMore(false)
+      } else {
+        setHasMore(true)
+      }
     }
     getdata()
   }, [currentUser?.result._id, reload])

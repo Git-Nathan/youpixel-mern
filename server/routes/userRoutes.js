@@ -3,7 +3,6 @@ const router = express.Router()
 
 import {
   addWatchedVideo,
-  block,
   dislike,
   getLiked,
   getUser,
@@ -11,7 +10,6 @@ import {
   googleAuth,
   like,
   sub,
-  unBlock,
   undislike,
   unlike,
   unsub,
@@ -19,9 +17,7 @@ import {
 import auth from '../middleware/auth.js'
 
 router.post('/google', googleAuth)
-router.post('/block/:userId', auth, block)
 
-router.patch('/unblock/:userId', auth, unBlock)
 router.patch('/watched/add/:videoId', auth, addWatchedVideo)
 router.patch('/like/:videoId', auth, like)
 router.patch('/unlike/:videoId', auth, unlike)

@@ -12,7 +12,7 @@ function Liked() {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [numberOfPages, setNumberOfPages] = useState(0)
 
   const getMoreVideos = async () => {
@@ -29,13 +29,15 @@ function Liked() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     const getdata = async () => {
       const { data } = await getLiked(1)
-      if (data.total <= 20) {
-        setHasMore(false)
-      }
       setVideos(data.data)
       setNumberOfPages(data.numberOfPages)
       setPage(2)
       setLoading(false)
+      if (data.total <= 20) {
+        setHasMore(false)
+      } else {
+        setHasMore(true)
+      }
     }
     getdata()
   }, [])
