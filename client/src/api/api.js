@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://youpixel-api.vercel.app' })
+const API = axios.create({ baseURL: 'https://youpixel-api.onrender.com/' })
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
