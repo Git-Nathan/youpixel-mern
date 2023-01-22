@@ -94,7 +94,7 @@ function Comments({ videoId, currentUser, handleLogin }) {
       setNumOfComments(data.total)
       setNumberOfPages(data.numberOfPages)
       setPage(2)
-      if (data.data.length < 20) {
+      if (data.total <= 20) {
         setHasMore(false)
       } else {
         setHasMore(true)

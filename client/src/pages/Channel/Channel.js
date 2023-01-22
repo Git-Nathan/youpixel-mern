@@ -72,7 +72,7 @@ function Channel() {
       setPage(2)
       setIsPageLoading(false)
       setIsLoading(false)
-      if (data.data.total <= 20) {
+      if (data.total <= 20) {
         setHasMore(false)
       } else {
         setHasMore(true)
