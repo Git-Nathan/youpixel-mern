@@ -27,7 +27,7 @@ function Channel() {
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(false)
   const [numberOfPages, setNumberOfPages] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const getMoreVideos = useCallback(async () => {
     if (page >= numberOfPages) {
