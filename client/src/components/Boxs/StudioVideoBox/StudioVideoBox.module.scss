@@ -1,7 +1,11 @@
-.video-img {
+.thumbnail {
   width: 120px;
-  height: 83px;
-  padding: 8px 0;
+  height: 67px;
+  margin: 8px 0;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .video-col-end {

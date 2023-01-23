@@ -111,14 +111,14 @@ function Watch() {
   return (
     <div className={cn('wrapper')}>
       <div className={cn('primary')}>
-        {
+        <div className={cn('video-player-wrapper')}>
           <video
             className={cn('video-player')}
             src={video.videoUrl}
             controls
             autoPlay
           ></video>
-        }
+        </div>
         <div className={cn('video-info-wrapper')}>
           <h2 className={cn('video-name')}>{video.title}</h2>
           <div className={cn('video-options-wrapper')}>

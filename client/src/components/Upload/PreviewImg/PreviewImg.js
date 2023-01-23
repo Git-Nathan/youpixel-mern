@@ -27,7 +27,10 @@ function PreviewImg({ imgPerc, inputs, setImg }) {
     return (
       <div
         className={cn('wrapper')}
-        style={{ backgroundImage: `url(${inputs.imgUrl})` }}
+        style={{
+          backgroundImage: `url(${inputs.imgUrl})`,
+          backgroundColor: 'black',
+        }}
       ></div>
     )
   } else {

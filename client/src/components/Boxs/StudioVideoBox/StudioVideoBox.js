@@ -30,11 +30,10 @@ function StudioVideoBox({ video }) {
       <td className={cn('video-col')} style={{ padding: '0 0 0 12px' }}>
         <div style={{ display: 'flex' }}>
           <Link className={cn('video-link')} to={`/watch?v=${video._id}`}>
-            <img
-              className={cn('video-img')}
-              src={video.imgUrl}
-              alt="video img"
-            />
+            <div
+              className={cn('thumbnail')}
+              style={{ backgroundImage: `url(${video?.imgUrl})` }}
+            ></div>
             <div className={cn('video-duration')}>{videoDuration}</div>
           </Link>
           <div className={cn('video-col-end')}>
