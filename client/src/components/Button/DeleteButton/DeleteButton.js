@@ -31,8 +31,7 @@ function DeleteButton({ video, className, handle }) {
         const imageRef = ref(storage, video.imgPath)
         deleteObject(imageRef)
       }
-      dispatch(deleteVideo(video._id))
-      notify()
+      dispatch(deleteVideo(video._id, notify))
     } catch (error) {
       console.log(error)
     }

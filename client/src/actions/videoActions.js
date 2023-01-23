@@ -89,10 +89,11 @@ export const addView = (videoId) => async () => {
   }
 }
 
-export const deleteVideo = (videoId) => async (dispatch) => {
+export const deleteVideo = (videoId, notify) => async (dispatch) => {
   try {
     await api.deleteVideo(videoId)
     dispatch({ type: RELOAD })
+    notify()
   } catch (error) {
     console.log(error)
   }
