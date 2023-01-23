@@ -182,6 +182,7 @@ function Comments({ videoId, currentUser, handleLogin }) {
             comments={comments}
             setComments={setComments}
             setNumOfComments={setNumOfComments}
+            handleLogin={handleLogin}
           />
         ))}
         {isLoading && <Loading mgt="0px" size="3em" />}

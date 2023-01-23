@@ -21,6 +21,7 @@ function Comment({
   comments,
   setComments,
   setNumOfComments,
+  handleLogin,
 }) {
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
@@ -76,7 +77,7 @@ function Comment({
           {open && (
             <>
               <div className={cn('menu-wrapper')}>
-                {currentUser.result._id === comment.userId && (
+                {currentUser?.result._id === comment.userId && (
                   <button
                     className={cn('menu-item')}
                     onClick={() => {
@@ -89,12 +90,24 @@ function Comment({
                   </button>
                 )}
 
-                {currentUser.result._id !== comment.userId && (
+                {currentUser?.result &&
+                currentUser?.result._id !== comment.userId ? (
                   <button
                     className={cn('menu-item')}
                     onClick={() => {
                       setOpen(false)
                       setOpen3(true)
+                    }}
+                  >
+                    <FeedbackIcon />
+                    <span className={cn('menu-text')}>Báo vi phạm</span>
+                  </button>
+                ) : (
+                  <button
+                    className={cn('menu-item')}
+                    onClick={() => {
+                      handleLogin()
+                      setOpen(false)
                     }}
                   >
                     <FeedbackIcon />
