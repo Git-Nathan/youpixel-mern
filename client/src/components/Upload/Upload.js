@@ -305,6 +305,11 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
                   />
                 </div>
                 <div className={cn('remind')}>
+                  Lưu ý: Vì tổng dụng lượng lưu trữ miễn phí của firebase chỉ có
+                  5gb thôi nên mọi người có đăng video thì đăng video nhẹ nhẹ
+                  thôi nhá ;)
+                  <br />
+                  <br />
                   Bạn cần đảm bảo không vi phạm bản quyền hoặc quyền riêng tư
                   của người khác.
                 </div>
