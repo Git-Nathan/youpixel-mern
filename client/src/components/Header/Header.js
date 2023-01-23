@@ -62,7 +62,7 @@ function Header() {
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT })
     setCurrentUser(null)
-    window.location.href = `/`
+    window.location.reload(false)
   }, [dispatch])
 
   useEffect(() => {

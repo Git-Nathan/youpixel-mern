@@ -91,18 +91,19 @@ function Comment({
                 )}
 
                 {currentUser?.result &&
-                currentUser?.result._id !== comment.userId ? (
-                  <button
-                    className={cn('menu-item')}
-                    onClick={() => {
-                      setOpen(false)
-                      setOpen3(true)
-                    }}
-                  >
-                    <FeedbackIcon />
-                    <span className={cn('menu-text')}>Báo vi phạm</span>
-                  </button>
-                ) : (
+                  currentUser?.result._id !== comment.userId && (
+                    <button
+                      className={cn('menu-item')}
+                      onClick={() => {
+                        setOpen(false)
+                        setOpen3(true)
+                      }}
+                    >
+                      <FeedbackIcon />
+                      <span className={cn('menu-text')}>Báo vi phạm</span>
+                    </button>
+                  )}
+                {!currentUser?.result && (
                   <button
                     className={cn('menu-item')}
                     onClick={() => {
