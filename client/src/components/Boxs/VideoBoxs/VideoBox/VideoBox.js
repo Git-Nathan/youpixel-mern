@@ -21,7 +21,7 @@ function VideoBox({ video }) {
           <Link to={`/watch?v=${video._id}`} className={cn('thumbnail-link')}>
             <div
               className={cn('thumbnail')}
-              style={{ backgroundImage: `url(${video?.imgUrl})` }}
+              style={{ backgroundImage: `url('${video.imgUrl}')` }}
             ></div>
             <div className={cn('video-duration')}>{videoDuration}</div>
           </Link>
@@ -32,7 +32,7 @@ function VideoBox({ video }) {
               <div
                 referrerPolicy="no-referrer"
                 className={cn('author-img')}
-                style={{ backgroundImage: `url(${video.userInfo.picture})` }}
+                style={{ backgroundImage: `url('${video.userInfo.picture}')` }}
               ></div>
             </Link>
           </div>

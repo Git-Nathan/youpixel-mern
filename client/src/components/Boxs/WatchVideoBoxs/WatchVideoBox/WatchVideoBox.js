@@ -20,7 +20,7 @@ function WatchVideoBox({ video }) {
         <div
           className={cn('video-img')}
           style={{
-            backgroundImage: `url(${video.imgUrl})`,
+            backgroundImage: `url('${video.imgUrl}')`,
           }}
         ></div>
         <div className={cn('video-duration')}>{videoDuration}</div>

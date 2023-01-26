@@ -20,7 +20,7 @@ function SearchVideoBox({ video }) {
         <>
           <div
             className={cn('thumbnail')}
-            style={{ backgroundImage: `url(${video?.imgUrl})` }}
+            style={{ backgroundImage: `url('${video?.imgUrl}')` }}
           ></div>
           <div className={cn('video-duration')}>{videoDuration}</div>
         </>

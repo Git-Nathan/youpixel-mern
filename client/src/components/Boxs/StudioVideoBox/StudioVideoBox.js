@@ -32,7 +32,7 @@ function StudioVideoBox({ video }) {
           <Link className={cn('video-link')} to={`/watch?v=${video._id}`}>
             <div
               className={cn('thumbnail')}
-              style={{ backgroundImage: `url(${video?.imgUrl})` }}
+              style={{ backgroundImage: `url('${video?.imgUrl}')` }}
             ></div>
             <div className={cn('video-duration')}>{videoDuration}</div>
           </Link>

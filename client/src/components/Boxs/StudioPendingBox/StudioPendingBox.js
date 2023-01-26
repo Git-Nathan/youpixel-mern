@@ -24,7 +24,7 @@ function StudioPendingBox({ video }) {
             {video?.imgUrl ? (
               <div
                 className={cn('thumbnail')}
-                style={{ backgroundImage: `url(${video?.imgUrl})` }}
+                style={{ backgroundImage: `url('${video?.imgUrl}')` }}
               ></div>
             ) : (
               <div className={cn('thumbnail', 'no-img')}></div>

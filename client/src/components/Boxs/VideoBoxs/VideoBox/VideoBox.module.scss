@@ -61,6 +61,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  overflow-wrap: anywhere;
   margin-top: 3px;
   margin-right: 36px;
 }
@@ -71,6 +72,7 @@
   line-height: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
+  overflow-wrap: anywhere;
   text-decoration: none;
   margin-top: 8px;
   width: fit-content;

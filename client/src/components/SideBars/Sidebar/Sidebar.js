@@ -140,14 +140,14 @@ function Sidebar() {
                     <div
                       referrerPolicy="no-referrer"
                       className={cn('author-img')}
-                      style={{ backgroundImage: `url(${item.picture})` }}
+                      style={{ backgroundImage: `url('${item.picture}')` }}
                     ></div>
                   }
                   activeIcon={
                     <div
                       referrerPolicy="no-referrer"
                       className={cn('author-img')}
-                      style={{ backgroundImage: `url(${item.picture})` }}
+                      style={{ backgroundImage: `url('${item.picture}')` }}
                     ></div>
                   }
                 ></MenuItem>

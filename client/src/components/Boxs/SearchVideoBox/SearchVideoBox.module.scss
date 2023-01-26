@@ -33,6 +33,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 .views-and-time {
@@ -99,6 +100,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 .img-link {
