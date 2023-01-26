@@ -22,8 +22,10 @@ function Comments({ videoId, currentUser, handleLogin }) {
   const [numberOfPages, setNumberOfPages] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [update, setUpdate] = useState(false)
+  const [isCommentLoading, setIsCommentLoading] = useState(false)
 
   const handleComment = async () => {
+    setIsCommentLoading(true)
     dispatch(addComment(comment, videoId))
     setComment('')
     setOpen(false)
@@ -99,6 +101,7 @@ function Comments({ videoId, currentUser, handleLogin }) {
       } else {
         setHasMore(true)
       }
+      setIsCommentLoading(false)
     }
     Comments()
   }, [videoId, update])
@@ -171,6 +174,7 @@ function Comments({ videoId, currentUser, handleLogin }) {
             )}
           </div>
         </div>
+        {isCommentLoading && <Loading mgt="0px" size="3em" />}
         {comments.map((comment) => (
           <Comment
             key={comment._id}
