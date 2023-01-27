@@ -32,7 +32,6 @@ function StudioVideos() {
     const getdata = async () => {
       const { data } = await getUserVideos(currentUser?.result._id, 1)
       setVideos(data.data)
-      console.log(data.data)
       setNumberOfPages(data.numberOfPages)
       setPage(2)
       setLoading(false)
