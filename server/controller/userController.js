@@ -409,8 +409,8 @@ export const getLiked = async (req, res, next) => {
 
     res.status(200).json({
       data: likedVideos,
-      numberOfPages: Math.ceil(total[0].count / 20),
-      total: total[0].count,
+      numberOfPages: Math.ceil(total?.count ? total[0].count / 20 : 1),
+      total: total?.count ? total[0].count : 0,
     })
   } catch (err) {
     next(err)
@@ -515,8 +515,8 @@ export const getWatched = async (req, res, next) => {
     ])
     res.status(200).json({
       data: watchedVideos,
-      numberOfPages: Math.ceil(total[0].count / 20),
-      total: total[0].count,
+      numberOfPages: Math.ceil(total?.count ? total[0].count / 20 : 1),
+      total: total?.count ? total[0].count : 0,
     })
   } catch (err) {
     next(err)
