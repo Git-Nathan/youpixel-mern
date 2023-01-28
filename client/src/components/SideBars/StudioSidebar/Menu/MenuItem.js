@@ -18,10 +18,7 @@ function MenuItem({ title, to, icon, activeIcon, unusable }) {
   }
 
   return (
-    <NavLink
-      className={(nav) => cn('menu-item', { active: nav.isActive })}
-      to={(nav) => (nav.isActive ? '/' : to)}
-    >
+    <NavLink className={(nav) => cn('menu-item', { active: nav.isActive })}>
       <div className={cn('wrap')}>
         <span className={cn('icon')}>{icon}</span>
         <span className={cn('active-icon')}>{activeIcon}</span>

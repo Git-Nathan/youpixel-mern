@@ -2,11 +2,13 @@ import classNames from 'classnames/bind'
 import styles from './StudioSidebar.module.scss'
 import { MenuItem } from './Menu'
 import { HomeIcon, HomeIconActive } from '../../icons'
+import { useNavigate } from 'react-router-dom'
 
 const cn = classNames.bind(styles)
 
 function StudioSidebar() {
   const currentUser = JSON.parse(localStorage.getItem('profile'))
+  const navigate = useNavigate()
 
   return (
     <aside className={cn('wrapper')}>
@@ -31,6 +33,9 @@ function StudioSidebar() {
               title="Nội dung"
               icon={<HomeIcon />}
               activeIcon={<HomeIconActive />}
+              onClick={() => {
+                navigate('/studio/videos/upload')
+              }}
             ></MenuItem>
             {/* <MenuItem
               to={'/notyet'}
@@ -53,7 +58,6 @@ function StudioSidebar() {
               to={'/notyet'}
               title="Gửi phản hồi"
               icon={<MyVideosIcon />}
-              unusable
             ></MenuItem>
           </div> */}
         </nav>
