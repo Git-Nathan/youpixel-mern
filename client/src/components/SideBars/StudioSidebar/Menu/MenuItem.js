@@ -20,7 +20,7 @@ function MenuItem({ title, to, icon, activeIcon, unusable }) {
   return (
     <NavLink
       className={(nav) => cn('menu-item', { active: nav.isActive })}
-      to={to}
+      to={(nav) => (nav.isActive ? '/' : to)}
     >
       <div className={cn('wrap')}>
         <span className={cn('icon')}>{icon}</span>

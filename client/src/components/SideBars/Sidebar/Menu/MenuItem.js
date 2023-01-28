@@ -8,7 +8,7 @@ function MenuItem({ title, to, icon, activeIcon }) {
   return (
     <NavLink
       className={(nav) => cn('menu-item', { active: nav.isActive })}
-      to={to}
+      to={(nav) => (nav.isActive ? '/' : to)}
       end
     >
       <div className={cn('wrap')}>
