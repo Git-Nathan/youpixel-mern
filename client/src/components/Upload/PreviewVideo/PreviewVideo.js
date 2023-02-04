@@ -35,7 +35,7 @@ function PreviewVideo({ videoPerc, inputs, setVideo }) {
   } else {
     return (
       <div className={cn('wrapper')} style={{ color: 'var(--text-color)' }}>
-        {'Uploading: ' + videoPerc + '%'}
+        <div className={cn('percent')}>{'Uploading: ' + videoPerc + '%'}</div>
       </div>
     )
   }
