@@ -8,17 +8,19 @@ function PreviewVideo({ videoPerc, inputs, setVideo }) {
   if (videoPerc === 0) {
     return (
       <div className={cn('wrapper')}>
-        <label className={cn('input-label')} htmlFor={cn('video-input')}>
-          <AddVideoIcon />
-          <span style={{ marginTop: '4px' }}>Tải video lên (bắt buộc)</span>
-        </label>
-        <input
-          className={cn('video-input')}
-          type="file"
-          accept="video/*"
-          id={cn('video-input')}
-          onChange={(e) => setVideo(e.target.files[0])}
-        />
+        <div className={cn('up-btn')}>
+          <label className={cn('input-label')} htmlFor={cn('video-input')}>
+            <AddVideoIcon />
+            <span style={{ marginTop: '4px' }}>Tải video lên (bắt buộc)</span>
+          </label>
+          <input
+            className={cn('video-input')}
+            type="file"
+            accept="video/*"
+            id={cn('video-input')}
+            onChange={(e) => setVideo(e.target.files[0])}
+          />
+        </div>
       </div>
     )
   } else if (videoPerc >= 100) {
