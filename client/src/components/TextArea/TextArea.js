@@ -11,8 +11,9 @@ function TextArea({
   className,
   rows,
   placeholder,
+  isWrong,
 }) {
-  const classes = cn('title-box', {
+  const classes = cn('title-box', isWrong ? 'validated' : '', {
     [className]: className,
   })
 
@@ -26,6 +27,9 @@ function TextArea({
         name={name}
         value={value}
         onChange={onChange}
+        onFocus={(e) => {
+          e.target.select()
+        }}
       />
     </div>
   )

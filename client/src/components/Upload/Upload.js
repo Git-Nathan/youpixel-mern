@@ -26,6 +26,7 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
   const [videoId, setVideoId] = useState()
 
   const [upload, setUpload] = useState(false)
+  const [isWrong, setIsWrong] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -34,6 +35,11 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value }
     })
+    if (e.target.value.trim()) {
+      setIsWrong(false)
+    } else {
+      setIsWrong(true)
+    }
   }
 
   const uploadVideo = useCallback(
@@ -237,6 +243,7 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
                     onChange={handleChange}
                     name="title"
                     rows="2"
+                    isWrong={isWrong}
                   />
 
                   <TextArea
