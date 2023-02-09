@@ -31,7 +31,7 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleChange = (e) => {
+  const handleChange1 = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value }
     })
@@ -40,6 +40,12 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
     } else {
       setIsWrong(true)
     }
+  }
+
+  const handleChange2 = (e) => {
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value }
+    })
   }
 
   const uploadVideo = useCallback(
@@ -240,7 +246,7 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
                     title="Tiêu đề (bắt buộc)"
                     placeholder="Thêm tiêu đề để mô tả video của bạn"
                     value={inputs.title}
-                    onChange={handleChange}
+                    onChange={handleChange1}
                     name="title"
                     rows="2"
                     isWrong={isWrong}
@@ -251,7 +257,7 @@ function Upload({ notify, setOpen, edit, title, videoEdit }) {
                     title="Mô tả"
                     placeholder="Giới thiệu về video của bạn cho người xem"
                     value={inputs.desc}
-                    onChange={handleChange}
+                    onChange={handleChange2}
                     name="desc"
                     rows="6"
                   />
