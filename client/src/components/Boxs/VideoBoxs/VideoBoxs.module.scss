@@ -3,7 +3,21 @@
   margin: 0 auto;
 }
 
-@media screen and (min-width: 64em) and (max-width: 113.9375em) {
+@media screen and (min-width: 69.5em) and (max-width: 86em) {
+  .videoboxs-row {
+    width: auto;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (min-width: 101em) and (max-width: 113.9375em) {
+  .videoboxs-row {
+    width: auto;
+    margin: 0 8px;
+  }
+}
+
+@media screen and (min-width: 122em) {
   .videoboxs-row {
     width: auto;
     margin: 0 8px;

@@ -28,7 +28,6 @@
 
 .active-icon {
   display: none;
-  margin-right: 24px;
   align-items: center;
 }
 
@@ -40,11 +39,18 @@
 }
 
 .icon {
-  margin-right: 24px;
   display: flex;
   align-items: center;
 }
 
 .title {
   line-height: 40px;
+  margin-left: 24px;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &.collapsed {
+    width: 0;
+    opacity: 0;
+  }
 }

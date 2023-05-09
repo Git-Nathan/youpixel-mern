@@ -5,9 +5,14 @@
   height: calc(100% - var(--default-layout-header-height));
   padding: 0 12px;
   overflow: hidden;
+  transition: all 0.2s;
 
   &:hover {
     overflow-y: scroll;
+  }
+
+  &.collapsed {
+    width: 80px;
   }
 }
 
@@ -16,13 +21,26 @@
   border-color: #2c2c2c;
   margin-top: 12px;
   padding-top: 12px;
+  transition: all 0.2s;
+
+  &.collapsed {
+    padding: 0 12px 0;
+    height: 0;
+    opacity: 0;
+  }
 }
 
 .footer {
   border-top: 1px solid;
   border-color: #2c2c2c;
   margin-top: 12px;
-  width: 204px;
+  width: 100%;
+  white-space: nowrap;
+  transition: all 0.2s;
+
+  &.collapsed {
+    border-top: 0px;
+  }
 }
 
 .footer-box {
@@ -35,15 +53,33 @@
 .footer-link {
   font-size: 13px;
   margin-right: 8px;
+  transition: all 0.2s;
+
+  &.collapsed {
+    line-height: 0;
+    opacity: 0;
+  }
 }
 
 .nav-box-title {
   padding: 2px 12px 4px;
   font-size: 16px;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &.collapsed {
+    padding: 0 12px 0;
+    opacity: 0;
+    line-height: 0;
+  }
 }
 
 .nav-wrap {
   width: 204px;
+
+  &.collapsed {
+    width: 48px;
+  }
 }
 
 .wrap {
@@ -54,13 +90,20 @@
 }
 
 .icon {
-  margin-right: 24px;
   display: flex;
   align-items: center;
 }
 
 .title {
   line-height: 40px;
+  margin-left: 24px;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &.collapsed {
+    width: 0;
+    opacity: 0;
+  }
 }
 
 .menu-item {
@@ -82,10 +125,24 @@
 .guide-signin {
   padding: 0 12px;
   color: var(--text-color-darker);
+  transition: all 0.2s;
+  width: 204px;
+
+  &.collapsed {
+    opacity: 0;
+    line-height: 0;
+    visibility: hidden;
+  }
 }
 
 .signin-btn {
   margin: 6px 0 0 12px;
+
+  &.collapsed {
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+  }
 }
 
 .author-img {

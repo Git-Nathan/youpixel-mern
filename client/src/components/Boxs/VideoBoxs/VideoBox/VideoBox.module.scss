@@ -4,6 +4,22 @@
   width: 25%;
 }
 
+@media screen and (min-width: 69.5em) and (max-width: 101em) {
+  .grid__column {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 33.3%;
+  }
+}
+
+@media screen and (min-width: 122em) {
+  .grid__column {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 20%;
+  }
+}
+
 .wrapper {
   border-radius: 12px;
   transition: all 0.1s;

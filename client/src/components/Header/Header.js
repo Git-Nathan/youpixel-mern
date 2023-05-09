@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const cn = classNames.bind(styles)
 
-function Header() {
+function Header({ changeSidebarState }) {
   const dispatch = useDispatch()
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('profile')),
@@ -86,7 +86,7 @@ function Header() {
       <header className={cn('wrapper')}>
         <div className={cn('inner')}>
           <div className={cn('start')}>
-            <div className={cn('sidebar-btn')}>
+            <div className={cn('sidebar-btn')} onClick={changeSidebarState}>
               <SidebarIcon height="25px" />
             </div>
             <Link to="/" className={cn('logo-link')}>

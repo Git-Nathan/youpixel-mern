@@ -20,7 +20,7 @@ import Button from '~/components/Button'
 
 const cn = classNames.bind(styles)
 
-function Sidebar() {
+function Sidebar({ isSidebarCollapsed }) {
   const { reload } = useSelector((store) => store.authReducer)
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('profile')),
@@ -57,8 +57,8 @@ function Sidebar() {
   }, [reload])
 
   return (
-    <aside className={cn('wrapper')}>
-      <nav className={cn('nav-wrap')}>
+    <aside className={cn('wrapper', { collapsed: isSidebarCollapsed })}>
+      <nav className={cn('nav-wrap', { collapsed: isSidebarCollapsed })}>
         <div
           className={cn('nav-box')}
           style={{ borderTop: 'none', marginTop: '0' }}
@@ -68,12 +68,8 @@ function Sidebar() {
             title="Trang chủ"
             icon={<HomeIcon />}
             activeIcon={<HomeIconActive />}
+            isSidebarCollapsed={isSidebarCollapsed}
           ></MenuItem>
-          {/* <MenuItem
-            to={'/notyet'}
-            title="Kênh đăng ký"
-            icon={<SubcribedIcon />}
-          ></MenuItem> */}
         </div>
         <div className={cn('nav-box')}>
           {currentUser?.result ? (
@@ -83,17 +79,20 @@ function Sidebar() {
                 title="Video đã xem"
                 icon={<WatchedIcon />}
                 activeIcon={<WatchedIconActive />}
+                isSidebarCollapsed={isSidebarCollapsed}
               ></MenuItem>
               <MenuItem
                 to={'/studio/videos/upload'}
                 title="Video của bạn"
                 icon={<MyVideosIcon />}
+                isSidebarCollapsed={isSidebarCollapsed}
               ></MenuItem>
               <MenuItem
                 to={'/liked'}
                 title="Video đã thích"
                 icon={<LikeIcon pathFill="white" />}
                 activeIcon={<LikeIcon pathFill="var(--primary-color)" />}
+                isSidebarCollapsed={isSidebarCollapsed}
               ></MenuItem>
             </>
           ) : (
@@ -103,7 +102,11 @@ function Sidebar() {
                   <span className={cn('icon')}>
                     <WatchedIcon />
                   </span>
-                  <span className={cn('title')}>Video đã xem</span>
+                  <span
+                    className={cn('title', { collapsed: isSidebarCollapsed })}
+                  >
+                    Video đã xem
+                  </span>
                 </div>
               </button>
               <button className={cn('menu-item')} onClick={handleLogin}>
@@ -111,7 +114,11 @@ function Sidebar() {
                   <span className={cn('icon')}>
                     <MyVideosIcon />
                   </span>
-                  <span className={cn('title')}>Video của bạn</span>
+                  <span
+                    className={cn('title', { collapsed: isSidebarCollapsed })}
+                  >
+                    Video của bạn
+                  </span>
                 </div>
               </button>
               <button className={cn('menu-item')} onClick={handleLogin}>
@@ -119,15 +126,30 @@ function Sidebar() {
                   <span className={cn('icon')}>
                     <LikeIcon pathFill="white" />
                   </span>
-                  <span className={cn('title')}>Video đã thích</span>
+                  <span
+                    className={cn('title', { collapsed: isSidebarCollapsed })}
+                  >
+                    Video đã thích
+                  </span>
                 </div>
               </button>
             </>
           )}
         </div>
         {currentUser ? (
-          <div className={cn('nav-box')}>
-            <h3 className={cn('nav-box-title')}>Kênh đăng ký</h3>
+          <div
+            className={cn(
+              'nav-box',
+              currentUser.subscribedUsers.length === 0 && {
+                collapsed: isSidebarCollapsed,
+              },
+            )}
+          >
+            <h3
+              className={cn('nav-box-title', { collapsed: isSidebarCollapsed })}
+            >
+              Kênh đăng ký
+            </h3>
             {currentUser.subscribedUsers
               .slice(0)
               .reverse()
@@ -150,23 +172,32 @@ function Sidebar() {
                       style={{ backgroundImage: `url('${item.picture}')` }}
                     ></div>
                   }
+                  isSidebarCollapsed={isSidebarCollapsed}
                 ></MenuItem>
               ))}
 
             {currentUser.subscribedUsers.length === 0 && (
-              <div className={cn('guide-signin')}>
+              <div
+                className={cn('guide-signin', {
+                  collapsed: isSidebarCollapsed,
+                })}
+              >
                 Những kênh bạn đăng ký sẽ được hiển thị ở đây.
               </div>
             )}
           </div>
         ) : (
           <>
-            <div className={cn('nav-box')}>
-              <div className={cn('guide-signin')}>
+            <div className={cn('nav-box', { collapsed: isSidebarCollapsed })}>
+              <div
+                className={cn('guide-signin', {
+                  collapsed: isSidebarCollapsed,
+                })}
+              >
                 Hãy đăng nhập để thích video, bình luận và đăng ký kênh.
               </div>
               <Button
-                className={cn('signin-btn')}
+                className={cn('signin-btn', { collapsed: isSidebarCollapsed })}
                 children="Đăng nhập"
                 small
                 normal
@@ -177,31 +208,54 @@ function Sidebar() {
         )}
 
         <div className={cn('nav-box')}>
-          <h3 className={cn('nav-box-title')}>Khám phá</h3>
+          <h3
+            className={cn('nav-box-title', { collapsed: isSidebarCollapsed })}
+          >
+            Khám phá
+          </h3>
           <MenuItem
             to={'/topviews'}
             title="Xu hướng"
             icon={<TopViewsIcon />}
             activeIcon={<TopViewsIconActive />}
+            isSidebarCollapsed={isSidebarCollapsed}
           ></MenuItem>
         </div>
+        <div className={cn('footer', { collapsed: isSidebarCollapsed })}>
+          <div className={cn('footer-box')}>
+            <div
+              className={cn('footer-link', { collapsed: isSidebarCollapsed })}
+            >
+              Giới thiệu
+            </div>
+            <div
+              className={cn('footer-link', { collapsed: isSidebarCollapsed })}
+            >
+              Điều khoản
+            </div>
+            <div
+              className={cn('footer-link', { collapsed: isSidebarCollapsed })}
+            >
+              Quyền riêng tư
+            </div>
+            <div
+              className={cn('footer-link', { collapsed: isSidebarCollapsed })}
+            >
+              Chích sách và an toàn
+            </div>
+            <div
+              className={cn('footer-link', { collapsed: isSidebarCollapsed })}
+            >
+              Cách YouPixels hoạt động
+            </div>
+            <div
+              className={cn('footer-link', { collapsed: isSidebarCollapsed })}
+            >
+              Thử các tính năng mới
+            </div>
+          </div>
+        </div>
       </nav>
-      <div className={cn('footer')}>
-        <div className={cn('footer-box')}>
-          <div className={cn('footer-link')}>Giới thiệu</div>
-          <div className={cn('footer-link')}>Điều khoản</div>
-          <div className={cn('footer-link')}>Quyền riêng tư</div>
-          <div className={cn('footer-link')}>Chích sách và an toàn</div>
-          <div className={cn('footer-link')}>Cách YouPixels hoạt động</div>
-          <div className={cn('footer-link')}>Thử các tính năng mới</div>
-        </div>
-        <div className={cn('footer-box')} style={{ padding: '16px 12px' }}>
-          <div className={cn('footer-link')}>Một sản phẩm của:</div>
-          <div className={cn('footer-link')}>Trịnh Thị Anh</div>
-          <div className={cn('footer-link')}>Bùi Quang Thắng</div>
-          <div className={cn('footer-link')}>Ngô Văn Thuần</div>
-        </div>
-      </div>
     </aside>
   )
 }

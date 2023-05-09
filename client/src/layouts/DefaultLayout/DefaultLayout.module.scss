@@ -1,4 +1,9 @@
 .content {
   width: 100%;
   margin-left: 240px;
+  transition: all 0.2s;
+
+  &.collapsed {
+    margin-left: 88px;
+  }
 }
