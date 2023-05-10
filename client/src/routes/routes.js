@@ -11,9 +11,10 @@ import Results from '~/pages/Results'
 import Watched from '~/pages/Watched'
 import Liked from '~/pages/Liked'
 import Block from '~/pages/Block'
+import HomeLayout from '~/layouts/HomeLayout'
 
 export const publicRoutes = [
-  { path: '/', conponemt: Home },
+  { path: '/', conponemt: Home, layout: HomeLayout },
   { path: '/topviews', conponemt: TopViews },
   { path: '/watch', conponemt: Watch, layout: HeaderOnly },
   { path: '/channel/:id', conponemt: Channel },

@@ -4,18 +4,26 @@
   width: 25%;
 }
 
+@media screen and (max-width: 36.6875em) {
+  .grid__column {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 36.6875em) and (max-width: 69.4375em) {
+  .grid__column {
+    width: 50%;
+  }
+}
+
 @media screen and (min-width: 69.5em) and (max-width: 101em) {
   .grid__column {
-    padding-left: 8px;
-    padding-right: 8px;
     width: 33.3%;
   }
 }
 
 @media screen and (min-width: 122em) {
   .grid__column {
-    padding-left: 8px;
-    padding-right: 8px;
     width: 20%;
   }
 }
@@ -25,6 +33,7 @@
   transition: all 0.1s;
   padding: 4px 4px 0 4px;
   margin: -4px -4px 0 -4px;
+  min-width: 234px;
 
   &:hover {
     background-color: #ffffff14;

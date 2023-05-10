@@ -1,0 +1,22 @@
+.content {
+  width: 100%;
+  margin-left: 240px;
+  transition: all 0.2s;
+
+  &.collapsed {
+    margin-left: 88px;
+  }
+}
+
+.filter-bar {
+  width: calc(100% - 240px);
+  height: 56px;
+  display: flex;
+  position: fixed;
+  background-color: var(--background-color);
+  z-index: 9;
+
+  &.collapsed {
+    width: calc(100% - 88px);
+  }
+}

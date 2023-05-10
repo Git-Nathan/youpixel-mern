@@ -3,6 +3,13 @@
   margin: 0 auto;
 }
 
+@media screen and (max-width: 55.375em) {
+  .videoboxs-row {
+    width: auto;
+    margin: 0 8px;
+  }
+}
+
 @media screen and (min-width: 69.5em) and (max-width: 86em) {
   .videoboxs-row {
     width: auto;
