@@ -1,1 +1,1 @@
-expect {default} from './WatchVideoBoxs.js'
+export { default } from './WatchVideoBoxs.js'

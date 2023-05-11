@@ -26,7 +26,8 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "use-debounce": "^8.0.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^4.1.0",

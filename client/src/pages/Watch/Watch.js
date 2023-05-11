@@ -17,6 +17,7 @@ import axios from 'axios'
 import Loading from '~/components/Loading'
 import FilterBar from '~/components/FilterBar'
 import { toast } from 'react-toastify'
+import useViewport from '~/hooks/useViewport'
 
 const cn = classNames.bind(styles)
 
@@ -27,6 +28,8 @@ function Watch() {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('profile')),
   )
+  const viewPort = useViewport()
+  const oneColumn = viewPort.width <= 1016
 
   const dispatch = useDispatch()
 
@@ -184,12 +187,14 @@ function Watch() {
           />
         </div>
       </div>
-      <div className={cn('secondary')}>
-        <div className={cn('filter-bar')}>
-          <FilterBar />
+      {!oneColumn && (
+        <div className={cn('secondary')}>
+          <div className={cn('filter-bar')}>
+            <FilterBar />
+          </div>
+          <WatchVideoBoxs />
         </div>
-        <WatchVideoBoxs />
-      </div>
+      )}
     </div>
   )
 }
