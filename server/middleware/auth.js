@@ -9,7 +9,7 @@ const auth = async (req, res, next) => {
     req.role = decodedData?.role
     next()
   } catch (error) {
-    console.log(error)
+    res.status(500).send({ message: error })
   }
 }
 

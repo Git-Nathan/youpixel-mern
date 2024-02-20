@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 const VideoSchema = new mongoose.Schema(
   {
     userId: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      ref: 'users',
       required: true,
     },
     title: {
@@ -37,14 +38,6 @@ const VideoSchema = new mongoose.Schema(
     views: {
       type: Number,
       default: 0,
-    },
-    likes: {
-      type: [String],
-      default: [],
-    },
-    dislikes: {
-      type: [String],
-      default: [],
     },
     status: {
       type: String,

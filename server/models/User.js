@@ -19,32 +19,19 @@ const UserSchema = new mongoose.Schema(
     picture: {
       type: String,
     },
-    subscribers: {
-      type: [String],
+    watchedVideos: {
+      type: [
+        {
+          type: new mongoose.Schema(
+            {
+              videoId: { type: mongoose.Types.ObjectId, unique: true },
+            },
+            { timestamps: true },
+          ),
+        },
+      ],
       default: [],
     },
-    subscribedUsers: {
-      type: [String],
-      default: [],
-    },
-    likedVideos: [
-      {
-        type: new mongoose.Schema(
-          { videoId: { type: String, unique: true } },
-          { timestamps: true },
-        ),
-      },
-    ],
-    watchedVideos: [
-      {
-        type: new mongoose.Schema(
-          {
-            videoId: { type: String, unique: true },
-          },
-          { timestamps: true },
-        ),
-      },
-    ],
   },
   { timestamps: true },
 )

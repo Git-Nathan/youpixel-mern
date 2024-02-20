@@ -2,6 +2,7 @@ import express from 'express'
 import {
   addVideo,
   addView,
+  addWatchedVideo,
   deleteVideo,
   editVideo,
   fetchVideos,
@@ -10,21 +11,24 @@ import {
   getUserVideosPending,
   getVideo,
   getVideosBySearch,
+  getWatched,
 } from '../controller/videoController.js'
 import auth from '../middleware/auth.js'
 const router = express.Router()
 
-router.post('/edit/:videoId', auth, editVideo)
-router.post('/add', auth, addVideo)
+router.post('/', auth, addVideo)
+router.post('/watched/:videoId', auth, addWatchedVideo)
 
-router.delete('/delete/:videoId', auth, deleteVideo)
+router.delete('/:videoId', auth, deleteVideo)
 
+router.patch('/:videoId', auth, editVideo)
 router.patch('/addview/:id', addView)
 
 router.get('/author/pending', getUserVideosPending)
 router.get('/search', getVideosBySearch)
 router.get('/author', getUserVideos)
 router.get('/topview', getTopView)
+router.get('/watched', auth, getWatched)
 router.get('/:id', getVideo)
 router.get('/', fetchVideos)
 

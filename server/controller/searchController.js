@@ -1,46 +1,37 @@
 import SearchResult from '../models/SearchResult.js'
 
 export const getSearchResult = async (req, res, next) => {
-  const { value } = req.params
+  const v = req.query.v || ''
 
   try {
     const result = await SearchResult.find({
-      content: { $regex: value, $options: 'i' },
+      content: { $regex: v, $options: 'i' },
     })
       .sort({ __v: -1 })
       .limit(10)
     res.status(200).json(result)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    res.status(500).send({ message: error })
   }
 }
 
 export const addSearchResult = async (req, res, next) => {
-  const { value } = req.params
+  const v = req.query.v
 
   try {
     const result = await SearchResult.findOne({
-      content: value,
+      content: v,
     })
     if (result) {
       await SearchResult.findByIdAndUpdate(result._id, {
         $inc: { __v: 1 },
       })
     } else {
-      const newSearchResult = new SearchResult({ content: value })
+      const newSearchResult = new SearchResult({ content: v })
       newSearchResult.save()
     }
     res.status(200).json({ message: 'Added' })
-  } catch (err) {
-    next(err)
-  }
-}
-
-export const getAllSearch = async (req, res, next) => {
-  try {
-    const result = await SearchResult.find().limit(9).sort({ __v: -1 })
-    res.status(200).json({ result })
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    res.status(500).send({ message: error })
   }
 }
