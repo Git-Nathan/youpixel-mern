@@ -4,8 +4,8 @@ import { subscribe, unsubscribe } from '../controller/subscribeController.js'
 
 const router = express.Router()
 
-router.post('/', auth, subscribe)
+router.post('/:channelId', auth, subscribe)
 
-router.delete('/', auth, unsubscribe)
+router.delete('/:channelId', auth, unsubscribe)
 
 export default router

@@ -62,7 +62,7 @@ export const getUser = async (req, res) => {
       },
     ])
 
-    res.status(200).json(user)
+    res.status(200).json({ data: user[0] })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

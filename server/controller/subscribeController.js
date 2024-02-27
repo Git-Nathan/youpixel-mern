@@ -3,7 +3,7 @@ import Subscribe from '../models/Subscribe.js'
 
 export const subscribe = async (req, res) => {
   const userObjectId = mongoose.Types.ObjectId(req.userId)
-  const channelId = mongoose.Types.ObjectId(req.body.channelId)
+  const channelId = mongoose.Types.ObjectId(req.params.channelId)
 
   try {
     const existed = await Subscribe.countDocuments({
@@ -29,7 +29,7 @@ export const subscribe = async (req, res) => {
 
 export const unsubscribe = async (req, res) => {
   const userObjectId = mongoose.Types.ObjectId(req.userId)
-  const channelId = mongoose.Types.ObjectId(req.body.channelId)
+  const channelId = mongoose.Types.ObjectId(req.params.channelId)
 
   try {
     await Subscribe.deleteMany({
