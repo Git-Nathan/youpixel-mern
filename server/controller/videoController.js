@@ -129,20 +129,6 @@ export const getVideo = async (req, res) => {
         },
       },
       {
-        $lookup: {
-          from: 'comments',
-          localField: '_id',
-          foreignField: 'videoId',
-          as: 'comment',
-        },
-      },
-      {
-        $unwind: {
-          path: '$comment',
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
         $sort: {
           'comment.createdAt': -1,
         },

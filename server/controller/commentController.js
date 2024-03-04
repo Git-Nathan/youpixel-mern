@@ -1,21 +1,26 @@
+import mongoose from 'mongoose'
 import Comment from '../models/Comment.js'
 
 export const addComment = async (req, res, next) => {
-  const userId = req.userId
-  const { videoId } = req.params
+  const userObjectId = mongoose.Types.ObjectId(req.userId)
+  const videoId = mongoose.Types.ObjectId(req.params.videoId)
   const { comment } = req.body
-  const newComment = new Comment({ userId, videoId, desc: comment })
+  const newComment = new Comment({
+    userId: userObjectId,
+    videoId,
+    desc: comment,
+  })
 
   try {
     const savedComment = await newComment.save()
     res.status(200).json(savedComment)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
   }
 }
 
 export const getComments = async (req, res, next) => {
-  const { videoId } = req.params
+  const videoId = mongoose.Types.ObjectId(req.params.videoId)
   const { page } = req.query
 
   try {
@@ -25,32 +30,22 @@ export const getComments = async (req, res, next) => {
     const comments = await Comment.aggregate([
       { $match: { videoId: videoId } },
       {
-        $project: {
-          __v: 0,
-        },
-      },
-      { $addFields: { userObjectId: { $toObjectId: '$userId' } } },
-      {
         $lookup: {
           from: 'users',
-          localField: 'userObjectId',
+          localField: 'userId',
           foreignField: '_id',
           as: 'userInfo',
         },
       },
       {
-        $unwind: '$userInfo',
+        $unwind: {
+          path: '$userInfo',
+          preserveNullAndEmptyArrays: true,
+        },
       },
       {
         $project: {
-          'userInfo.createdAt': 0,
-          'userInfo.email': 0,
-          'userInfo.likedVideos': 0,
-          'userInfo.subscribedUsers': 0,
-          'userInfo.updatedAt': 0,
           'userInfo.watchedVideos': 0,
-          'userInfo.__v': 0,
-          'userInfo.subscribers': 0,
         },
       },
       { $sort: { createdAt: -1 } },
@@ -61,36 +56,24 @@ export const getComments = async (req, res, next) => {
     res
       .status(200)
       .json({ data: comments, numberOfPages: Math.ceil(total / 20), total })
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
   }
 }
 
 export const deleteComment = async (req, res, next) => {
-  const { commentId } = req.params
-  const userId = req.userId
+  const commentId = mongoose.Types.ObjectId(req.params.commentId)
+  const userObjectId = mongoose.Types.ObjectId(req.userId)
 
   try {
     const comment = await Comment.findById(commentId)
-    if (userId === comment.userId) {
+    if (userObjectId.equals(comment.userId)) {
       await Comment.findByIdAndDelete(commentId)
       res.status(200).json({ message: 'delete successfully' })
     } else {
-      return next(createError(403, 'You can only delete your comment!'))
+      res.status(404).json({ message: 'You can only delete your comment!' })
     }
-  } catch (err) {
-    next(err)
-  }
-}
-
-export const getComment = async (req, res, next) => {
-  const { commentId } = req.params
-
-  try {
-    const comment = await Comment.findById(commentId)
-
-    res.status(200).json(comment)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
   }
 }

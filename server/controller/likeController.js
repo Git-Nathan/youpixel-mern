@@ -102,3 +102,28 @@ export const getStatus = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const getNumOfLikes = async (req, res) => {
+  const videoId = mongoose.Types.ObjectId(req.params.videoId)
+
+  try {
+    const liked = await Like.countDocuments({
+      videoId,
+      isLike: true,
+    })
+
+    const disliked = await Like.countDocuments({
+      videoId,
+      isLike: false,
+    })
+
+    res.status(200).json({
+      data: {
+        liked,
+        disliked,
+      },
+    })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}
