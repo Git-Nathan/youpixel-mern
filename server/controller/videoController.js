@@ -411,11 +411,10 @@ export const getVideosBySearch = async (req, res, next) => {
           dislikes: 0,
         },
       },
-      { $addFields: { userObjectId: { $toObjectId: '$userId' } } },
       {
         $lookup: {
           from: 'users',
-          localField: 'userObjectId',
+          localField: 'userId',
           foreignField: '_id',
           as: 'userInfo',
         },
@@ -425,14 +424,7 @@ export const getVideosBySearch = async (req, res, next) => {
       },
       {
         $project: {
-          'userInfo.createdAt': 0,
-          'userInfo.email': 0,
-          'userInfo.likedVideos': 0,
-          'userInfo.subscribedUsers': 0,
-          'userInfo.updatedAt': 0,
           'userInfo.watchedVideos': 0,
-          'userInfo.__v': 0,
-          'userInfo.subscribers': 0,
         },
       },
       { $sort: { views: -1 } },
