@@ -42,3 +42,31 @@ export const unsubscribe = async (req, res) => {
     res.status(500).send({ message: error })
   }
 }
+
+export const getSubscribeStatus = async (req, res) => {
+  const userObjectId = mongoose.Types.ObjectId(req.userId)
+  const channelId = mongoose.Types.ObjectId(req.params.channelId)
+
+  try {
+    const existed = await Subscribe.countDocuments({
+      userId: userObjectId,
+      channelId,
+    })
+
+    if (existed === 0) {
+      res.status(200).json({
+        data: {
+          status: false,
+        },
+      })
+    } else {
+      res.status(200).json({
+        data: {
+          status: true,
+        },
+      })
+    }
+  } catch (error) {
+    res.status(500).send({ message: error })
+  }
+}

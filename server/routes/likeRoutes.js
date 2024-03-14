@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   dislike,
+  getLiked,
   getNumOfLikes,
   getStatus,
   like,
@@ -16,5 +17,6 @@ router.post('/dislike/:videoId', auth, dislike)
 
 router.get('/status/:videoId', auth, getStatus)
 router.get('/num/:videoId', getNumOfLikes)
+router.get('/liked', auth, getLiked)
 
 export default router

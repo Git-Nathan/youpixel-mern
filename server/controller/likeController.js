@@ -127,3 +127,93 @@ export const getNumOfLikes = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const getLiked = async (req, res, next) => {
+  const userId = mongoose.Types.ObjectId(req.userId)
+  const { page } = req.query
+
+  try {
+    const startIndex = (Number(page) - 1) * 20
+    const total = await Like.aggregate([
+      {
+        $match: { userId },
+      },
+      {
+        $lookup: {
+          from: 'videos',
+          localField: 'videoId',
+          foreignField: '_id',
+          as: 'liked',
+        },
+      },
+      {
+        $unwind: '$liked',
+      },
+      { $replaceRoot: { newRoot: '$liked' } },
+      {
+        $count: 'count',
+      },
+    ])
+
+    console.log('total', total)
+
+    const likedVideos = await Like.aggregate([
+      {
+        $match: { userId },
+      },
+      {
+        $lookup: {
+          from: 'videos',
+          localField: 'videoId',
+          foreignField: '_id',
+          as: 'liked',
+        },
+      },
+      {
+        $unwind: '$liked',
+      },
+      { $replaceRoot: { newRoot: '$liked' } },
+      {
+        $project: {
+          status: 0,
+          videoPath: 0,
+          videoUrl: 0,
+          likes: 0,
+          __v: 0,
+          dislikes: 0,
+        },
+      },
+      { $skip: startIndex },
+      { $limit: 20 },
+      { $addFields: { userObjectId: { $toObjectId: '$userId' } } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userObjectId',
+          foreignField: '_id',
+          as: 'userInfo',
+        },
+      },
+      {
+        $unwind: '$userInfo',
+      },
+      {
+        $project: {
+          'userInfo.createdAt': 0,
+          'userInfo.email': 0,
+          'userInfo.updatedAt': 0,
+          'userInfo.watchedVideos': 0,
+          'userInfo.__v': 0,
+        },
+      },
+    ])
+
+    res.status(200).json({
+      data: likedVideos,
+      numberOfPages: Math.ceil(total?.count ? total[0].count / 20 : 1),
+      total: total[0]?.count ? total[0].count : 0,
+    })
+  } catch (err) {
+    next(err)
+  }
+}
