@@ -155,8 +155,6 @@ export const getLiked = async (req, res, next) => {
       },
     ])
 
-    console.log('total', total)
-
     const likedVideos = await Like.aggregate([
       {
         $match: { userId },
